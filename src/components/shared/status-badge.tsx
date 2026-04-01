@@ -1,3 +1,6 @@
+'use client'
+
+import { motion, useReducedMotion } from 'motion/react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
@@ -32,22 +35,42 @@ const STATUS_LABELS: Record<string, string> = {
   'invoiced':   'Invoiced',
 }
 
-interface StatusBadgeProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof statusBadgeVariants> {}
+interface StatusBadgeProps extends VariantProps<typeof statusBadgeVariants> {
+  className?: string
+}
 
-export function StatusBadge({ status, className, ...props }: StatusBadgeProps) {
+export function StatusBadge({ status, className }: StatusBadgeProps) {
   const resolvedStatus = status ?? 'dispatched'
+  const prefersReducedMotion = useReducedMotion()
+  const isInTransit = resolvedStatus === 'in-transit'
+
   return (
-    <span
+    <motion.span
       className={cn(statusBadgeVariants({ status }), className)}
-      {...props}
+      initial={{ scale: prefersReducedMotion ? 1 : 0.85, opacity: prefersReducedMotion ? 1 : 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
     >
-      <span
-        className={cn('h-1.5 w-1.5 rounded-full', STATUS_DOTS[resolvedStatus])}
-        aria-hidden="true"
-      />
+      {isInTransit && !prefersReducedMotion ? (
+        <motion.span
+          className={cn('h-1.5 w-1.5 rounded-full', STATUS_DOTS[resolvedStatus])}
+          aria-hidden="true"
+          animate={{
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ) : (
+        <span
+          className={cn('h-1.5 w-1.5 rounded-full', STATUS_DOTS[resolvedStatus])}
+          aria-hidden="true"
+        />
+      )}
       {STATUS_LABELS[resolvedStatus]}
-    </span>
+    </motion.span>
   )
 }

@@ -1,64 +1,133 @@
 'use client'
 
-import { motion, useInView } from 'motion/react'
+import { motion, useInView, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
-import { Shield, Server, Clock } from 'lucide-react'
+import { CheckCircle } from 'lucide-react'
+import { useParallax, useContentParallax } from '@/hooks/use-parallax'
+import { AnimatedQuoteMark } from '@/components/shared/animated-icon'
+
+// TIER 2: Giant quotation marks that move with parallax
+function ParallaxQuoteMarks({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
+  return (
+    <motion.div
+      className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform"
+      style={{ y }}
+      aria-hidden="true"
+    >
+      {/* Large quote mark - left side */}
+      <svg
+        className="absolute top-20 left-[10%] w-48 h-48 opacity-[0.08]"
+        style={{ color: 'var(--text-muted)' }}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+      </svg>
+
+      {/* Large quote mark - right side (closing) */}
+      <svg
+        className="absolute bottom-32 right-[10%] w-40 h-40 opacity-[0.06] rotate-180"
+        style={{ color: 'var(--text-muted)' }}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+      </svg>
+    </motion.div>
+  )
+}
+
+// Role badge with initials
+function RoleBadge({ initials, role }: { initials: string; role: string }) {
+  const roleColors: Record<string, string> = {
+    'Owner-Operator': 'bg-sky-400',
+    'Fleet Manager': 'bg-brand-blue',
+    'Safety Director': 'bg-brand-green',
+  }
+
+  const bgColor = roleColors[role] || 'bg-slate-500'
+
+  return (
+    <div
+      className={`w-12 h-12 rounded-full ${bgColor} flex items-center justify-center shadow-lg`}
+    >
+      <span className="font-display font-bold text-white text-sm">
+        {initials}
+      </span>
+    </div>
+  )
+}
 
 const TESTIMONIALS = [
   {
-    initials: 'JM',
-    name: 'Jake Martinez',
-    role: 'Owner Operator',
-    company: 'Martinez Trucking',
+    initials: 'MT',
+    name: 'Marcus T.',
+    role: 'Owner-Operator',
+    fleetInfo: '7 trucks, Tennessee',
     quote:
-      "Before DriveCommand, I was losing track of invoices and spending hours on paperwork. Now I dispatch, track, and invoice all from my phone. It's saved me at least 10 hours a week.",
-    color: 'bg-brand-blue',
+      "I used to spend Sunday nights updating spreadsheets for Monday dispatch. Now I open DriveCommand on my phone and everything's already there. We haven't missed a pickup in 4 months.",
   },
   {
-    initials: 'SR',
-    name: 'Sarah Richardson',
+    initials: 'DR',
+    name: 'Diane R.',
     role: 'Fleet Manager',
-    company: 'Richardson Freight (12 trucks)',
+    fleetInfo: '18 trucks, Texas',
     quote:
-      "We tried three other TMS platforms before finding DriveCommand. The difference? It actually works the way we do. Our drivers adopted it in a day, not a month.",
-    color: 'bg-brand-amber',
+      "Our invoicing used to take 3 days after delivery. Now it's same-day because the POD uploads automatically. We collected $22k faster in the first month alone.",
   },
   {
-    initials: 'DW',
-    name: 'David Wilson',
-    role: 'Operations Director',
-    company: 'Midwest Dispatch Services',
+    initials: 'RK',
+    name: 'Ray K.',
+    role: 'Safety Director',
+    fleetInfo: '34 trucks, Ohio',
     quote:
-      "As a dispatch company managing 40+ owner-ops, we needed something that could scale without breaking the bank. DriveCommand's pricing model finally made sense for us.",
-    color: 'bg-brand-green',
+      "We had a driver HOS violation that cost us $11,000 in fines. After DriveCommand, our compliance rate is 100%. The alerts catch everything before it becomes a problem.",
   },
-]
-
-const TRUST_BADGES = [
-  { icon: Shield, label: 'AES-256 Encryption' },
-  { icon: Server, label: 'SOC 2 in Progress' },
-  { icon: Clock, label: '99.9% Uptime SLA' },
 ]
 
 export function SocialProof() {
-  const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: true, margin: '-80px' })
+  const prefersReducedMotion = useReducedMotion()
+
+  // TIER 2: Decorative parallax - quote marks move y: 0 → -30px (0.25x speed)
+  const { y: decorativeY, shouldAnimate } = useParallax({
+    speed: 0.15,
+    outputRange: [0, -30],
+  })
+
+  // TIER 3: Content micro-parallax for headline (0.5x speed)
+  const { y: contentY, shouldAnimate: shouldAnimateContent } = useContentParallax()
 
   return (
-    <section ref={ref} className="py-24 bg-slate-50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      className="relative z-[1] py-24 overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-secondary)' }}
+    >
+      {/* TIER 2: Parallax quote marks (desktop only, respects reduced motion) */}
+      {shouldAnimate && <ParallaxQuoteMarks y={decorativeY} />}
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* TIER 3: Content with micro-parallax */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          className="mb-16 will-change-transform"
+          style={shouldAnimateContent ? { y: contentY } : undefined}
         >
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            Trusted by Carriers Who Get It Done
-          </h2>
-          <p className="font-body text-lg text-slate-600 max-w-2xl mx-auto">
-            From owner-operators to growing fleets, see why teams are switching to DriveCommand.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Section header with stripe accent */}
+            <span className="stripe-accent" />
+            <h2
+              className="font-display text-3xl sm:text-4xl font-bold mb-4"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              Carriers Running on DriveCommand
+            </h2>
+          </motion.div>
         </motion.div>
 
         {/* Testimonials */}
@@ -66,55 +135,75 @@ export function SocialProof() {
           {TESTIMONIALS.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
-              className="bg-white rounded-xl p-6 shadow-sm border border-slate-200"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="relative rounded-xl p-6 shadow-sm texture-steel border-panel"
+              initial={{
+                opacity: 0,
+                x: prefersReducedMotion ? 0 : index % 2 === 0 ? -30 : 30,
+              }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{
+                duration: 0.5,
+                delay: prefersReducedMotion ? 0 : index * 0.1,
+              }}
+              whileHover={
+                prefersReducedMotion
+                  ? {}
+                  : {
+                      scale: 1.02,
+                      boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.15)',
+                    }
+              }
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div
-                  className={`w-12 h-12 rounded-full ${testimonial.color} flex items-center justify-center`}
+              {/* Animated quote mark with draw-path effect */}
+              <AnimatedQuoteMark
+                className="absolute -top-2 -left-2 w-10 h-10"
+                staggerDelay={index * 0.15}
+              />
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-4">
+                  <RoleBadge initials={testimonial.initials} role={testimonial.role} />
+                  <div>
+                    <div
+                      className="font-display font-semibold"
+                      style={{ color: 'var(--text-primary)' }}
+                    >
+                      {testimonial.name}
+                    </div>
+                    <div
+                      className="font-body text-sm font-medium"
+                      style={{ color: 'var(--accent-cyan)' }}
+                    >
+                      {testimonial.role}
+                    </div>
+                  </div>
+                </div>
+                <p
+                  className="font-body mb-4 leading-relaxed"
+                  style={{ color: 'var(--text-secondary)' }}
                 >
-                  <span className="font-display font-bold text-white">
-                    {testimonial.initials}
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <div className="flex items-center justify-between">
+                  <span
+                    className="font-body text-sm"
+                    style={{ color: 'var(--text-muted)' }}
+                  >
+                    {testimonial.fleetInfo}
+                  </span>
+                  {/* Verified Carrier badge */}
+                  <span
+                    className="flex items-center gap-1 text-xs font-medium"
+                    style={{ color: 'var(--accent-signal)' }}
+                  >
+                    <CheckCircle size={14} />
+                    Verified Carrier
                   </span>
                 </div>
-                <div>
-                  <div className="font-display font-semibold text-slate-900">
-                    {testimonial.name}
-                  </div>
-                  <div className="font-body text-sm text-slate-500">
-                    {testimonial.role}
-                  </div>
-                </div>
-              </div>
-              <p className="font-body text-slate-600 mb-4 leading-relaxed">
-                &ldquo;{testimonial.quote}&rdquo;
-              </p>
-              <div className="font-body text-sm text-slate-400">
-                {testimonial.company}
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Trust badges */}
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-8 pt-8 border-t border-slate-200"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
-          {TRUST_BADGES.map((badge) => (
-            <div
-              key={badge.label}
-              className="flex items-center gap-2 text-slate-500"
-            >
-              <badge.icon className="w-5 h-5" />
-              <span className="font-body text-sm">{badge.label}</span>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   )

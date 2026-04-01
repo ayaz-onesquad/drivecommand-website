@@ -22,11 +22,11 @@ export function NavbarScrollWrapper({
       animate={
         isScrolled
           ? {
-              backgroundColor: 'rgba(15, 23, 42, 0.95)',
+              backgroundColor: 'var(--navbar-bg)',
               backdropFilter: 'blur(8px)',
-              boxShadow: '0 1px 3px 0 rgba(0,0,0,0.3)',
+              boxShadow: '0 1px 3px 0 rgba(0,0,0,0.1)',
               borderBottomWidth: '1px',
-              borderBottomColor: 'rgba(30,41,59,0.5)',
+              borderBottomColor: 'var(--navbar-border)',
             }
           : {
               backgroundColor: 'rgba(0, 0, 0, 0)',

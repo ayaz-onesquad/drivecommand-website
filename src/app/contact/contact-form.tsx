@@ -37,7 +37,7 @@ export function ContactForm() {
       <form action={formAction} className="space-y-6">
         {/* Name */}
         <div>
-          <label htmlFor="name" className="block font-body text-sm text-slate-300 mb-2">
+          <label htmlFor="name" className="block font-body text-sm text-theme-secondary mb-2">
             Full Name <span className="text-red-400">*</span>
           </label>
           <input
@@ -46,8 +46,8 @@ export function ContactForm() {
             name="name"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg bg-slate-900 border font-body text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-blue transition-colors',
-              state.errors?.name ? 'border-red-500' : 'border-slate-700'
+              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.name ? 'border-red-500' : 'border-theme-medium'
             )}
             placeholder="John Smith"
           />
@@ -58,7 +58,7 @@ export function ContactForm() {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block font-body text-sm text-slate-300 mb-2">
+          <label htmlFor="email" className="block font-body text-sm text-theme-secondary mb-2">
             Work Email <span className="text-red-400">*</span>
           </label>
           <input
@@ -67,8 +67,8 @@ export function ContactForm() {
             name="email"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg bg-slate-900 border font-body text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-blue transition-colors',
-              state.errors?.email ? 'border-red-500' : 'border-slate-700'
+              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.email ? 'border-red-500' : 'border-theme-medium'
             )}
             placeholder="john@company.com"
           />
@@ -79,7 +79,7 @@ export function ContactForm() {
 
         {/* Company */}
         <div>
-          <label htmlFor="company" className="block font-body text-sm text-slate-300 mb-2">
+          <label htmlFor="company" className="block font-body text-sm text-theme-secondary mb-2">
             Company Name <span className="text-red-400">*</span>
           </label>
           <input
@@ -88,8 +88,8 @@ export function ContactForm() {
             name="company"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg bg-slate-900 border font-body text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-blue transition-colors',
-              state.errors?.company ? 'border-red-500' : 'border-slate-700'
+              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.company ? 'border-red-500' : 'border-theme-medium'
             )}
             placeholder="ABC Trucking"
           />
@@ -100,7 +100,7 @@ export function ContactForm() {
 
         {/* Fleet Size */}
         <div>
-          <label htmlFor="fleetSize" className="block font-body text-sm text-slate-300 mb-2">
+          <label htmlFor="fleetSize" className="block font-body text-sm text-theme-secondary mb-2">
             Fleet Size <span className="text-red-400">*</span>
           </label>
           <select
@@ -108,8 +108,8 @@ export function ContactForm() {
             name="fleetSize"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg bg-slate-900 border font-body text-white focus:outline-none focus:ring-2 focus:ring-brand-blue transition-colors',
-              state.errors?.fleetSize ? 'border-red-500' : 'border-slate-700'
+              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.fleetSize ? 'border-red-500' : 'border-theme-medium'
             )}
           >
             {FLEET_SIZES.map((size) => (
@@ -125,7 +125,7 @@ export function ContactForm() {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="block font-body text-sm text-slate-300 mb-2">
+          <label htmlFor="message" className="block font-body text-sm text-theme-secondary mb-2">
             How Can We Help? <span className="text-red-400">*</span>
           </label>
           <textarea
@@ -134,8 +134,8 @@ export function ContactForm() {
             required
             rows={4}
             className={cn(
-              'w-full px-4 py-3 rounded-lg bg-slate-900 border font-body text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-blue transition-colors resize-none',
-              state.errors?.message ? 'border-red-500' : 'border-slate-700'
+              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors resize-none bg-theme-secondary',
+              state.errors?.message ? 'border-red-500' : 'border-theme-medium'
             )}
             placeholder="Tell us about your fleet and what you're looking for..."
           />
@@ -151,8 +151,8 @@ export function ContactForm() {
           className={cn(
             'w-full py-4 rounded-lg font-body font-medium text-white transition-colors flex items-center justify-center gap-2',
             isPending
-              ? 'bg-brand-blue/50 cursor-not-allowed'
-              : 'bg-brand-blue hover:bg-blue-500'
+              ? 'bg-[var(--accent-blue)]/50 cursor-not-allowed'
+              : 'bg-accent-blue hover:bg-accent-blue-hover'
           )}
         >
           {isPending ? (
@@ -165,9 +165,9 @@ export function ContactForm() {
           )}
         </button>
 
-        <p className="font-body text-xs text-slate-500 text-center">
+        <p className="font-body text-xs text-theme-muted text-center">
           By submitting this form, you agree to our{' '}
-          <a href="#" className="text-brand-blue hover:underline">Privacy Policy</a>.
+          <a href="#" className="text-accent-blue hover:underline">Privacy Policy</a>.
         </p>
       </form>
 

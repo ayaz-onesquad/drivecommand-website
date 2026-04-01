@@ -38,12 +38,12 @@ const COMPARISON_FEATURES = [
 
 function FeatureCell({ value }: { value: boolean | string }) {
   if (typeof value === 'string') {
-    return <span className="font-body text-sm text-slate-300">{value}</span>
+    return <span className="font-body text-sm text-theme-secondary">{value}</span>
   }
   return value ? (
-    <Check className="w-5 h-5 text-brand-green mx-auto" />
+    <Check className="w-5 h-5 text-accent-green mx-auto" />
   ) : (
-    <X className="w-5 h-5 text-slate-600 mx-auto" />
+    <X className="w-5 h-5 text-theme-muted mx-auto" />
   )
 }
 
@@ -51,20 +51,20 @@ export default function PricingPage() {
   return (
     <main className="min-h-screen">
       {/* Hero section */}
-      <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-brand-dark to-slate-900">
+      <section className="pt-32 pb-16 px-4 bg-theme-primary">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mb-4">
+          <h1 className="font-display text-4xl sm:text-5xl font-bold text-theme-primary mb-4">
             Simple, Transparent Pricing
           </h1>
-          <p className="font-body text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="font-body text-lg text-theme-secondary max-w-2xl mx-auto">
             Choose the plan that fits your fleet. No hidden fees, no long-term contracts.
-            Start free and upgrade as you grow.
+            Request early access and scale as you grow.
           </p>
         </div>
       </section>
 
       {/* Tier cards */}
-      <section className="py-16 px-4 bg-slate-900">
+      <section className="py-16 px-4 bg-theme-secondary">
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {PRICING_TIERS.map((tier) => (
@@ -73,58 +73,67 @@ export default function PricingPage() {
                 className={cn(
                   'relative rounded-2xl border p-8',
                   tier.highlighted
-                    ? 'border-brand-blue bg-brand-blue/5 shadow-lg shadow-brand-blue/10'
-                    : 'border-slate-700 bg-slate-800/50'
+                    ? 'border-[var(--accent-blue)] shadow-lg'
+                    : 'border-theme-medium'
                 )}
+                style={{
+                  backgroundColor: tier.highlighted ? 'var(--glow-blue)' : 'var(--bg-card)'
+                }}
               >
                 {tier.highlighted && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-brand-blue rounded-full">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-accent-blue">
                     <span className="font-body text-sm font-medium text-white">Most Popular</span>
                   </div>
                 )}
-                <h2 className="font-display text-2xl font-semibold text-white mb-1">
+                <h2 className="font-display text-2xl font-semibold text-theme-primary mb-1">
                   {tier.name}
                 </h2>
-                <p className="font-body text-sm text-slate-400 mb-6">{tier.tagline}</p>
+                <p className="font-body text-sm text-theme-secondary mb-6">{tier.tagline}</p>
                 <div className="mb-6">
                   {tier.monthlyPrice !== null ? (
                     <>
-                      <span className="font-display text-5xl font-bold text-white">
+                      <span className="font-display text-5xl font-bold text-theme-primary">
                         ${tier.monthlyPrice}
                       </span>
-                      <span className="font-body text-slate-400">/truck/mo</span>
+                      <span className="font-body text-theme-secondary">/truck/mo</span>
                       {tier.annualSavingsPct && (
-                        <p className="font-body text-sm text-brand-green mt-2">
+                        <p className="font-body text-sm text-accent-green mt-2">
                           Save {tier.annualSavingsPct}% with annual billing (${tier.annualPrice}/mo)
                         </p>
                       )}
                     </>
                   ) : (
-                    <span className="font-display text-4xl font-bold text-white">Custom</span>
+                    <span className="font-display text-4xl font-bold text-theme-primary">Custom</span>
                   )}
                 </div>
-                <p className="font-body text-sm text-slate-300 mb-6">{tier.description}</p>
+                <p className="font-body text-sm text-theme-secondary mb-6">{tier.description}</p>
                 <ul className="space-y-3 mb-8">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-brand-green flex-shrink-0 mt-0.5" />
-                      <span className="font-body text-sm text-slate-300">{feature}</span>
+                      <Check className="w-5 h-5 text-accent-green flex-shrink-0 mt-0.5" />
+                      <span className="font-body text-sm text-theme-secondary">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 <a
-                  href={tier.ctaHref}
+                  href={tier.id === 'enterprise' ? tier.ctaHref : '/contact'}
                   className={cn(
                     'block w-full text-center py-3 rounded-lg font-body font-medium transition-colors',
                     tier.highlighted
-                      ? 'bg-brand-blue text-white hover:bg-blue-500'
+                      ? 'bg-accent-blue text-white hover:bg-accent-blue-hover'
                       : tier.id === 'enterprise'
-                      ? 'border border-slate-500 text-white hover:border-slate-300 hover:bg-slate-700'
-                      : 'bg-slate-700 text-white hover:bg-slate-600'
+                      ? 'border border-theme-medium text-theme-primary hover:border-theme-primary hover:bg-theme-card-hover'
+                      : 'text-theme-primary hover:bg-theme-card-hover'
                   )}
+                  style={!tier.highlighted && tier.id !== 'enterprise' ? { backgroundColor: 'var(--bg-card-hover)' } : undefined}
                 >
-                  {tier.ctaLabel}
+                  {tier.id === 'enterprise' ? tier.ctaLabel : 'Get Early Access'}
                 </a>
+                {tier.id !== 'enterprise' && (
+                  <p className="font-body text-xs text-theme-muted text-center mt-3">
+                    Available in early access
+                  </p>
+                )}
               </div>
             ))}
           </div>
@@ -132,16 +141,16 @@ export default function PricingPage() {
       </section>
 
       {/* Feature comparison table */}
-      <section className="py-16 px-4 bg-brand-dark">
+      <section className="py-16 px-4 bg-theme-primary">
         <div className="mx-auto max-w-5xl">
-          <h2 className="font-display text-3xl font-bold text-white text-center mb-12">
+          <h2 className="font-display text-3xl font-bold text-theme-primary text-center mb-12">
             Compare Plans
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-700">
-                  <th className="py-4 px-4 text-left font-display text-sm font-semibold text-slate-400">
+                <tr className="border-b border-theme-medium">
+                  <th className="py-4 px-4 text-left font-display text-sm font-semibold text-theme-secondary">
                     Feature
                   </th>
                   {PRICING_TIERS.map((tier) => (
@@ -149,7 +158,7 @@ export default function PricingPage() {
                       key={tier.id}
                       className={cn(
                         'py-4 px-4 text-center font-display text-sm font-semibold',
-                        tier.highlighted ? 'text-brand-blue' : 'text-slate-300'
+                        tier.highlighted ? 'text-accent-blue' : 'text-theme-secondary'
                       )}
                     >
                       {tier.name}
@@ -161,21 +170,16 @@ export default function PricingPage() {
                 {COMPARISON_FEATURES.map((feature, index) => (
                   <tr
                     key={feature.name}
-                    className={cn(
-                      'border-b border-slate-800',
-                      index % 2 === 0 ? 'bg-slate-900/30' : ''
-                    )}
+                    className="border-b border-theme-subtle"
+                    style={index % 2 === 0 ? { backgroundColor: 'var(--bg-secondary)' } : undefined}
                   >
-                    <td className="py-4 px-4 font-body text-sm text-slate-300">
+                    <td className="py-4 px-4 font-body text-sm text-theme-secondary">
                       {feature.name}
                     </td>
                     <td className="py-4 px-4 text-center">
                       <FeatureCell value={feature.basic} />
                     </td>
-                    <td className={cn(
-                      'py-4 px-4 text-center',
-                      'bg-brand-blue/5'
-                    )}>
+                    <td className="py-4 px-4 text-center" style={{ backgroundColor: 'var(--glow-blue)' }}>
                       <FeatureCell value={feature.advanced} />
                     </td>
                     <td className="py-4 px-4 text-center">
@@ -193,18 +197,18 @@ export default function PricingPage() {
       <PricingCalculator />
 
       {/* FAQ / Questions CTA */}
-      <section className="py-16 px-4 bg-slate-900">
+      <section className="py-16 px-4 bg-theme-secondary">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-2xl font-bold text-white mb-4">
+          <h2 className="font-display text-2xl font-bold text-theme-primary mb-4">
             Have Questions?
           </h2>
-          <p className="font-body text-slate-400 mb-8">
+          <p className="font-body text-theme-secondary mb-8">
             Not sure which plan is right for your fleet? Our team is here to help you
             find the perfect fit.
           </p>
           <a
             href="/contact"
-            className="inline-flex px-8 py-3 bg-brand-blue text-white font-body font-medium rounded-lg hover:bg-blue-500 transition-colors"
+            className="inline-flex px-8 py-3 text-white font-body font-medium rounded-lg transition-colors bg-accent-blue hover:bg-accent-blue-hover"
           >
             Talk to Sales
           </a>
