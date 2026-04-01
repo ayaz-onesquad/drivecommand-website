@@ -12,7 +12,7 @@ Build a standalone Next.js 15 marketing website that converts trucking operators
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Project scaffold, design tokens, layout shell, navbar, footer
+- [x] **Phase 1: Foundation** - Project scaffold, design tokens, layout shell, navbar, footer
 - [ ] **Phase 2: Landing Page** - All 8 sections: hero through final CTA, including interactive calculator and demo
 - [ ] **Phase 3: Supporting Pages** - /pricing, /demo, /about, /contact pages
 - [ ] **Phase 4: Polish and Launch** - CTA routing audit, TypeScript, Lighthouse, README
@@ -31,9 +31,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. The `lib/pricing.config.ts` file exists as the single source of truth for all tier names, rates, and feature flags (no pricing strings in component JSX)
   5. All pages respond correctly from 320px to 1440px+
 Plans:
-- [ ] 01-01-PLAN.md — App router scaffold, dual-font setup, Tailwind brand tokens, cn() utility
-- [ ] 01-02-PLAN.md — Navbar (transparent-to-solid scroll, mobile drawer, CTA buttons) + Footer (4-column grid)
-- [ ] 01-03-PLAN.md — Pricing config single source of truth, StatusBadge component, /pricing /contact /about page stubs with SEO metadata
+- [x] 01-01-PLAN.md — App router scaffold, dual-font setup, Tailwind brand tokens, cn() utility
+- [x] 01-02-PLAN.md — Navbar (transparent-to-solid scroll, mobile drawer, CTA buttons) + Footer (4-column grid)
+- [x] 01-03-PLAN.md — Pricing config single source of truth, StatusBadge component, /pricing /contact /about page stubs with SEO metadata
 
 ### Phase 2: Landing Page
 **Goal**: A fully functional landing page that demonstrates DriveCommand's value — visitors can scroll through all 8 sections, interact with the pricing calculator, step through the interactive demo, and click to sign up.
@@ -89,7 +89,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
+| 1. Foundation | 3/3 | Complete | 2026-03-31 |
 | 2. Landing Page | 0/4 | Not started | - |
 | 3. Supporting Pages | 0/2 | Not started | - |
 | 4. Polish and Launch | 0/1 | Not started | - |

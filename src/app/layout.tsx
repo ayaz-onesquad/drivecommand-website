@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, IBM_Plex_Sans } from 'next/font/google'
+import { Navbar } from '@/components/layout/navbar'
+import { Footer } from '@/components/layout/footer'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -49,7 +51,11 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${ibmPlexSans.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        <main className="pt-16">{children}</main>
+        <Footer />
+      </body>
     </html>
   )
 }
