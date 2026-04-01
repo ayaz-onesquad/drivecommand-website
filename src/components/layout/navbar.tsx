@@ -43,12 +43,12 @@ export function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-4" aria-label="Main navigation">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-body text-slate-300 hover:text-white transition-colors"
+                className="text-sm font-body text-slate-300 hover:text-white transition-colors px-3 py-2"
               >
                 {link.label}
               </Link>

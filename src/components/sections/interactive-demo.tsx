@@ -53,7 +53,7 @@ const DEMO_STEPS = [
 function Step1UI() {
   return (
     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6">
-      <h4 className="font-display text-lg font-semibold text-white mb-4">New Load</h4>
+      <h3 className="font-display text-lg font-semibold text-white mb-4">New Load</h3>
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -105,7 +105,7 @@ function Step2UI() {
 
   return (
     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6">
-      <h4 className="font-display text-lg font-semibold text-white mb-4">Assign Driver</h4>
+      <h3 className="font-display text-lg font-semibold text-white mb-4">Assign Driver</h3>
       <div className="space-y-3">
         {drivers.map((driver) => (
           <motion.button
@@ -147,7 +147,7 @@ function Step3UI() {
   return (
     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h4 className="font-display text-lg font-semibold text-white">Live Tracking</h4>
+        <h3 className="font-display text-lg font-semibold text-white">Live Tracking</h3>
         <StatusBadge status="in-transit" />
       </div>
       {/* Simplified map representation */}
@@ -202,7 +202,7 @@ function Step4UI() {
   return (
     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h4 className="font-display text-lg font-semibold text-white">Load LD-1847</h4>
+        <h3 className="font-display text-lg font-semibold text-white">Load LD-1847</h3>
         <StatusBadge status="delivered" />
       </div>
       <div className="space-y-4">
@@ -243,7 +243,7 @@ function Step5UI() {
   return (
     <div className="bg-slate-900 rounded-xl border border-slate-700 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h4 className="font-display text-lg font-semibold text-white">Profit Summary</h4>
+        <h3 className="font-display text-lg font-semibold text-white">Profit Summary</h3>
         <StatusBadge status="invoiced" />
       </div>
       <div className="space-y-4">
@@ -402,10 +402,11 @@ export function InteractiveDemo() {
               </button>
 
               <div className="flex gap-2">
-                {DEMO_STEPS.map((_, index) => (
+                {DEMO_STEPS.map((step, index) => (
                   <button
                     key={index}
                     onClick={() => goToStep(index)}
+                    aria-label={`Go to step ${index + 1}: ${step.title}`}
                     className={cn(
                       'w-2 h-2 rounded-full transition-colors',
                       currentStep === index ? 'bg-brand-blue' : 'bg-slate-300'

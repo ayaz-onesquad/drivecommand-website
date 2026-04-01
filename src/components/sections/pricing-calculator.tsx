@@ -13,6 +13,7 @@ import {
 import { cn } from '@/lib/utils'
 
 interface SliderProps {
+  id: string
   label: string
   value: number
   min: number
@@ -22,16 +23,17 @@ interface SliderProps {
   suffix?: string
 }
 
-function Slider({ label, value, min, max, step, onChange, suffix = '' }: SliderProps) {
+function Slider({ id, label, value, min, max, step, onChange, suffix = '' }: SliderProps) {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <label className="font-body text-sm text-slate-400">{label}</label>
+        <label htmlFor={id} className="font-body text-sm text-slate-400">{label}</label>
         <span className="font-display text-lg font-semibold text-white">
           {value}{suffix}
         </span>
       </div>
       <input
+        id={id}
         type="range"
         min={min}
         max={max}
@@ -181,6 +183,7 @@ export function PricingCalculator() {
 
               {/* Sliders */}
               <Slider
+                id="calc-users"
                 label="Users"
                 value={users}
                 min={1}
@@ -189,6 +192,7 @@ export function PricingCalculator() {
                 onChange={setUsers}
               />
               <Slider
+                id="calc-trucks"
                 label="Trucks"
                 value={trucks}
                 min={1}
@@ -197,6 +201,7 @@ export function PricingCalculator() {
                 onChange={setTrucks}
               />
               <Slider
+                id="calc-loads"
                 label="Loads per month"
                 value={loads}
                 min={1}
