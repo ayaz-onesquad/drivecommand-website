@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project scaffold, design tokens, layout shell, navbar, footer
 - [x] **Phase 2: Landing Page** - All 8 sections: hero through final CTA, including interactive calculator and demo
-- [ ] **Phase 3: Supporting Pages** - /pricing, /demo, /about, /contact pages
+- [x] **Phase 3: Supporting Pages** - /pricing, /demo, /about, /contact pages
 - [ ] **Phase 4: Polish and Launch** - CTA routing audit, TypeScript, Lighthouse, README
 
 ## Phase Details
@@ -65,8 +65,8 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 03-01: /pricing page (comparison table + full calculator), /demo page (full walkthrough), /about page
-- [ ] 03-02: /contact page (lead capture form, Server Action, Resend integration, zod validation, toast feedback)
+- [x] 03-01: /pricing page (comparison table + full calculator), /demo page (full walkthrough), /about page
+- [x] 03-02: /contact page (lead capture form, Server Action, zod validation, toast feedback)
 
 ### Phase 4: Polish and Launch
 **Goal**: The site passes Lighthouse thresholds, all CTAs route to the correct destinations, TypeScript is clean, and a developer can onboard from the README — the site is ready to deploy.
@@ -91,5 +91,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-03-31 |
 | 2. Landing Page | 4/4 | Complete | 2026-03-31 |
-| 3. Supporting Pages | 0/2 | Not started | - |
+| 3. Supporting Pages | 2/2 | Complete | 2026-03-31 |
 | 4. Polish and Launch | 0/1 | Not started | - |

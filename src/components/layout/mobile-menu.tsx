@@ -7,10 +7,11 @@ import { AnimatePresence, motion } from 'motion/react'
 import Link from 'next/link'
 
 const NAV_LINKS = [
-  { href: '#features', label: 'Features' },
+  { href: '/#features', label: 'Features' },
   { href: '/pricing', label: 'Pricing' },
-  { href: '#demo', label: 'Demo' },
+  { href: '/demo', label: 'Demo' },
   { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export function MobileMenu() {
