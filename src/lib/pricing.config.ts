@@ -87,3 +87,38 @@ export function getPricingTier(id: PricingTier['id']): PricingTier {
   if (!tier) throw new Error(`Pricing tier "${id}" not found`)
   return tier
 }
+
+/** Calculator pricing rates - single source of truth */
+export const CALCULATOR_RATES = {
+  basic: {
+    perUser: 5,
+    perTruck: 5,
+    perLoad: 0.5,
+  },
+  advanced: {
+    perUser: 10,
+    perTruck: 7,
+    perLoad: 0.5,
+  },
+} as const
+
+export type CalculatorPlan = keyof typeof CALCULATOR_RATES
+
+/** Calculate monthly price based on plan and usage */
+export function calculatePrice(
+  plan: CalculatorPlan,
+  users: number,
+  trucks: number,
+  loads: number
+): { userCost: number; truckCost: number; loadCost: number; total: number } {
+  const rates = CALCULATOR_RATES[plan]
+  const userCost = rates.perUser * users
+  const truckCost = rates.perTruck * trucks
+  const loadCost = rates.perLoad * loads
+  return {
+    userCost,
+    truckCost,
+    loadCost,
+    total: userCost + truckCost + loadCost,
+  }
+}

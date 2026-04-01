@@ -13,7 +13,7 @@ Build a standalone Next.js 15 marketing website that converts trucking operators
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project scaffold, design tokens, layout shell, navbar, footer
-- [ ] **Phase 2: Landing Page** - All 8 sections: hero through final CTA, including interactive calculator and demo
+- [x] **Phase 2: Landing Page** - All 8 sections: hero through final CTA, including interactive calculator and demo
 - [ ] **Phase 3: Supporting Pages** - /pricing, /demo, /about, /contact pages
 - [ ] **Phase 4: Polish and Launch** - CTA routing audit, TypeScript, Lighthouse, README
 
@@ -48,10 +48,10 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 02-01: Hero section, Problem/Solution bar with animated counters, Features grid
-- [ ] 02-02: Demo video section (env-var URL + animated HTML/CSS fallback), Social proof, Final CTA
-- [ ] 02-03: Interactive demo component (5-step state machine, React component mockups, scroll/click navigation)
-- [ ] 02-04: Pricing calculator component (sliders, package selector, live line-item output panel, Enterprise → /contact routing)
+- [x] 02-01: Hero section, Problem/Solution bar with animated counters, Features grid
+- [x] 02-02: Demo video section (env-var URL + animated HTML/CSS fallback), Social proof, Final CTA
+- [x] 02-03: Interactive demo component (5-step state machine, React component mockups, scroll/click navigation)
+- [x] 02-04: Pricing calculator component (sliders, package selector, live line-item output panel, Enterprise → /contact routing)
 
 ### Phase 3: Supporting Pages
 **Goal**: Visitors who want more detail have dedicated pages for pricing exploration, a full demo walkthrough, company background, and lead capture — each page complete and independently navigable.
@@ -90,6 +90,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-03-31 |
-| 2. Landing Page | 0/4 | Not started | - |
+| 2. Landing Page | 4/4 | Complete | 2026-03-31 |
 | 3. Supporting Pages | 0/2 | Not started | - |
 | 4. Polish and Launch | 0/1 | Not started | - |

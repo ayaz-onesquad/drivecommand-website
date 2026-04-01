@@ -1,0 +1,8 @@
+export { Hero } from './hero'
+export { ProblemBar } from './problem-bar'
+export { FeaturesGrid } from './features-grid'
+export { DemoVideo } from './demo-video'
+export { InteractiveDemo } from './interactive-demo'
+export { PricingCalculator } from './pricing-calculator'
+export { SocialProof } from './social-proof'
+export { FinalCTA } from './final-cta'
