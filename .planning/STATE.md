@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 Phase: 2 of 4 (Landing Page)
 Plan: 4 of 4 in current phase
 Status: Phase 2 COMPLETE
-Last activity: 2026-04-02 — Completed quick task 2: Brand color token system
+Last activity: 2026-04-02 — Completed quick task 3: Colors 3 palette migration
 
 Progress: [██████████] 100% (Phase 1 + 2)
 
@@ -47,7 +47,7 @@ Recent decisions affecting current work:
 - Init: Hardcoded React component mockups for interactive demo (not static images)
 - Init: Pricing in `lib/pricing.config.ts` — single source of truth before any pricing UI is built
 - Init: Enterprise CTA routes to /contact, not external booking tool
-- [Phase quick-2]: Coral (#E05A3A) as primary accent color for all CTAs (replacing blue #3b82f6)
+- [Phase quick-3]: Mint (#75F0D4) as primary accent color for all CTAs, midnight (#000D23) backgrounds (Colors 3 palette)
 
 ### Pending Todos
 
