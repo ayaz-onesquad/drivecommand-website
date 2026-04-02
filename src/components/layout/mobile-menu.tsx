@@ -9,9 +9,9 @@ import { ThemeToggle } from '@/components/shared/theme-toggle'
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 4px 15px rgba(59, 130, 246, 0.2)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(59, 130, 246, 0.35)' },
-  tap: { y: 0, boxShadow: '0 2px 8px rgba(59, 130, 246, 0.2)' },
+  rest: { y: 0, boxShadow: '0 4px 15px rgba(117, 240, 212, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
+  tap: { y: 0, boxShadow: '0 2px 8px rgba(117, 240, 212, 0.25)' },
 }
 
 const arrowVariants = {
@@ -126,7 +126,7 @@ export function MobileMenu() {
                       className="block"
                     >
                       <motion.span
-                        className="w-full py-3 flex items-center justify-center gap-2 bg-accent-blue text-white rounded-lg font-body font-medium"
+                        className="w-full py-3 flex items-center justify-center gap-2 bg-dc-accent text-dc-text-on-accent rounded-lg font-body font-medium"
                         variants={prefersReducedMotion ? {} : primaryButtonVariants}
                         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                       >

@@ -51,10 +51,10 @@ const FEATURES: Feature[] = [
     title: 'Dispatch & Loads',
     description:
       'Book loads, assign drivers, and track delivery status in one board. Your dispatcher sees everything. No phone tag.',
-    color: 'text-brand-blue',
-    bgColor: 'bg-brand-blue/10',
-    hoverBorderColor: 'rgba(59, 130, 246, 0.6)',
-    hoverGlowShadow: '0 10px 40px -10px rgba(59, 130, 246, 0.3)',
+    color: 'text-dc-accent',
+    bgColor: 'bg-dc-accent/10',
+    hoverBorderColor: 'rgba(117, 240, 212, 0.6)',
+    hoverGlowShadow: '0 10px 40px -10px rgba(117, 240, 212, 0.3)',
     animation: 'truck-drive',
     triggerOnHover: true,
   },
@@ -111,10 +111,10 @@ const FEATURES: Feature[] = [
     title: 'AI Tools',
     description:
       'DriveCommand flags late loads, suggests optimal driver assignments, and drafts rate confirmations — so your dispatcher spends less time on admin.',
-    color: 'text-brand-blue',
-    bgColor: 'bg-brand-blue/10',
-    hoverBorderColor: 'rgba(59, 130, 246, 0.6)',
-    hoverGlowShadow: '0 10px 40px -10px rgba(59, 130, 246, 0.3)',
+    color: 'text-dc-accent',
+    bgColor: 'bg-dc-accent/10',
+    hoverBorderColor: 'rgba(117, 240, 212, 0.6)',
+    hoverGlowShadow: '0 10px 40px -10px rgba(117, 240, 212, 0.3)',
     animation: 'pulse-ring',
     triggerOnHover: true,
   },
@@ -216,7 +216,7 @@ export function FeaturesGrid() {
                 </p>
                 <motion.button
                   className="group font-body text-sm font-medium transition-colors inline-flex items-center gap-1"
-                  style={{ color: 'var(--accent-blue)' }}
+                  style={{ color: 'var(--color-accent)' }}
                   whileHover={prefersReducedMotion ? {} : { x: 2 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 >

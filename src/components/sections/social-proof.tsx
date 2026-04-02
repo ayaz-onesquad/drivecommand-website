@@ -41,7 +41,7 @@ function ParallaxQuoteMarks({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
 function RoleBadge({ initials, role }: { initials: string; role: string }) {
   const roleColors: Record<string, string> = {
     'Owner-Operator': 'bg-sky-400',
-    'Fleet Manager': 'bg-brand-blue',
+    'Fleet Manager': 'bg-dc-accent',
     'Safety Director': 'bg-brand-green',
   }
 

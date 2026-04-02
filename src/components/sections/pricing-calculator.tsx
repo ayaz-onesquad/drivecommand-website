@@ -57,7 +57,7 @@ function Slider({ id, label, value, min, max, step, onChange, suffix = '' }: Sli
           onChange={handleNumberChange}
           onBlur={handleNumberBlur}
           onFocus={handleNumberFocus}
-          className="w-16 h-8 px-2 py-1 text-sm text-right font-body text-theme-primary bg-theme-card border border-[var(--border-medium)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--accent-blue)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="w-16 h-8 px-2 py-1 text-sm text-right font-body text-theme-primary bg-theme-card border border-[var(--border-medium)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           aria-label={`${label} value`}
         />
       </div>
@@ -144,11 +144,11 @@ export function PricingCalculator() {
               className={cn(
                 'relative rounded-xl border p-6',
                 tier.highlighted
-                  ? 'border-[var(--accent-blue)]'
+                  ? 'border-[var(--color-accent)]'
                   : 'border-theme-medium'
               )}
               style={{
-                backgroundColor: tier.highlighted ? 'var(--glow-blue)' : 'var(--bg-secondary)'
+                backgroundColor: tier.highlighted ? 'var(--color-glow-accent)' : 'var(--bg-secondary)'
               }}
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -162,13 +162,13 @@ export function PricingCalculator() {
                   : {
                       y: -4,
                       boxShadow: tier.highlighted
-                        ? '0 20px 40px -15px rgba(59, 130, 246, 0.3)'
+                        ? '0 20px 40px -15px rgba(117, 240, 212, 0.3)'
                         : '0 20px 40px -15px rgba(0, 0, 0, 0.3)',
                     }
               }
             >
               {tier.highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-accent-blue">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-dc-accent text-dc-text-on-accent">
                   <span className="font-body text-xs font-medium text-white">Most Popular</span>
                 </div>
               )}
@@ -201,7 +201,7 @@ export function PricingCalculator() {
                 className={cn(
                   'block w-full text-center py-3 rounded-lg font-body font-medium text-sm transition-colors',
                   tier.highlighted
-                    ? 'bg-accent-blue text-white hover:bg-accent-blue-hover'
+                    ? 'bg-dc-accent text-dc-text-on-accent text-white hover:bg-dc-accent text-dc-text-on-accent-hover'
                     : tier.id === 'enterprise'
                     ? 'border border-theme-medium text-theme-secondary hover:border-theme-primary'
                     : 'text-white bg-theme-secondary hover:bg-theme-card'
@@ -243,7 +243,7 @@ export function PricingCalculator() {
                       className={cn(
                         'py-3 px-4 rounded-lg font-body font-medium text-sm transition-colors',
                         selectedPlan === plan
-                          ? 'bg-accent-blue text-white'
+                          ? 'bg-dc-accent text-dc-text-on-accent text-white'
                           : 'text-theme-secondary hover:bg-theme-card'
                       )}
                       style={selectedPlan !== plan ? { backgroundColor: 'var(--bg-card)' } : undefined}
@@ -354,7 +354,7 @@ export function PricingCalculator() {
               {/* CTA */}
               <Link
                 href="/contact"
-                className="block w-full text-center py-3 text-white font-body font-medium rounded-lg transition-colors bg-accent-blue hover:bg-accent-blue-hover"
+                className="block w-full text-center py-3 text-white font-body font-medium rounded-lg transition-colors bg-dc-accent text-dc-text-on-accent hover:bg-dc-accent text-dc-text-on-accent-hover"
               >
                 Get Early Access at This Price
               </Link>

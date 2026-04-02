@@ -23,9 +23,9 @@ import { useParallax, useContentParallax } from '@/hooks/use-parallax'
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 4px 15px rgba(59, 130, 246, 0.2)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(59, 130, 246, 0.35)' },
-  tap: { y: 0, boxShadow: '0 2px 8px rgba(59, 130, 246, 0.2)' },
+  rest: { y: 0, boxShadow: '0 4px 15px rgba(117, 240, 212, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
+  tap: { y: 0, boxShadow: '0 2px 8px rgba(117, 240, 212, 0.25)' },
 }
 
 const arrowVariants = {
@@ -202,7 +202,7 @@ function Step1BookLoad() {
             'w-full py-3 font-body font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors',
             isBooked
               ? 'bg-emerald-500 text-white cursor-not-allowed opacity-60 pointer-events-none'
-              : 'bg-accent-blue text-white hover:border-sky-400/60'
+              : 'bg-dc-accent text-dc-text-on-accent hover:border-sky-400/60'
           )}
           onClick={handleBook}
           disabled={isBooked}
@@ -392,7 +392,7 @@ function Step3DriverComms() {
               key={driver.name}
               className={cn(
                 'flex items-center gap-2 p-3 cursor-pointer transition-colors',
-                driver.active ? 'bg-accent-blue/10 border-l-2 border-accent-blue' : 'hover:bg-theme-card-hover'
+                driver.active ? 'bg-dc-accent/10 border-l-2 border-dc-accent' : 'hover:bg-theme-card-hover'
               )}
             >
               <div className="relative">
@@ -437,7 +437,7 @@ function Step3DriverComms() {
                 <div className={cn(
                   'max-w-[80%] rounded-lg px-3 py-2',
                   msg.from === 'dispatch'
-                    ? 'bg-accent-blue text-white'
+                    ? 'bg-dc-accent text-dc-text-on-accent'
                     : 'bg-theme-card text-theme-primary'
                 )}>
                   <div className="font-body text-sm">{msg.text}</div>
@@ -467,7 +467,7 @@ function Step3DriverComms() {
                 'px-4 py-2 rounded-lg font-body text-sm font-medium flex items-center gap-2 transition-colors',
                 messageSent
                   ? 'bg-theme-card text-theme-muted cursor-not-allowed opacity-60 pointer-events-none'
-                  : 'bg-accent-blue text-white hover:border-sky-400/60'
+                  : 'bg-dc-accent text-dc-text-on-accent hover:border-sky-400/60'
               )}
               initial="rest"
               whileHover={!messageSent ? "hover" : undefined}
@@ -584,7 +584,7 @@ function Step4DriverDocs() {
           'w-full py-3 font-body font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors',
           podUploaded
             ? 'bg-emerald-500 text-white cursor-not-allowed opacity-60 pointer-events-none'
-            : 'bg-accent-blue text-white hover:border-sky-400/60'
+            : 'bg-dc-accent text-dc-text-on-accent hover:border-sky-400/60'
         )}
         initial="rest"
         whileHover={!podUploaded ? "hover" : undefined}
@@ -854,7 +854,7 @@ export function InteractiveDemo() {
                 className={cn(
                   'w-full flex items-start gap-4 p-4 rounded-xl text-left transition-all',
                   currentStep === index
-                    ? 'shadow-lg border-2 border-[var(--accent-blue)] bg-theme-card'
+                    ? 'shadow-lg border-2 border-dc-accent bg-theme-card'
                     : 'border border-theme-subtle hover:shadow bg-theme-card/50 hover:bg-theme-card'
                 )}
                 onClick={() => goToStep(index)}
@@ -864,7 +864,7 @@ export function InteractiveDemo() {
                   className={cn(
                     'flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center',
                     currentStep === index
-                      ? 'bg-accent-blue text-white'
+                      ? 'bg-dc-accent text-dc-text-on-accent'
                       : currentStep > index
                       ? 'bg-brand-green text-white'
                       : 'text-theme-muted'
@@ -881,7 +881,7 @@ export function InteractiveDemo() {
                   <div
                     className={cn(
                       'font-display font-semibold mb-1',
-                      currentStep === index ? 'text-accent-blue' : 'text-theme-primary'
+                      currentStep === index ? 'text-dc-accent' : 'text-theme-primary'
                     )}
                   >
                     {step.id}. {step.title}
@@ -940,7 +940,7 @@ export function InteractiveDemo() {
                     className="w-2 h-2 rounded-full"
                     animate={{
                       scale: currentStep === index && !prefersReducedMotion ? 1.4 : 1,
-                      backgroundColor: currentStep === index ? 'var(--accent-blue)' : 'var(--text-muted)',
+                      backgroundColor: currentStep === index ? 'var(--color-accent)' : 'var(--text-muted)',
                     }}
                     transition={{
                       type: 'spring',

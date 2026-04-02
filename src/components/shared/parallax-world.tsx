@@ -108,7 +108,7 @@ export function ParallaxWorld() {
         style={{
           left: light2X,
           top: light2Y,
-          background: 'radial-gradient(circle, rgba(224, 90, 58, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(117, 240, 212, 0.05) 0%, transparent 70%)',
           transform: 'translate(-50%, -50%)',
         }}
       />

@@ -9,9 +9,9 @@ import { useContentParallax, useParallax } from '@/hooks/use-parallax'
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 10px 15px -3px var(--glow-blue)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(59, 130, 246, 0.35)' },
-  tap: { y: 0, boxShadow: '0 4px 12px rgba(59, 130, 246, 0.2)' },
+  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(117, 240, 212, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
+  tap: { y: 0, boxShadow: '0 4px 12px rgba(117, 240, 212, 0.2)' },
 }
 
 const arrowVariants = {
@@ -80,7 +80,7 @@ export function FinalCTA() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]">
               <div
                 className="absolute inset-0 rounded-full blur-[100px] animate-glow-pulse"
-                style={{ backgroundColor: 'var(--glow-blue)' }}
+                style={{ backgroundColor: 'var(--color-glow-accent)' }}
               />
             </div>
           )}
@@ -90,7 +90,7 @@ export function FinalCTA() {
         {!isDesktop && (
           <div className="absolute inset-0">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64">
-              <div className="absolute inset-0 rounded-full blur-3xl" style={{ backgroundColor: 'var(--glow-blue)' }} />
+              <div className="absolute inset-0 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-glow-accent)' }} />
             </div>
           </div>
         )}
@@ -141,7 +141,7 @@ export function FinalCTA() {
             >
               <Link href="/contact" className="block">
                 <motion.span
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 text-white font-body font-medium text-lg rounded-lg bg-accent-blue"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 font-body font-medium text-lg rounded-lg bg-dc-accent text-dc-text-on-accent"
                   variants={prefersReducedMotion ? {} : primaryButtonVariants}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 >
@@ -160,7 +160,7 @@ export function FinalCTA() {
 
           <motion.p
             className="mt-4 font-body text-sm"
-            style={{ color: 'var(--text-muted)' }}
+            style={{ color: 'var(--color-text-muted)' }}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-80px' }}

@@ -137,7 +137,7 @@ function LoadsTableMockup() {
               <motion.tr
                 key={load.id}
                 className="transition-colors"
-                animate={!prefersReducedMotion && index === activeRow ? { backgroundColor: 'var(--glow-blue)' } : { backgroundColor: 'transparent' }}
+                animate={!prefersReducedMotion && index === activeRow ? { backgroundColor: 'var(--color-glow-accent)' } : { backgroundColor: 'transparent' }}
               >
                 <td className="px-4 py-3 font-body text-sm font-medium text-theme-primary">{load.id}</td>
                 <td className="px-4 py-3 font-body text-sm text-theme-secondary">{load.customer}</td>
@@ -233,7 +233,7 @@ export function DemoVideo() {
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <motion.div
                   className="w-20 h-20 rounded-full flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ backgroundColor: 'rgba(59, 130, 246, 0.8)' }}
+                  style={{ backgroundColor: 'rgba(117, 240, 212, 0.8)' }}
                   animate={prefersReducedMotion ? {} : { scale: [1, 1.1, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
@@ -255,8 +255,8 @@ export function DemoVideo() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex px-8 py-4 text-white font-body font-medium rounded-lg transition-colors shadow-lg bg-accent-blue hover:bg-accent-blue-hover"
-            style={{ boxShadow: '0 10px 15px -3px var(--glow-blue)' }}
+            className="inline-flex px-8 py-4 text-white font-body font-medium rounded-lg transition-colors shadow-lg bg-dc-accent hover:bg-dc-accent-hover text-dc-text-on-accent"
+            style={{ boxShadow: '0 10px 15px -3px var(--color-glow-accent)' }}
           >
             Get Early Access
           </Link>

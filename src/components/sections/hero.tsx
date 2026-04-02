@@ -13,9 +13,9 @@ const easeInOutStrong: [number, number, number, number] = [0.77, 0, 0.175, 1]
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(224, 90, 58, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(224, 90, 58, 0.35)' },
-  tap: { y: 0, scale: 0.97, boxShadow: '0 4px 12px rgba(224, 90, 58, 0.2)' },
+  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(117, 240, 212, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
+  tap: { y: 0, scale: 0.97, boxShadow: '0 4px 12px rgba(117, 240, 212, 0.2)' },
 }
 
 const arrowVariants = {
@@ -130,7 +130,7 @@ export function Hero() {
         className="absolute inset-0 z-20 pointer-events-none will-change-transform"
         style={{ y: shouldParallax ? glowY : 0 }}
       >
-        {/* Coral glow behind headline */}
+        {/* Mint glow behind headline */}
         <div
           className="absolute"
           style={{
@@ -139,10 +139,10 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(224, 90, 58, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(117, 240, 212, 0.15) 0%, transparent 70%)',
           }}
         />
-        {/* Brand blue glow behind dashboard */}
+        {/* Brand deep-blue glow behind dashboard */}
         <div
           className="absolute"
           style={{
@@ -151,7 +151,7 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(50%, -50%)',
-            background: 'radial-gradient(circle, rgba(45, 78, 122, 0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(33, 101, 127, 0.1) 0%, transparent 70%)',
           }}
         />
       </motion.div>
@@ -197,7 +197,7 @@ export function Hero() {
               </motion.span>
               <motion.span
                 className="block animate-headline-glow"
-                style={{ color: 'var(--accent-load)' }}
+                style={{ color: 'var(--color-accent)' }}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: easeOutStrong, delay: shouldAnimate ? 0.32 : 0 }}
@@ -206,7 +206,7 @@ export function Hero() {
                 {/* Terminal cursor */}
                 <motion.span
                   className="inline-block w-[3px] h-[0.85em] ml-1 align-middle"
-                  style={{ backgroundColor: 'var(--accent-cyan)' }}
+                  style={{ backgroundColor: 'var(--color-accent)' }}
                   initial={{ opacity: 1 }}
                   animate={{
                     opacity: showCursor ? [1, 0, 1, 0, 1] : 0
@@ -268,8 +268,11 @@ export function Hero() {
               >
                 <Link href="/contact" className="block">
                   <motion.span
-                    className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-body font-semibold rounded-lg text-center"
-                    style={{ backgroundColor: 'var(--accent-blue)' }}
+                    className="inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold rounded-lg text-center"
+                    style={{
+                      backgroundColor: 'var(--color-accent)',
+                      color: 'var(--color-text-on-accent)'
+                    }}
                     variants={prefersReducedMotion ? {} : primaryButtonVariants}
                     transition={{ duration: 0.16, ease: easeOutStrong }}
                   >
@@ -296,10 +299,10 @@ export function Hero() {
               >
                 <Link
                   href="#demo"
-                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-lg transition-colors duration-150 text-center hover:bg-sky-400/10 hover:border-sky-400"
+                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-lg transition-colors duration-150 text-center"
                   style={{
-                    borderColor: 'var(--accent-cyan)',
-                    color: 'var(--accent-cyan)'
+                    borderColor: 'var(--color-accent)',
+                    color: 'var(--color-accent)'
                   }}
                 >
                   Watch It Work
@@ -313,10 +316,10 @@ export function Hero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.72 : 0 }}
             >
-              <p className="font-body text-sm mb-1" style={{ color: 'var(--text-muted)' }}>
+              <p className="font-body text-sm mb-1" style={{ color: 'var(--color-text-muted)' }}>
                 No credit card · No setup fee · Your fleet live in under 10 minutes
               </p>
-              <p className="font-body text-[13px] font-medium" style={{ color: 'var(--accent-cyan)' }}>
+              <p className="font-body text-[13px] font-medium" style={{ color: 'var(--color-accent)' }}>
                 Join 47+ carriers already on early access
               </p>
             </motion.div>
@@ -335,7 +338,7 @@ export function Hero() {
               style={{
                 border: '1px solid var(--color-border)',
                 background: 'rgba(22, 32, 46, 0.9)',
-                boxShadow: '0 25px 50px -12px rgba(224, 90, 58, 0.15), 0 0 0 1px rgba(224, 90, 58, 0.05)',
+                boxShadow: '0 25px 50px -12px rgba(117, 240, 212, 0.15), 0 0 0 1px rgba(117, 240, 212, 0.05)',
               }}
             >
               {/* Title bar */}
@@ -456,7 +459,7 @@ export function Hero() {
                     whileHover={prefersReducedMotion ? {} : {
                       y: -2,
                       backgroundColor: 'rgba(30, 37, 51, 0.95)',
-                      borderColor: 'rgba(224, 90, 58, 0.3)'
+                      borderColor: 'rgba(117, 240, 212, 0.3)'
                     }}
                     whileTap={prefersReducedMotion ? {} : { y: 0, scale: 0.98 }}
                     transition={{
@@ -528,11 +531,11 @@ export function Hero() {
       >
         <motion.div
           className="w-6 h-10 border-2 rounded-full flex justify-center"
-          style={{ borderColor: 'var(--text-muted)' }}
+          style={{ borderColor: 'var(--color-text-muted)' }}
         >
           <motion.div
             className="w-1.5 h-1.5 rounded-full mt-2"
-            style={{ backgroundColor: 'var(--text-secondary)' }}
+            style={{ backgroundColor: 'var(--color-text-secondary)' }}
             animate={shouldAnimate ? { y: [0, 16, 0] } : undefined}
             transition={{ duration: 2, ease: easeInOutStrong, repeat: Infinity }}
           />
