@@ -7,11 +7,15 @@ import { ArrowRight, Shield, Zap, Lock } from 'lucide-react'
 import { StatusBadge } from '@/components/shared/status-badge'
 import { useIsDesktop } from '@/hooks/use-is-desktop'
 
+// Emil Kowalski's custom easing curves for punchy animations
+const easeOutStrong: [number, number, number, number] = [0.23, 1, 0.32, 1]
+const easeInOutStrong: [number, number, number, number] = [0.77, 0, 0.175, 1]
+
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(59, 130, 246, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(59, 130, 246, 0.35)' },
-  tap: { y: 0, boxShadow: '0 4px 12px rgba(59, 130, 246, 0.2)' },
+  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(224, 90, 58, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(224, 90, 58, 0.35)' },
+  tap: { y: 0, scale: 0.97, boxShadow: '0 4px 12px rgba(224, 90, 58, 0.2)' },
 }
 
 const arrowVariants = {
@@ -21,8 +25,9 @@ const arrowVariants = {
 
 // Variant B: Ghost button with border fill on hover
 const ghostButtonVariants = {
-  rest: { y: 0 },
-  hover: { y: -1 },
+  rest: { y: 0, scale: 1 },
+  hover: { y: -1, scale: 1 },
+  tap: { y: 0, scale: 0.97 },
 }
 
 // Load card data
@@ -58,9 +63,9 @@ const statusDotColors: Record<string, string> = {
 
 // Route paths for animated map (simplified curved paths)
 const routePaths = [
-  { id: 'chi-atl', d: 'M160,80 Q200,100 220,140', color: '#3b82f6' },
-  { id: 'dal-lax', d: 'M140,120 Q100,130 60,110', color: '#8b5cf6' },
-  { id: 'nyc-mia', d: 'M280,60 Q290,100 260,160', color: '#10b981' },
+  { id: 'chi-atl', d: 'M160,80 Q200,100 220,140', color: 'var(--color-brand)' },
+  { id: 'dal-lax', d: 'M140,120 Q100,130 60,110', color: 'var(--color-status-dispatched)' },
+  { id: 'nyc-mia', d: 'M280,60 Q290,100 260,160', color: 'var(--color-live-green)' },
 ]
 
 export function Hero() {
@@ -105,10 +110,10 @@ export function Hero() {
       ref={ref}
       data-force-dark
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ backgroundColor: '#080d14' }}
+      style={{ backgroundColor: 'var(--color-bg-dark)' }}
     >
       {/* LAYER 1 — Base color */}
-      <div className="absolute inset-0 z-0" style={{ backgroundColor: '#080d14' }} />
+      <div className="absolute inset-0 z-0" style={{ backgroundColor: 'var(--color-bg-dark)' }} />
 
       {/* LAYER 2 — Animated dot-grid */}
       <motion.div
@@ -125,7 +130,7 @@ export function Hero() {
         className="absolute inset-0 z-20 pointer-events-none will-change-transform"
         style={{ y: shouldParallax ? glowY : 0 }}
       >
-        {/* Electric blue glow behind headline */}
+        {/* Coral glow behind headline */}
         <div
           className="absolute"
           style={{
@@ -134,10 +139,10 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(224, 90, 58, 0.15) 0%, transparent 70%)',
           }}
         />
-        {/* Purple glow behind dashboard */}
+        {/* Brand blue glow behind dashboard */}
         <div
           className="absolute"
           style={{
@@ -146,7 +151,7 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(50%, -50%)',
-            background: 'radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(45, 78, 122, 0.08) 0%, transparent 70%)',
           }}
         />
       </motion.div>
@@ -170,9 +175,9 @@ export function Hero() {
           <div className="max-w-xl">
             {/* Eyebrow */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: shouldAnimate ? 0.1 : 0 }}
+              transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.1 : 0 }}
             >
               <span className="stripe-accent" />
               <p className="text-xs font-mono uppercase tracking-widest mb-4" style={{ color: 'var(--text-secondary)' }}>
@@ -184,18 +189,18 @@ export function Hero() {
             <h1 className="font-headline text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6" style={{ color: 'var(--text-primary)' }}>
               <motion.span
                 className="block"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: shouldAnimate ? 0.25 : 0 }}
+                transition={{ duration: 0.35, ease: easeOutStrong, delay: shouldAnimate ? 0.2 : 0 }}
               >
                 You Run the Trucks.
               </motion.span>
               <motion.span
                 className="block animate-headline-glow"
                 style={{ color: 'var(--accent-load)' }}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: shouldAnimate ? 0.4 : 0 }}
+                transition={{ duration: 0.35, ease: easeOutStrong, delay: shouldAnimate ? 0.32 : 0 }}
               >
                 We Run the Rest.
                 {/* Terminal cursor */}
@@ -218,28 +223,28 @@ export function Hero() {
             <motion.p
               className="font-body text-lg max-w-[480px] mb-6"
               style={{ color: 'var(--text-secondary)' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: shouldAnimate ? 0.55 : 0 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.44 : 0 }}
             >
               DriveCommand gives carrier owners one place for dispatch, GPS, drivers, payroll, and invoicing. No more Excel. No more chasing drivers for paperwork.
             </motion.p>
 
-            {/* Trust badges */}
+            {/* Trust badges - staggered entry */}
             <motion.div
               className="flex flex-wrap gap-3 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: shouldAnimate ? 0.65 : 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2, delay: shouldAnimate ? 0.5 : 0 }}
             >
               {trustBadges.map((badge, i) => (
                 <motion.div
                   key={badge.label}
                   className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border-panel"
                   style={{ backgroundColor: 'rgba(45, 55, 72, 0.6)', color: 'var(--text-secondary)' }}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: shouldAnimate ? 0.65 + i * 0.1 : 0 }}
+                  transition={{ duration: 0.25, ease: easeOutStrong, delay: shouldAnimate ? 0.52 + i * 0.06 : 0 }}
                 >
                   <badge.icon size={14} />
                   <span>{badge.label}</span>
@@ -250,9 +255,9 @@ export function Hero() {
             {/* CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row items-start gap-4 mb-6"
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5, delay: shouldAnimate ? 0.8 : 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.64 : 0 }}
             >
               {/* Variant A: Primary CTA with lift + glow + arrow */}
               <motion.div
@@ -266,13 +271,13 @@ export function Hero() {
                     className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-body font-semibold rounded-lg text-center"
                     style={{ backgroundColor: 'var(--accent-blue)' }}
                     variants={prefersReducedMotion ? {} : primaryButtonVariants}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                    transition={{ duration: 0.16, ease: easeOutStrong }}
                   >
                     Get Early Access
                     <motion.span
                       className="inline-flex"
                       variants={prefersReducedMotion ? {} : arrowVariants}
-                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                      transition={{ duration: 0.16, ease: easeOutStrong }}
                     >
                       <ArrowRight size={16} />
                     </motion.span>
@@ -280,17 +285,18 @@ export function Hero() {
                 </Link>
               </motion.div>
 
-              {/* Variant B: Ghost button with border fill */}
+              {/* Variant B: Ghost button with border fill + press feedback */}
               <motion.div
                 initial="rest"
                 whileHover="hover"
+                whileTap="tap"
                 animate="rest"
                 variants={prefersReducedMotion ? {} : ghostButtonVariants}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                transition={{ duration: 0.16, ease: easeOutStrong }}
               >
                 <Link
                   href="#demo"
-                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-lg transition-all duration-200 text-center hover:bg-sky-400/10 hover:border-sky-400"
+                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-lg transition-colors duration-150 text-center hover:bg-sky-400/10 hover:border-sky-400"
                   style={{
                     borderColor: 'var(--accent-cyan)',
                     color: 'var(--accent-cyan)'
@@ -305,7 +311,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: shouldAnimate ? 0.9 : 0 }}
+              transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.72 : 0 }}
             >
               <p className="font-body text-sm mb-1" style={{ color: 'var(--text-muted)' }}>
                 No credit card · No setup fee · Your fleet live in under 10 minutes
@@ -320,16 +326,16 @@ export function Hero() {
           <motion.div
             className="relative will-change-transform"
             style={{ y: shouldParallax ? dashboardY : 0 }}
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: shouldAnimate ? 0.3 : 0 }}
+            initial={{ opacity: 0, x: 24, scale: 0.98 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.4, ease: easeOutStrong, delay: shouldAnimate ? 0.25 : 0 }}
           >
             <div
               className="rounded-xl overflow-hidden"
               style={{
-                border: '1px solid #1e293b',
-                background: 'rgba(15, 23, 42, 0.9)',
-                boxShadow: '0 25px 50px -12px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.05)',
+                border: '1px solid var(--color-border)',
+                background: 'rgba(22, 32, 46, 0.9)',
+                boxShadow: '0 25px 50px -12px rgba(224, 90, 58, 0.15), 0 0 0 1px rgba(224, 90, 58, 0.05)',
               }}
             >
               {/* Title bar */}
@@ -394,9 +400,9 @@ export function Hero() {
                         strokeDashoffset: 0
                       }}
                       transition={{
-                        duration: 1.5,
-                        delay: shouldAnimate ? 0.5 + i * 0.3 : 0,
-                        ease: 'easeOut'
+                        duration: 1.2,
+                        delay: shouldAnimate ? 0.4 + i * 0.2 : 0,
+                        ease: easeInOutStrong
                       }}
                     />
                   ))}
@@ -408,9 +414,9 @@ export function Hero() {
                       r="5"
                       fill={route.color}
                       filter="url(#glow)"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: shouldAnimate ? 1.5 + i * 0.3 : 0 }}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.25, ease: easeOutStrong, delay: shouldAnimate ? 1.2 + i * 0.2 : 0 }}
                     >
                       <animateMotion
                         dur="8s"
@@ -435,22 +441,28 @@ export function Hero() {
                 </svg>
               </div>
 
-              {/* Load cards */}
+              {/* Load cards - tighter stagger for cohesive feel */}
               <div className="p-4 space-y-3">
                 {loadCards.map((card, i) => (
                   <motion.div
                     key={card.id}
-                    className="p-3 rounded-lg"
+                    className="p-3 rounded-lg cursor-pointer"
                     style={{
-                      backgroundColor: 'rgba(30, 41, 59, 0.8)',
-                      border: '1px solid rgba(51, 65, 85, 0.5)',
+                      backgroundColor: 'rgba(30, 37, 51, 0.8)',
+                      border: '1px solid rgba(42, 58, 80, 0.5)',
                     }}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
+                    whileHover={prefersReducedMotion ? {} : {
+                      y: -2,
+                      backgroundColor: 'rgba(30, 37, 51, 0.95)',
+                      borderColor: 'rgba(224, 90, 58, 0.3)'
+                    }}
+                    whileTap={prefersReducedMotion ? {} : { y: 0, scale: 0.98 }}
                     transition={{
-                      duration: 0.5,
-                      delay: shouldAnimate ? 0.7 + i * 0.3 : 0,
-                      ease: 'easeOut'
+                      duration: 0.16,
+                      delay: shouldAnimate ? 0.55 + i * 0.1 : 0,
+                      ease: easeOutStrong
                     }}
                   >
                     <div className="flex items-center justify-between mb-2">
@@ -472,9 +484,9 @@ export function Hero() {
       {/* Live Status Ticker */}
       <motion.div
         className="absolute bottom-24 left-0 right-0 z-40 overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: shouldAnimate ? 0.7 : 0 }}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.6 : 0 }}
       >
         <div
           className="h-10 flex items-center border-t"
@@ -512,17 +524,17 @@ export function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: shouldAnimate ? 1 : 0 }}
+        transition={{ duration: 0.4, ease: easeOutStrong, delay: shouldAnimate ? 0.85 : 0 }}
       >
         <motion.div
           className="w-6 h-10 border-2 rounded-full flex justify-center"
           style={{ borderColor: 'var(--text-muted)' }}
-          animate={shouldAnimate ? { y: [0, 8, 0] } : undefined}
-          transition={{ duration: 1.5, repeat: Infinity }}
         >
           <motion.div
             className="w-1.5 h-1.5 rounded-full mt-2"
             style={{ backgroundColor: 'var(--text-secondary)' }}
+            animate={shouldAnimate ? { y: [0, 16, 0] } : undefined}
+            transition={{ duration: 2, ease: easeInOutStrong, repeat: Infinity }}
           />
         </motion.div>
       </motion.div>

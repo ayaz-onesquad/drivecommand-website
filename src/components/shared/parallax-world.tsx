@@ -75,21 +75,21 @@ export function ParallaxWorld() {
           fill="none"
         >
           {/* Horizontal route lines representing roads */}
-          <line x1="0" y1="200" x2="1920" y2="220" stroke="#38bdf8" strokeWidth="1" />
-          <line x1="0" y1="400" x2="1920" y2="380" stroke="#38bdf8" strokeWidth="0.5" />
-          <line x1="0" y1="600" x2="1920" y2="620" stroke="#38bdf8" strokeWidth="1" />
-          <line x1="0" y1="800" x2="1920" y2="790" stroke="#38bdf8" strokeWidth="0.5" />
-          <line x1="0" y1="1000" x2="1920" y2="1010" stroke="#38bdf8" strokeWidth="1" />
-          <line x1="0" y1="1200" x2="1920" y2="1180" stroke="#38bdf8" strokeWidth="0.5" />
-          <line x1="0" y1="1400" x2="1920" y2="1420" stroke="#38bdf8" strokeWidth="1" />
-          <line x1="0" y1="1600" x2="1920" y2="1590" stroke="#38bdf8" strokeWidth="0.5" />
-          <line x1="0" y1="1800" x2="1920" y2="1810" stroke="#38bdf8" strokeWidth="1" />
-          <line x1="0" y1="2000" x2="1920" y2="1990" stroke="#38bdf8" strokeWidth="0.5" />
+          <line x1="0" y1="200" x2="1920" y2="220" stroke="var(--color-brand-mid)" strokeWidth="1" />
+          <line x1="0" y1="400" x2="1920" y2="380" stroke="var(--color-brand-mid)" strokeWidth="0.5" />
+          <line x1="0" y1="600" x2="1920" y2="620" stroke="var(--color-brand-mid)" strokeWidth="1" />
+          <line x1="0" y1="800" x2="1920" y2="790" stroke="var(--color-brand-mid)" strokeWidth="0.5" />
+          <line x1="0" y1="1000" x2="1920" y2="1010" stroke="var(--color-brand-mid)" strokeWidth="1" />
+          <line x1="0" y1="1200" x2="1920" y2="1180" stroke="var(--color-brand-mid)" strokeWidth="0.5" />
+          <line x1="0" y1="1400" x2="1920" y2="1420" stroke="var(--color-brand-mid)" strokeWidth="1" />
+          <line x1="0" y1="1600" x2="1920" y2="1590" stroke="var(--color-brand-mid)" strokeWidth="0.5" />
+          <line x1="0" y1="1800" x2="1920" y2="1810" stroke="var(--color-brand-mid)" strokeWidth="1" />
+          <line x1="0" y1="2000" x2="1920" y2="1990" stroke="var(--color-brand-mid)" strokeWidth="0.5" />
 
           {/* Subtle diagonal connectors */}
-          <path d="M0,300 Q480,350 960,300 T1920,320" stroke="#38bdf8" strokeWidth="0.5" opacity="0.5" />
-          <path d="M0,900 Q480,850 960,900 T1920,880" stroke="#38bdf8" strokeWidth="0.5" opacity="0.5" />
-          <path d="M0,1500 Q480,1550 960,1500 T1920,1520" stroke="#38bdf8" strokeWidth="0.5" opacity="0.5" />
+          <path d="M0,300 Q480,350 960,300 T1920,320" stroke="var(--color-brand-mid)" strokeWidth="0.5" opacity="0.5" />
+          <path d="M0,900 Q480,850 960,900 T1920,880" stroke="var(--color-brand-mid)" strokeWidth="0.5" opacity="0.5" />
+          <path d="M0,1500 Q480,1550 960,1500 T1920,1520" stroke="var(--color-brand-mid)" strokeWidth="0.5" opacity="0.5" />
         </svg>
       </motion.div>
 
@@ -108,7 +108,7 @@ export function ParallaxWorld() {
         style={{
           left: light2X,
           top: light2Y,
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(224, 90, 58, 0.05) 0%, transparent 70%)',
           transform: 'translate(-50%, -50%)',
         }}
       />
