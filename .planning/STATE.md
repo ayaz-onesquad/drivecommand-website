@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 Phase: 2 of 4 (Landing Page)
 Plan: 4 of 4 in current phase
 Status: Phase 2 COMPLETE
-Last activity: 2026-04-02 — Completed quick task 1: Rebuild Hero section with cinematic visuals
+Last activity: 2026-04-02 — Completed quick task 2: Brand color token system
 
 Progress: [██████████] 100% (Phase 1 + 2)
 
@@ -34,6 +34,7 @@ Progress: [██████████] 100% (Phase 1 + 2)
 - Trend: —
 
 *Updated after each plan completion*
+| Phase quick-2 P1 | 5 | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -46,6 +47,7 @@ Recent decisions affecting current work:
 - Init: Hardcoded React component mockups for interactive demo (not static images)
 - Init: Pricing in `lib/pricing.config.ts` — single source of truth before any pricing UI is built
 - Init: Enterprise CTA routes to /contact, not external booking tool
+- [Phase quick-2]: Coral (#E05A3A) as primary accent color for all CTAs (replacing blue #3b82f6)
 
 ### Pending Todos
 
@@ -61,9 +63,10 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 1 | Rebuild Hero section with cinematic visuals, animated dashboard panel, parallax effects | 2026-04-02 | def9fd6 | [1-rebuild-hero-section-with-cinematic-visu](./quick/1-rebuild-hero-section-with-cinematic-visu/) |
+| 2 | Brand color token system with coral (#E05A3A) accent, dc-* Tailwind utilities | 2026-04-02 | aaa821d | [2-implement-brand-color-token-system-and-a](./quick/2-implement-brand-color-token-system-and-a/) |
 
 ## Session Continuity
 
-Last session: 2026-03-31
-Stopped at: Roadmap created, files written — ready to begin planning Phase 1
+Last session: 2026-04-02
+Stopped at: Completed quick-2 (Brand color token system) — 3 tasks, 6 files modified, 5m duration
 Resume file: None
