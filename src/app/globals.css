@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -144,11 +146,81 @@
   animation: glow-pulse 6s ease-in-out infinite;
 }
 
+/* Dot-grid drift animation (20s loop, translateY 0 to -24px) */
+@keyframes dot-grid-drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-24px); }
+}
+
+.animate-dot-grid-drift {
+  animation: dot-grid-drift 20s linear infinite;
+}
+
+/* Route line draw animation (for SVG strokeDashoffset) */
+@keyframes draw-route {
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-draw-route {
+  animation: draw-route 1.5s ease-out forwards;
+}
+
+/* Truck travel animation (for offset-distance along path) */
+@keyframes truck-travel {
+  0% { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}
+
+.animate-truck-travel {
+  animation: truck-travel 8s linear infinite;
+}
+
+/* Live pulse animation (green dot pulse for dashboard) */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.animate-live-pulse {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+/* Red pulse for ticker LIVE FEED indicator */
+@keyframes red-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-red-pulse {
+  animation: red-pulse 1.5s ease-in-out infinite;
+}
+
+/* Headline glow pulse (one-time effect for blue text) */
+@keyframes headline-glow {
+  0%, 100% { text-shadow: 0 0 0 transparent; }
+  50% { text-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+}
+
+.animate-headline-glow {
+  animation: headline-glow 0.8s ease-out;
+}
+
+/* Font utility for Barlow Condensed headlines */
+.font-headline {
+  font-family: 'Barlow Condensed', var(--font-display), sans-serif;
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   .animate-truck-drive,
   .animate-pulse-ring,
-  .animate-glow-pulse {
+  .animate-glow-pulse,
+  .animate-dot-grid-drift,
+  .animate-draw-route,
+  .animate-truck-travel,
+  .animate-live-pulse,
+  .animate-red-pulse,
+  .animate-headline-glow {
     animation: none;
   }
 }
@@ -361,7 +433,7 @@
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker 28s linear infinite;
+  animation: ticker 20s linear infinite;
 }
 
 /* Respect reduced motion for ticker */
