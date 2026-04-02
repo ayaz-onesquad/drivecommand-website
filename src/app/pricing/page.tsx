@@ -81,8 +81,8 @@ export default function PricingPage() {
                 }}
               >
                 {tier.highlighted && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-accent-blue">
-                    <span className="font-body text-sm font-medium text-white">Most Popular</span>
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-dc-accent">
+                    <span className="font-body text-sm font-medium text-dc-text-on-accent">Most Popular</span>
                   </div>
                 )}
                 <h2 className="font-display text-2xl font-semibold text-theme-primary mb-1">
@@ -120,7 +120,7 @@ export default function PricingPage() {
                   className={cn(
                     'block w-full text-center py-3 rounded-lg font-body font-medium transition-colors',
                     tier.highlighted
-                      ? 'bg-accent-blue text-white hover:bg-accent-blue-hover'
+                      ? 'bg-dc-accent text-dc-text-on-accent hover:opacity-90'
                       : tier.id === 'enterprise'
                       ? 'border border-theme-medium text-theme-primary hover:border-theme-primary hover:bg-theme-card-hover'
                       : 'text-theme-primary hover:bg-theme-card-hover'
@@ -208,7 +208,7 @@ export default function PricingPage() {
           </p>
           <a
             href="/contact"
-            className="inline-flex px-8 py-3 text-white font-body font-medium rounded-lg transition-colors bg-accent-blue hover:bg-accent-blue-hover"
+            className="inline-flex px-8 py-3 font-body font-medium rounded-lg transition-colors bg-dc-accent text-dc-text-on-accent hover:opacity-90"
           >
             Talk to Sales
           </a>

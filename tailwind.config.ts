@@ -6,6 +6,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Legacy brand colors for backward compatibility
+        'brand-green': '#10B981',
         dc: {
           'bg-dark': 'var(--color-bg-dark)',
           'bg-light': 'var(--color-bg-light)',

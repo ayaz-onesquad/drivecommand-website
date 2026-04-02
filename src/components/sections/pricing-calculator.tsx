@@ -169,7 +169,7 @@ export function PricingCalculator() {
             >
               {tier.highlighted && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-dc-accent text-dc-text-on-accent">
-                  <span className="font-body text-xs font-medium text-white">Most Popular</span>
+                  <span className="font-body text-xs font-medium" style={{ color: 'var(--color-text-on-accent)' }}>Most Popular</span>
                 </div>
               )}
               <h3 className="font-display text-xl font-semibold text-theme-primary mb-1">
@@ -201,7 +201,7 @@ export function PricingCalculator() {
                 className={cn(
                   'block w-full text-center py-3 rounded-lg font-body font-medium text-sm transition-colors',
                   tier.highlighted
-                    ? 'bg-dc-accent text-dc-text-on-accent text-white hover:bg-dc-accent text-dc-text-on-accent-hover'
+                    ? 'bg-dc-accent hover:opacity-90'
                     : tier.id === 'enterprise'
                     ? 'border border-theme-medium text-theme-secondary hover:border-theme-primary'
                     : 'text-white bg-theme-secondary hover:bg-theme-card'
@@ -243,7 +243,7 @@ export function PricingCalculator() {
                       className={cn(
                         'py-3 px-4 rounded-lg font-body font-medium text-sm transition-colors',
                         selectedPlan === plan
-                          ? 'bg-dc-accent text-dc-text-on-accent text-white'
+                          ? 'bg-dc-accent text-dc-text-on-accent'
                           : 'text-theme-secondary hover:bg-theme-card'
                       )}
                       style={selectedPlan !== plan ? { backgroundColor: 'var(--bg-card)' } : undefined}
@@ -354,7 +354,7 @@ export function PricingCalculator() {
               {/* CTA */}
               <Link
                 href="/contact"
-                className="block w-full text-center py-3 text-white font-body font-medium rounded-lg transition-colors bg-dc-accent text-dc-text-on-accent hover:bg-dc-accent text-dc-text-on-accent-hover"
+                className="block w-full text-center py-3 font-body font-medium rounded-lg transition-colors bg-dc-accent text-dc-text-on-accent hover:opacity-90"
               >
                 Get Early Access at This Price
               </Link>

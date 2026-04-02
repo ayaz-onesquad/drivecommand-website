@@ -127,8 +127,8 @@ export default function AboutPage() {
                 key={value.title}
                 className="flex gap-4 p-6 rounded-xl border bg-theme-card border-theme-medium"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-brand-blue/10 flex items-center justify-center">
-                  <value.icon className="w-6 h-6 text-brand-blue" />
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--color-glow-accent)' }}>
+                  <value.icon className="w-6 h-6" style={{ color: 'var(--color-brand)' }} />
                 </div>
                 <div>
                   <h3 className="font-display text-lg font-semibold text-theme-primary mb-2">
@@ -193,7 +193,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex px-8 py-3 text-white font-body font-medium rounded-lg transition-colors bg-accent-blue hover:bg-accent-blue-hover"
+              className="inline-flex px-8 py-3 font-body font-medium rounded-lg transition-colors bg-dc-accent hover:opacity-90 text-dc-text-on-accent"
             >
               Get Early Access
             </Link>

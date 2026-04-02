@@ -166,7 +166,7 @@ export function DemoPageContent() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex justify-center px-8 py-4 text-white font-body font-medium rounded-lg transition-colors shadow-lg bg-accent-blue hover:bg-accent-blue-hover"
+              className="inline-flex justify-center px-8 py-4 font-body font-medium rounded-lg transition-colors shadow-lg bg-dc-accent text-dc-text-on-accent hover:opacity-90"
               style={{ boxShadow: '0 10px 15px -3px var(--glow-blue)' }}
             >
               Request Access

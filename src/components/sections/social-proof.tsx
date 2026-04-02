@@ -39,19 +39,20 @@ function ParallaxQuoteMarks({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
 
 // Role badge with initials
 function RoleBadge({ initials, role }: { initials: string; role: string }) {
-  const roleColors: Record<string, string> = {
-    'Owner-Operator': 'bg-sky-400',
-    'Fleet Manager': 'bg-dc-accent',
-    'Safety Director': 'bg-brand-green',
+  // Using brand colors that contrast well with white text
+  const roleColors: Record<string, { bg: string; text: string }> = {
+    'Owner-Operator': { bg: 'bg-sky-500', text: 'text-white' },
+    'Fleet Manager': { bg: 'bg-dc-accent', text: 'text-dc-text-on-accent' },
+    'Safety Director': { bg: 'bg-emerald-600', text: 'text-white' },
   }
 
-  const bgColor = roleColors[role] || 'bg-slate-500'
+  const colors = roleColors[role] || { bg: 'bg-slate-500', text: 'text-white' }
 
   return (
     <div
-      className={`w-12 h-12 rounded-full ${bgColor} flex items-center justify-center shadow-lg`}
+      className={`w-12 h-12 rounded-full ${colors.bg} flex items-center justify-center shadow-lg`}
     >
-      <span className="font-display font-bold text-white text-sm">
+      <span className={`font-display font-bold text-sm ${colors.text}`}>
         {initials}
       </span>
     </div>

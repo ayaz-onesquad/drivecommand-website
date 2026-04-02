@@ -149,10 +149,10 @@ export function ContactForm() {
           type="submit"
           disabled={isPending}
           className={cn(
-            'w-full py-4 rounded-lg font-body font-medium text-white transition-colors flex items-center justify-center gap-2',
+            'w-full py-4 rounded-lg font-body font-medium transition-colors flex items-center justify-center gap-2',
             isPending
-              ? 'bg-[var(--accent-blue)]/50 cursor-not-allowed'
-              : 'bg-accent-blue hover:bg-accent-blue-hover'
+              ? 'bg-dc-accent/50 text-dc-text-on-accent cursor-not-allowed'
+              : 'bg-dc-accent text-dc-text-on-accent hover:opacity-90'
           )}
         >
           {isPending ? (

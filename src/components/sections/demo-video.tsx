@@ -237,7 +237,7 @@ export function DemoVideo() {
                   animate={prefersReducedMotion ? {} : { scale: [1, 1.1, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <Play className="w-8 h-8 text-white ml-1" />
+                  <Play className="w-8 h-8 ml-1" style={{ color: 'var(--color-text-on-accent)' }} />
                 </motion.div>
               </div>
             </div>
@@ -255,7 +255,7 @@ export function DemoVideo() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex px-8 py-4 text-white font-body font-medium rounded-lg transition-colors shadow-lg bg-dc-accent hover:bg-dc-accent-hover text-dc-text-on-accent"
+            className="inline-flex px-8 py-4 font-body font-medium rounded-lg transition-colors shadow-lg bg-dc-accent hover:bg-dc-accent-hover text-dc-text-on-accent"
             style={{ boxShadow: '0 10px 15px -3px var(--color-glow-accent)' }}
           >
             Get Early Access

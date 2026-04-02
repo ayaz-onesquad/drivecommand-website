@@ -989,7 +989,7 @@ export function InteractiveDemo() {
           >
             <Link href="/contact" className="block">
               <motion.span
-                className="inline-flex items-center gap-2 px-8 py-4 text-white font-body font-medium rounded-lg bg-accent-blue"
+                className="inline-flex items-center gap-2 px-8 py-4 font-body font-medium rounded-lg bg-dc-accent text-dc-text-on-accent"
                 variants={prefersReducedMotion ? {} : primaryButtonVariants}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
