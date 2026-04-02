@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef, useEffect, useState } from 'react'
-import { ArrowRight, Shield, Zap, Lock, Truck } from 'lucide-react'
+import { ArrowRight, Shield, Zap, Lock } from 'lucide-react'
 import { StatusBadge } from '@/components/shared/status-badge'
 import { useIsDesktop } from '@/hooks/use-is-desktop'
 
@@ -318,7 +318,7 @@ export function Hero() {
 
           {/* Right Column — Dashboard Panel */}
           <motion.div
-            className="relative"
+            className="relative will-change-transform"
             style={{ y: shouldParallax ? dashboardY : 0 }}
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -401,36 +401,37 @@ export function Hero() {
                     />
                   ))}
 
-                  {/* Truck icons traveling along paths */}
+                  {/* Truck dots traveling along paths */}
                   {routePaths.map((route, i) => (
-                    <motion.g
+                    <motion.circle
                       key={`truck-${route.id}`}
+                      r="5"
+                      fill={route.color}
+                      filter="url(#glow)"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: shouldAnimate ? 1.5 + i * 0.3 : 0 }}
                     >
-                      <motion.circle
-                        r="6"
-                        fill={route.color}
-                        initial={{ offsetDistance: '0%' }}
-                        animate={{ offsetDistance: '100%' }}
-                        transition={{
-                          duration: 8,
-                          delay: shouldAnimate ? 1.5 + i * 0.3 : 0,
-                          repeat: Infinity,
-                          ease: 'linear'
-                        }}
-                        style={{
-                          offsetPath: `path("${route.d}")`,
-                        }}
-                      />
-                      <Truck
-                        size={10}
-                        className="absolute"
-                        style={{ color: route.color }}
-                      />
-                    </motion.g>
+                      <animateMotion
+                        dur="8s"
+                        repeatCount="indefinite"
+                        begin={shouldAnimate ? `${1.5 + i * 0.3}s` : '0s'}
+                      >
+                        <mpath xlinkHref={`#route-path-${route.id}`} />
+                      </animateMotion>
+                    </motion.circle>
                   ))}
+
+                  {/* Glow filter for truck dots */}
+                  <defs>
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
                 </svg>
               </div>
 
