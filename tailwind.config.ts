@@ -6,34 +6,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          dark: '#0f172a',
-          blue: '#3b82f6',
-          amber: '#f59e0b',
-          green: '#10b981',
-          cyan: '#38bdf8',
-        },
-        logistics: {
-          asphalt: '#1a1f2e',   // Deep road-dark — primary dark background
-          steel: '#2d3748',     // Steel panel — card backgrounds
-          stripe: '#f7c948',    // Highway lane stripe yellow — data highlights ONLY
-          signal: '#22c55e',    // "Delivered" green — success states
-          diesel: '#94a3b8',    // Slate mist — secondary text
-          load: '#3b82f6',      // Electric blue — primary CTA
-          cab: '#e2e8f0',       // Clean white-grey — primary text on dark
-        },
         dc: {
           'bg-dark': 'var(--color-bg-dark)',
           'bg-light': 'var(--color-bg-light)',
           'bg-card': 'var(--color-bg-card)',
+          'bg-secondary': 'var(--color-bg-secondary)',
           'brand': 'var(--color-brand)',
           'brand-mid': 'var(--color-brand-mid)',
           'accent': 'var(--color-accent)',
           'accent-hover': 'var(--color-accent-hover)',
+          'text-on-accent': 'var(--color-text-on-accent)',
           'text-primary': 'var(--color-text-primary)',
           'text-secondary': 'var(--color-text-secondary)',
           'text-dark': 'var(--color-text-dark)',
           'text-dark-secondary': 'var(--color-text-dark-secondary)',
+          'text-muted': 'var(--color-text-muted)',
           'border': 'var(--color-border)',
           'border-light': 'var(--color-border-light)',
           'live-green': 'var(--color-live-green)',

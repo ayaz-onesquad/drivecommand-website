@@ -1,50 +1,54 @@
-/* DriveCommand Brand Color Tokens
-   ================================
-   Components NEVER reference --color-primary-N directly.
+/* DriveCommand Brand Color Tokens - Colors 3 Palette
+   =================================================
+   Components NEVER reference --p-* directly.
    Always use semantic aliases below.
 */
 
 :root {
-  /* === PRIMARY PALETTE === */
-  --color-primary-1: #2D4E7A;   /* Deep steel blue - primary brand, nav background */
-  --color-primary-2: #7AAAC8;   /* Sky blue - secondary brand, hover states */
-  --color-primary-3: #D9F0F7;   /* Ice white - light section backgrounds, cards */
-  --color-primary-4: #E05A3A;   /* Burnt orange/coral - ALL primary CTAs, accents */
-  --color-primary-5: #1E2533;   /* Near-black navy - hero background, dark sections */
-  --color-primary-6: #FFFFFF;   /* Pure white - body text on dark, light backgrounds */
+  /* === PALETTE STOPS (internal only) === */
+  --p-mint: #75F0D4;       /* Bright cyan-green - CTA accent */
+  --p-slate-teal: #5B878A; /* Muted teal-grey - secondary */
+  --p-ocean: #3B8696;      /* Mid ocean blue-teal */
+  --p-deep-blue: #21657F;  /* Rich dark teal-blue */
+  --p-navy: #19334D;       /* Dark blue-navy */
+  --p-forest: #005228;     /* Very dark green - badge bg */
+  --p-midnight: #000D23;   /* Near-black blue - primary bg */
 
   /* === SEMANTIC ALIASES (use these in components) === */
 
   /* Backgrounds */
-  --color-bg-dark: var(--color-primary-5);
-  --color-bg-light: var(--color-primary-3);
-  --color-bg-card: #16202E;
+  --color-bg-dark: var(--p-midnight);
+  --color-bg-light: #D9F0F7;           /* Keep ice white for light sections */
+  --color-bg-card: var(--p-navy);
+  --color-bg-secondary: #0A1628;       /* Slightly lighter than midnight */
 
   /* Brand */
-  --color-brand: var(--color-primary-1);
-  --color-brand-mid: var(--color-primary-2);
+  --color-brand: var(--p-deep-blue);
+  --color-brand-mid: var(--p-ocean);
 
-  /* Accent (CTAs, links, highlights) */
-  --color-accent: var(--color-primary-4);
-  --color-accent-hover: #C44D30;
+  /* Accent (CTAs, links, highlights) - MINT */
+  --color-accent: var(--p-mint);
+  --color-accent-hover: #5CD9BE;       /* Slightly darker mint */
+  --color-text-on-accent: var(--p-midnight); /* Text on mint buttons */
 
   /* Text */
-  --color-text-primary: var(--color-primary-6);
-  --color-text-secondary: #A8B8CC;
-  --color-text-dark: var(--color-primary-5);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A8C4D4;     /* Teal-tinted gray */
+  --color-text-dark: var(--p-midnight);
   --color-text-dark-secondary: #4A6280;
+  --color-text-muted: #6B8A9A;
 
   /* Borders */
-  --color-border: #2A3A50;
+  --color-border: var(--p-navy);
   --color-border-light: #C2D8E8;
 
   /* Status colors */
   --color-live-green: #10B981;
   --color-status-transit: #F59E0B;
   --color-status-dispatched: #7C6FCD;
-  --color-status-invoiced: var(--color-primary-2);
+  --color-status-invoiced: var(--p-ocean);
 
   /* Glows */
-  --color-glow-primary: rgba(45, 78, 122, 0.4);
-  --color-glow-accent: rgba(224, 90, 58, 0.15);
+  --color-glow-primary: rgba(33, 101, 127, 0.4);
+  --color-glow-accent: rgba(117, 240, 212, 0.15);
 }
