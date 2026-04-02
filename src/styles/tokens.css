@@ -1,0 +1,50 @@
+/* DriveCommand Brand Color Tokens
+   ================================
+   Components NEVER reference --color-primary-N directly.
+   Always use semantic aliases below.
+*/
+
+:root {
+  /* === PRIMARY PALETTE === */
+  --color-primary-1: #2D4E7A;   /* Deep steel blue - primary brand, nav background */
+  --color-primary-2: #7AAAC8;   /* Sky blue - secondary brand, hover states */
+  --color-primary-3: #D9F0F7;   /* Ice white - light section backgrounds, cards */
+  --color-primary-4: #E05A3A;   /* Burnt orange/coral - ALL primary CTAs, accents */
+  --color-primary-5: #1E2533;   /* Near-black navy - hero background, dark sections */
+  --color-primary-6: #FFFFFF;   /* Pure white - body text on dark, light backgrounds */
+
+  /* === SEMANTIC ALIASES (use these in components) === */
+
+  /* Backgrounds */
+  --color-bg-dark: var(--color-primary-5);
+  --color-bg-light: var(--color-primary-3);
+  --color-bg-card: #16202E;
+
+  /* Brand */
+  --color-brand: var(--color-primary-1);
+  --color-brand-mid: var(--color-primary-2);
+
+  /* Accent (CTAs, links, highlights) */
+  --color-accent: var(--color-primary-4);
+  --color-accent-hover: #C44D30;
+
+  /* Text */
+  --color-text-primary: var(--color-primary-6);
+  --color-text-secondary: #A8B8CC;
+  --color-text-dark: var(--color-primary-5);
+  --color-text-dark-secondary: #4A6280;
+
+  /* Borders */
+  --color-border: #2A3A50;
+  --color-border-light: #C2D8E8;
+
+  /* Status colors */
+  --color-live-green: #10B981;
+  --color-status-transit: #F59E0B;
+  --color-status-dispatched: #7C6FCD;
+  --color-status-invoiced: var(--color-primary-2);
+
+  /* Glows */
+  --color-glow-primary: rgba(45, 78, 122, 0.4);
+  --color-glow-accent: rgba(224, 90, 58, 0.15);
+}

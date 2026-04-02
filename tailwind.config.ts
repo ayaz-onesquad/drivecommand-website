@@ -22,6 +22,25 @@ const config: Config = {
           load: '#3b82f6',      // Electric blue — primary CTA
           cab: '#e2e8f0',       // Clean white-grey — primary text on dark
         },
+        dc: {
+          'bg-dark': 'var(--color-bg-dark)',
+          'bg-light': 'var(--color-bg-light)',
+          'bg-card': 'var(--color-bg-card)',
+          'brand': 'var(--color-brand)',
+          'brand-mid': 'var(--color-brand-mid)',
+          'accent': 'var(--color-accent)',
+          'accent-hover': 'var(--color-accent-hover)',
+          'text-primary': 'var(--color-text-primary)',
+          'text-secondary': 'var(--color-text-secondary)',
+          'text-dark': 'var(--color-text-dark)',
+          'text-dark-secondary': 'var(--color-text-dark-secondary)',
+          'border': 'var(--color-border)',
+          'border-light': 'var(--color-border-light)',
+          'live-green': 'var(--color-live-green)',
+          'status-transit': 'var(--color-status-transit)',
+          'status-dispatched': 'var(--color-status-dispatched)',
+          'status-invoiced': 'var(--color-status-invoiced)',
+        },
       },
       fontFamily: {
         display: ['var(--font-display)', 'sans-serif'],
