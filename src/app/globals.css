@@ -206,10 +206,10 @@
   animation: red-pulse 1.2s var(--ease-in-out-strong) infinite;
 }
 
-/* Headline glow pulse (one-time effect for coral text) */
+/* Headline glow pulse (one-time effect for mint text) */
 @keyframes headline-glow {
   0% { text-shadow: 0 0 0 transparent; }
-  40% { text-shadow: 0 0 24px rgba(224, 90, 58, 0.5); }
+  40% { text-shadow: 0 0 24px rgba(117, 240, 212, 0.5); }
   100% { text-shadow: 0 0 0 transparent; }
 }
 
@@ -300,12 +300,12 @@
 @media (hover: hover) and (pointer: fine) {
   .pricing-slider::-webkit-slider-thumb:hover {
     transform: scale(1.1);
-    box-shadow: 0 3px 10px rgba(224, 90, 58, 0.4);
+    box-shadow: 0 3px 10px rgba(117, 240, 212, 0.4);
   }
 
   .pricing-slider::-moz-range-thumb:hover {
     transform: scale(1.1);
-    box-shadow: 0 3px 10px rgba(224, 90, 58, 0.4);
+    box-shadow: 0 3px 10px rgba(117, 240, 212, 0.4);
   }
 }
 
@@ -314,11 +314,11 @@
 }
 
 .pricing-slider:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 3px rgba(224, 90, 58, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(117, 240, 212, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-slider:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 3px rgba(224, 90, 58, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(117, 240, 212, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 @layer utilities {
@@ -374,8 +374,8 @@
 
   /* Button hover utilities */
   .btn-glow-blue {
-    --btn-glow: 0 8px 25px rgba(224, 90, 58, 0.35);
-    --btn-glow-active: 0 4px 15px rgba(224, 90, 58, 0.25);
+    --btn-glow: 0 8px 25px rgba(117, 240, 212, 0.35);
+    --btn-glow-active: 0 4px 15px rgba(117, 240, 212, 0.25);
   }
 
   .btn-glow-cyan {
@@ -422,9 +422,9 @@
     border: 1px solid var(--border-panel);
   }
 
-  /* Glow: coral accent, for hover and active states */
+  /* Glow: mint accent, for hover and active states */
   .glow-load {
-    box-shadow: 0 0 24px rgba(224, 90, 58, 0.2);
+    box-shadow: 0 0 24px rgba(117, 240, 212, 0.2);
   }
 
   /* Signal green pulse — for live/active indicators */
