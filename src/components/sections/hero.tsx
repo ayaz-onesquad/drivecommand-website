@@ -309,20 +309,6 @@ export function Hero() {
                 </Link>
               </motion.div>
             </motion.div>
-
-            {/* Trust line */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.72 : 0 }}
-            >
-              <p className="font-body text-sm mb-1" style={{ color: 'var(--color-text-muted)' }}>
-                No credit card · No setup fee · Your fleet live in under 10 minutes
-              </p>
-              <p className="font-body text-[13px] font-medium" style={{ color: 'var(--color-accent)' }}>
-                Join 47+ carriers already on early access
-              </p>
-            </motion.div>
           </div>
 
           {/* Right Column — Dashboard Panel */}
