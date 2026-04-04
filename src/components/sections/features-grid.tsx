@@ -12,7 +12,6 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { useParallax, useContentParallax } from '@/hooks/use-parallax'
-import { AnimatedIcon, type AnimationType } from '@/components/shared/animated-icon'
 
 // TIER 2: Dot-grid pattern that moves at 0.25x scroll speed
 function ParallaxDotGrid({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
@@ -41,8 +40,6 @@ interface Feature {
   bgColor: string
   hoverBorderColor: string
   hoverGlowShadow: string
-  animation: AnimationType
-  triggerOnHover: boolean
 }
 
 const FEATURES: Feature[] = [
@@ -55,8 +52,6 @@ const FEATURES: Feature[] = [
     bgColor: 'bg-dc-accent/10',
     hoverBorderColor: 'rgba(117, 240, 212, 0.6)',
     hoverGlowShadow: '0 10px 40px -10px rgba(117, 240, 212, 0.3)',
-    animation: 'truck-drive',
-    triggerOnHover: true,
   },
   {
     icon: MapPin,
@@ -67,8 +62,6 @@ const FEATURES: Feature[] = [
     bgColor: 'bg-brand-green/10',
     hoverBorderColor: 'rgba(16, 185, 129, 0.6)',
     hoverGlowShadow: '0 10px 40px -10px rgba(16, 185, 129, 0.3)',
-    animation: 'pulse-ring',
-    triggerOnHover: true,
   },
   {
     icon: Users,
@@ -79,8 +72,6 @@ const FEATURES: Feature[] = [
     bgColor: 'bg-sky-400/10',
     hoverBorderColor: 'rgba(56, 189, 248, 0.6)',
     hoverGlowShadow: '0 10px 40px -10px rgba(56, 189, 248, 0.3)',
-    animation: 'bounce-up',
-    triggerOnHover: false,
   },
   {
     icon: FileText,
@@ -91,8 +82,6 @@ const FEATURES: Feature[] = [
     bgColor: 'bg-indigo-500/10',
     hoverBorderColor: 'rgba(129, 140, 248, 0.6)',
     hoverGlowShadow: '0 10px 40px -10px rgba(129, 140, 248, 0.3)',
-    animation: 'bounce-up',
-    triggerOnHover: true,
   },
   {
     icon: Shield,
@@ -103,8 +92,6 @@ const FEATURES: Feature[] = [
     bgColor: 'bg-emerald-500/10',
     hoverBorderColor: 'rgba(52, 211, 153, 0.6)',
     hoverGlowShadow: '0 10px 40px -10px rgba(52, 211, 153, 0.3)',
-    animation: 'rotate-once',
-    triggerOnHover: true,
   },
   {
     icon: Sparkles,
@@ -115,8 +102,6 @@ const FEATURES: Feature[] = [
     bgColor: 'bg-dc-accent/10',
     hoverBorderColor: 'rgba(117, 240, 212, 0.6)',
     hoverGlowShadow: '0 10px 40px -10px rgba(117, 240, 212, 0.3)',
-    animation: 'pulse-ring',
-    triggerOnHover: true,
   },
 ]
 
@@ -194,13 +179,7 @@ export function FeaturesGrid() {
                 <div
                   className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${feature.bgColor} mb-4`}
                 >
-                  <AnimatedIcon
-                    icon={feature.icon}
-                    animation={feature.animation}
-                    size={24}
-                    className={feature.color}
-                    triggerOnHover={feature.triggerOnHover}
-                  />
+                  <feature.icon size={24} className={feature.color} />
                 </div>
                 <h3
                   className="font-display text-xl font-semibold mb-2"
