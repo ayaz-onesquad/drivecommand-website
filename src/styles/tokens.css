@@ -15,40 +15,141 @@
   --p-midnight: #000D23;   /* Near-black blue - primary bg */
 
   /* === SEMANTIC ALIASES (use these in components) === */
+  /* Updated 2026-04-23: Now reference new --dc-* palette (Signal Blue accent) */
 
   /* Backgrounds */
-  --color-bg-dark: var(--p-midnight);
-  --color-bg-light: #D9F0F7;           /* Keep ice white for light sections */
-  --color-bg-card: var(--p-navy);
-  --color-bg-secondary: #0A1628;       /* Slightly lighter than midnight */
+  --color-bg-dark: var(--dc-ink);
+  --color-bg-light: var(--dc-bone);
+  --color-bg-card: var(--dc-slate);
+  --color-bg-secondary: var(--dc-s450);
 
   /* Brand */
-  --color-brand: var(--p-deep-blue);
-  --color-brand-mid: var(--p-ocean);
+  --color-brand: var(--dc-signal);
+  --color-brand-mid: var(--dc-l250);
 
-  /* Accent (CTAs, links, highlights) - MINT */
-  --color-accent: var(--p-mint);
-  --color-accent-hover: #5CD9BE;       /* Slightly darker mint */
-  --color-text-on-accent: var(--p-midnight); /* Text on mint buttons */
+  /* Accent (CTAs, links, highlights) - SIGNAL BLUE */
+  --color-accent: var(--dc-signal);
+  --color-accent-hover: var(--dc-l250);
+  --color-text-on-accent: var(--dc-bone); /* Light text on Signal Blue buttons */
 
   /* Text */
   --color-text-primary: #FFFFFF;
-  --color-text-secondary: #A8C4D4;     /* Teal-tinted gray */
-  --color-text-dark: var(--p-midnight);
-  --color-text-dark-secondary: #4A6280;
-  --color-text-muted: #6B8A9A;
+  --color-text-secondary: var(--dc-n300);
+  --color-text-dark: var(--dc-ink);
+  --color-text-dark-secondary: var(--dc-n500);
+  --color-text-muted: var(--dc-n400);
 
   /* Borders */
-  --color-border: var(--p-navy);
-  --color-border-light: #C2D8E8;
+  --color-border: var(--dc-slate);
+  --color-border-light: var(--dc-n100);
 
-  /* Status colors */
-  --color-live-green: #10B981;
-  --color-status-transit: #F59E0B;
-  --color-status-dispatched: #7C6FCD;
-  --color-status-invoiced: var(--p-ocean);
+  /* Status colors (semantic per brand guide) */
+  --color-live-green: #22c07a;         /* On-Time */
+  --color-status-transit: #f5b841;     /* At-Risk (kept amber for warning semantics) */
+  --color-status-dispatched: #8c6fff;  /* Detention */
+  --color-status-invoiced: #2bb5a5;    /* Delivered */
 
-  /* Glows */
-  --color-glow-primary: rgba(33, 101, 127, 0.4);
-  --color-glow-accent: rgba(117, 240, 212, 0.15);
+  /* Glows (Signal Blue based) */
+  --color-glow-primary: rgba(10, 33, 192, 0.4);
+  --color-glow-accent: rgba(10, 33, 192, 0.15);
+}
+
+/* =====================================================
+   NEW DRIVECOMMAND BRAND SYSTEM (v1.0 April 2026)
+   =====================================================
+   All new tokens use --dc-* prefix to avoid collisions.
+   Existing components continue using old tokens above.
+   New components use these tokens via dc2.* Tailwind classes.
+*/
+
+:root {
+  /* === PRIMARY PALETTE (5 Colors) === */
+  --dc-ink: #141619;           /* Midnight Ink - 40% balance */
+  --dc-slate: #2c2e3a;         /* Graphite Slate - 20% balance */
+  --dc-navy: #050a44;          /* Deep Navy - 15% balance */
+  --dc-signal: #0a21c0;        /* Signal Blue - 10% balance (CTA accent) */
+  --dc-silver: #b3b4bd;        /* Platinum Silver - 15% balance */
+
+  /* === INK RAMP (Surfaces & Text) n0-n900 === */
+  --dc-n0: #f4f5f7;
+  --dc-n100: #e6e7eb;
+  --dc-n200: #d0d1d7;
+  --dc-n300: #b3b4bd;
+  --dc-n400: #8e909a;
+  --dc-n500: #6b6e78;
+  --dc-n600: #4a4d56;
+  --dc-n700: #2c2e3a;
+  --dc-n800: #1c1e26;
+  --dc-n900: #141619;
+
+  /* === NAVY RAMP (Depth & Ground) s50-s500 === */
+  --dc-s50: #e8eaf5;
+  --dc-s100: #bfc4e0;
+  --dc-s150: #8f97c0;
+  --dc-s200: #5e69a0;
+  --dc-s250: #363f7d;
+  --dc-s300: #1a225b;
+  --dc-s350: #0f153f;
+  --dc-s400: #0a0f32;
+  --dc-s450: #070a28;
+  --dc-s500: #050a44;
+
+  /* === ELECTRIC RAMP (Signal & Accent) l50-l500 === */
+  --dc-l50: #e7eaff;
+  --dc-l100: #bfc7ff;
+  --dc-l150: #8e9bff;
+  --dc-l200: #5e70ff;
+  --dc-l250: #3449f0;
+  --dc-l300: #0a21c0;
+  --dc-l350: #081a99;
+  --dc-l400: #061473;
+  --dc-l450: #040d4d;
+  --dc-l500: #020726;
+
+  /* === SURFACE COLORS === */
+  --dc-bone: #f4f5f7;
+  --dc-bone2: #e6e7eb;
+  --dc-paper: #ffffff;
+
+  /* === SEMANTIC STATE COLORS (8 States) === */
+  --dc-state-on-time: #22c07a;
+  --dc-state-at-risk: #f5b841;
+  --dc-state-delayed: #ff3b30;
+  --dc-state-detention: #8c6fff;
+  --dc-state-in-transit: #0a21c0;
+  --dc-state-delivered: #2bb5a5;
+  --dc-state-scheduled: #64748b;
+  --dc-state-unassigned: #050a44;
+
+  /* === SEMANTIC ALIASES (New Brand System) === */
+
+  /* Backgrounds */
+  --dc-color-bg-dark: var(--dc-ink);
+  --dc-color-bg-card: var(--dc-slate);
+  --dc-color-bg-light: var(--dc-bone);
+  --dc-color-bg-secondary: var(--dc-s450);
+
+  /* Brand */
+  --dc-color-brand: var(--dc-navy);
+  --dc-color-brand-signal: var(--dc-signal);
+
+  /* Accent (CTAs, links, highlights) - SIGNAL BLUE */
+  --dc-color-accent: var(--dc-signal);
+  --dc-color-accent-hover: var(--dc-l250);
+  --dc-color-text-on-accent: #ffffff;
+
+  /* Text */
+  --dc-color-text-primary: #ffffff;
+  --dc-color-text-secondary: var(--dc-silver);
+  --dc-color-text-dark: var(--dc-ink);
+  --dc-color-text-dark-secondary: var(--dc-n500);
+  --dc-color-text-muted: var(--dc-n400);
+
+  /* Borders */
+  --dc-color-border: var(--dc-slate);
+  --dc-color-border-light: var(--dc-n100);
+
+  /* Glows (Signal Blue based) */
+  --dc-color-glow-primary: rgba(10, 33, 192, 0.4);
+  --dc-color-glow-accent: rgba(10, 33, 192, 0.15);
 }

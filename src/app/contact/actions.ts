@@ -60,7 +60,7 @@ export async function submitContactForm(
   } catch {
     return {
       success: false,
-      message: 'Something went wrong. Please try again or email us directly at sales@drivecommand.com',
+      message: 'Something went wrong. Please try again or email us directly at sales@drivecommand.co',
     }
   }
 }

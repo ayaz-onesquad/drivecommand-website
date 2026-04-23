@@ -1,5 +1,4 @@
 @import '../styles/tokens.css';
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,23 +14,23 @@
   --bg-primary: var(--color-bg-dark);
   --bg-secondary: var(--color-bg-dark);
   --bg-card: var(--color-bg-card);
-  --bg-card-hover: #374151;
+  --bg-card-hover: var(--dc-n600);
   --border-subtle: rgba(148, 163, 184, 0.1);
   --border-medium: rgba(148, 163, 184, 0.2);
   --border-panel: rgba(255, 255, 255, 0.07);
   --border-road: rgba(255, 255, 255, 0.12);
   --text-primary: var(--color-text-primary);
   --text-secondary: var(--color-text-secondary);
-  --text-muted: #64748b;
-  --accent-blue: var(--color-accent);        /* redirected to coral */
+  --text-muted: var(--dc-state-scheduled);
+  --accent-blue: var(--color-accent);        /* Signal Blue */
   --accent-blue-hover: var(--color-accent-hover);
-  --accent-cyan: #38bdf8;
+  --accent-cyan: var(--dc-l150);             /* Electric L150 */
   --accent-green: var(--color-live-green);
-  --accent-load: var(--color-accent);        /* redirected to coral */
-  --accent-signal: #22c55e;      /* signal green - success */
-  --accent-stripe: #f7c948;      /* stripe yellow - data highlight ONLY */
-  --glow-blue: var(--color-glow-accent);     /* redirected to coral glow */
-  --glow-cyan: rgba(56, 189, 248, 0.10);
+  --accent-load: var(--color-accent);        /* Signal Blue */
+  --accent-signal: var(--dc-state-on-time);  /* On-Time green */
+  --accent-stripe: var(--dc-state-at-risk);  /* At-Risk amber */
+  --glow-blue: var(--color-glow-accent);     /* Signal Blue glow */
+  --glow-cyan: rgba(142, 155, 255, 0.10);    /* Electric L150 glow */
 
   /* Navbar specific */
   --navbar-bg: rgba(30, 37, 51, 0.95);
@@ -69,23 +68,23 @@
   --bg-primary: var(--color-bg-dark);
   --bg-secondary: var(--color-bg-dark);
   --bg-card: var(--color-bg-card);
-  --bg-card-hover: #374151;
+  --bg-card-hover: var(--dc-n600);
   --border-subtle: rgba(148, 163, 184, 0.1);
   --border-medium: rgba(148, 163, 184, 0.2);
   --border-panel: rgba(255, 255, 255, 0.07);
   --border-road: rgba(255, 255, 255, 0.12);
   --text-primary: var(--color-text-primary);
   --text-secondary: var(--color-text-secondary);
-  --text-muted: #64748b;
+  --text-muted: var(--dc-state-scheduled);
   --accent-blue: var(--color-accent);
   --accent-blue-hover: var(--color-accent-hover);
-  --accent-cyan: #38bdf8;
+  --accent-cyan: var(--dc-l150);
   --accent-green: var(--color-live-green);
   --accent-load: var(--color-accent);
-  --accent-signal: #22c55e;
-  --accent-stripe: #f7c948;
+  --accent-signal: var(--dc-state-on-time);
+  --accent-stripe: var(--dc-state-at-risk);
   --glow-blue: var(--color-glow-accent);
-  --glow-cyan: rgba(56, 189, 248, 0.10);
+  --glow-cyan: rgba(142, 155, 255, 0.10);
 }
 
 @layer base {
@@ -209,10 +208,10 @@
   animation: red-pulse 1.2s var(--ease-in-out-strong) infinite;
 }
 
-/* Headline glow pulse (one-time effect for mint text) */
+/* Headline glow pulse (one-time effect for Signal Blue text) */
 @keyframes headline-glow {
   0% { text-shadow: 0 0 0 transparent; }
-  40% { text-shadow: 0 0 24px rgba(117, 240, 212, 0.5); }
+  40% { text-shadow: 0 0 24px rgba(10, 33, 192, 0.5); }
   100% { text-shadow: 0 0 0 transparent; }
 }
 
@@ -220,9 +219,9 @@
   animation: headline-glow 0.7s var(--ease-out-strong);
 }
 
-/* Font utility for Barlow Condensed headlines */
+/* Font utility for headlines (now using DM Sans) */
 .font-headline {
-  font-family: 'Barlow Condensed', var(--font-display), sans-serif;
+  font-family: var(--font-display), sans-serif;
 }
 
 /* Respect reduced motion preference */
@@ -303,12 +302,12 @@
 @media (hover: hover) and (pointer: fine) {
   .pricing-slider::-webkit-slider-thumb:hover {
     transform: scale(1.1);
-    box-shadow: 0 3px 10px rgba(117, 240, 212, 0.4);
+    box-shadow: 0 3px 10px rgba(10, 33, 192, 0.4);
   }
 
   .pricing-slider::-moz-range-thumb:hover {
     transform: scale(1.1);
-    box-shadow: 0 3px 10px rgba(117, 240, 212, 0.4);
+    box-shadow: 0 3px 10px rgba(10, 33, 192, 0.4);
   }
 }
 
@@ -317,11 +316,11 @@
 }
 
 .pricing-slider:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 3px rgba(117, 240, 212, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(10, 33, 192, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-slider:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 3px rgba(117, 240, 212, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(10, 33, 192, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 @layer utilities {
@@ -377,13 +376,13 @@
 
   /* Button hover utilities */
   .btn-glow-blue {
-    --btn-glow: 0 8px 25px rgba(117, 240, 212, 0.35);
-    --btn-glow-active: 0 4px 15px rgba(117, 240, 212, 0.25);
+    --btn-glow: 0 8px 25px rgba(10, 33, 192, 0.35);
+    --btn-glow-active: 0 4px 15px rgba(10, 33, 192, 0.25);
   }
 
   .btn-glow-cyan {
-    --btn-glow: 0 8px 25px rgba(56, 189, 248, 0.3);
-    --btn-glow-active: 0 4px 15px rgba(56, 189, 248, 0.2);
+    --btn-glow: 0 8px 25px rgba(142, 155, 255, 0.3);
+    --btn-glow-active: 0 4px 15px rgba(142, 155, 255, 0.2);
   }
 
   /* ============================================
@@ -425,9 +424,9 @@
     border: 1px solid var(--border-panel);
   }
 
-  /* Glow: mint accent, for hover and active states */
+  /* Glow: Signal Blue accent, for hover and active states */
   .glow-load {
-    box-shadow: 0 0 24px rgba(117, 240, 212, 0.2);
+    box-shadow: 0 0 24px rgba(10, 33, 192, 0.2);
   }
 
   /* Signal green pulse — for live/active indicators */

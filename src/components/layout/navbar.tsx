@@ -3,10 +3,11 @@
 import Link from 'next/link'
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
 import { useState } from 'react'
-import { ArrowRight, Truck } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { NavbarScrollWrapper } from './navbar-scroll-client'
 import { MobileMenu } from './mobile-menu'
 import { ThemeToggle } from '@/components/shared/theme-toggle'
+import { Logo } from '@/components/brand/Logo'
 
 const NAV_LINKS = [
   { href: '/#features', label: 'Features' },
@@ -44,9 +45,9 @@ function NavLink({ href, label }: { href: string; label: string }) {
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 4px 15px rgba(117, 240, 212, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
-  tap: { y: 0, boxShadow: '0 2px 8px rgba(117, 240, 212, 0.25)' },
+  rest: { y: 0, boxShadow: '0 4px 15px rgba(10, 33, 192, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(10, 33, 192, 0.35)' },
+  tap: { y: 0, boxShadow: '0 2px 8px rgba(10, 33, 192, 0.25)' },
 }
 
 const arrowVariants = {
@@ -109,15 +110,8 @@ export function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-display font-bold text-lg"
-            style={{ color: 'var(--text-primary)' }}
-            aria-label="DriveCommand home"
-          >
-            {/* Truck icon for brand anchoring */}
-            <Truck size={20} style={{ color: 'var(--accent-load)' }} />
-            <span className="font-display font-bold">DriveCommand</span>
+          <Link href="/" aria-label="DriveCommand home">
+            <Logo variant="horizontal" size="md" />
           </Link>
 
           {/* Desktop nav links */}

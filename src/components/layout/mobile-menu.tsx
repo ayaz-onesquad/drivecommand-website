@@ -6,12 +6,13 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/shared/theme-toggle'
+import { Logo } from '@/components/brand/Logo'
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 4px 15px rgba(117, 240, 212, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
-  tap: { y: 0, boxShadow: '0 2px 8px rgba(117, 240, 212, 0.25)' },
+  rest: { y: 0, boxShadow: '0 4px 15px rgba(10, 33, 192, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(10, 33, 192, 0.35)' },
+  tap: { y: 0, boxShadow: '0 2px 8px rgba(10, 33, 192, 0.25)' },
 }
 
 const arrowVariants = {
@@ -68,9 +69,7 @@ export function MobileMenu() {
                 transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
               >
                 <div className="flex items-center justify-between mb-10">
-                  <span className="font-display font-bold text-xl text-theme-primary">
-                    DriveCommand
-                  </span>
+                  <Logo variant="horizontal" size="md" />
                   <div className="flex items-center gap-3">
                     <ThemeToggle />
                     <Dialog.Close asChild>

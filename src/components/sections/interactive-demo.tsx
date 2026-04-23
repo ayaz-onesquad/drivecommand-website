@@ -23,9 +23,9 @@ import { useParallax, useContentParallax } from '@/hooks/use-parallax'
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 4px 15px rgba(117, 240, 212, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
-  tap: { y: 0, boxShadow: '0 2px 8px rgba(117, 240, 212, 0.25)' },
+  rest: { y: 0, boxShadow: '0 4px 15px rgba(10, 33, 192, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(10, 33, 192, 0.35)' },
+  tap: { y: 0, boxShadow: '0 2px 8px rgba(10, 33, 192, 0.25)' },
 }
 
 const arrowVariants = {

@@ -1,33 +1,43 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, IBM_Plex_Sans } from 'next/font/google'
+import { DM_Sans, Inter, JetBrains_Mono } from 'next/font/google'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/lib/theme-provider'
 import './globals.css'
 
-const spaceGrotesk = Space_Grotesk({
+const dmSans = DM_Sans({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-display',
   display: 'swap',
 })
 
-const ibmPlexSans = IBM_Plex_Sans({
+const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-body',
   display: 'swap',
 })
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-mono',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
+  // NOTE: Brand guide uses drivecommand.co, audit found drivecommand.com
+  // Defaulting to .co per authoritative brand guide — FLAG for human review
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://drivecommand.com'
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://drivecommand.co'
   ),
   title: {
-    default: 'DriveCommand — Fleet Management for Carriers',
+    default: 'DriveCommand — Miles Ahead.',
     template: '%s | DriveCommand',
   },
   description:
-    'Fleet management built for carriers. Dispatch, track, invoice, and stay compliant — all in one place.',
+    'Carrier operations built for the road. Dispatch, track, invoice, and stay compliant — all in one place. Miles Ahead.',
   openGraph: {
     siteName: 'DriveCommand',
     type: 'website',
@@ -50,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${ibmPlexSans.variable}`}
+      className={`${dmSans.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body>

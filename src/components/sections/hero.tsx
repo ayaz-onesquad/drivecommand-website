@@ -13,9 +13,9 @@ const easeInOutStrong: [number, number, number, number] = [0.77, 0, 0.175, 1]
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(117, 240, 212, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(117, 240, 212, 0.35)' },
-  tap: { y: 0, scale: 0.97, boxShadow: '0 4px 12px rgba(117, 240, 212, 0.2)' },
+  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(10, 33, 192, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(10, 33, 192, 0.35)' },
+  tap: { y: 0, scale: 0.97, boxShadow: '0 4px 12px rgba(10, 33, 192, 0.2)' },
 }
 
 const arrowVariants = {
@@ -130,7 +130,7 @@ export function Hero() {
         className="absolute inset-0 z-20 pointer-events-none will-change-transform"
         style={{ y: shouldParallax ? glowY : 0 }}
       >
-        {/* Mint glow behind headline */}
+        {/* Signal Blue glow behind headline */}
         <div
           className="absolute"
           style={{
@@ -139,10 +139,10 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(117, 240, 212, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(10, 33, 192, 0.15) 0%, transparent 70%)',
           }}
         />
-        {/* Brand deep-blue glow behind dashboard */}
+        {/* Signal Blue glow behind dashboard */}
         <div
           className="absolute"
           style={{
@@ -151,7 +151,7 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(50%, -50%)',
-            background: 'radial-gradient(circle, rgba(33, 101, 127, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(10, 33, 192, 0.1) 0%, transparent 70%)',
           }}
         />
       </motion.div>
@@ -186,7 +186,7 @@ export function Hero() {
             </motion.div>
 
             {/* Headline */}
-            <h1 className="font-headline text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6" style={{ color: 'var(--text-primary)' }}>
+            <h1 className="font-headline text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-4" style={{ color: 'var(--text-primary)' }}>
               <motion.span
                 className="block"
                 initial={{ opacity: 0, y: 16 }}
@@ -218,6 +218,17 @@ export function Hero() {
                 />
               </motion.span>
             </h1>
+
+            {/* Tagline: "Miles Ahead." - per brand guide page 4 */}
+            <motion.p
+              className="font-display text-2xl sm:text-3xl font-semibold mb-6"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.38 : 0 }}
+            >
+              <span style={{ color: 'var(--dc-bone)' }}>Miles </span>
+              <span style={{ color: 'var(--dc-signal)' }}>Ahead.</span>
+            </motion.p>
 
             {/* Subheadline */}
             <motion.p
@@ -324,7 +335,7 @@ export function Hero() {
               style={{
                 border: '1px solid var(--color-border)',
                 background: 'rgba(22, 32, 46, 0.9)',
-                boxShadow: '0 25px 50px -12px rgba(117, 240, 212, 0.15), 0 0 0 1px rgba(117, 240, 212, 0.05)',
+                boxShadow: '0 25px 50px -12px rgba(10, 33, 192, 0.15), 0 0 0 1px rgba(10, 33, 192, 0.05)',
               }}
             >
               {/* Title bar */}
@@ -445,7 +456,7 @@ export function Hero() {
                     whileHover={prefersReducedMotion ? {} : {
                       y: -2,
                       backgroundColor: 'rgba(30, 37, 51, 0.95)',
-                      borderColor: 'rgba(117, 240, 212, 0.3)'
+                      borderColor: 'rgba(10, 33, 192, 0.3)'
                     }}
                     whileTap={prefersReducedMotion ? {} : { y: 0, scale: 0.98 }}
                     transition={{

@@ -16,8 +16,8 @@ const CONTACT_INFO = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'sales@drivecommand.com',
-    href: 'mailto:sales@drivecommand.com',
+    value: 'sales@drivecommand.co',
+    href: 'mailto:sales@drivecommand.co',
   },
   {
     icon: Phone,

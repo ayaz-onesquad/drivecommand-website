@@ -33,7 +33,7 @@ export const PRICING_TIERS: PricingTier[] = [
     ],
     highlighted: false,
     ctaLabel: 'Start Free Trial',
-    ctaHref: 'https://app.drivecommand.com/sign-up',
+    ctaHref: 'https://app.drivecommand.co/sign-up',
   },
   {
     id: 'advanced',
@@ -55,7 +55,7 @@ export const PRICING_TIERS: PricingTier[] = [
     ],
     highlighted: true,
     ctaLabel: 'Start Free Trial',
-    ctaHref: 'https://app.drivecommand.com/sign-up',
+    ctaHref: 'https://app.drivecommand.co/sign-up',
   },
   {
     id: 'enterprise',
