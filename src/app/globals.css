@@ -102,13 +102,90 @@
 }
 
 /* ============================================
-   CUSTOM EASING CURVES (Emil Kowalski's philosophy)
-   Strong easings that give animations "punch"
+   CUSTOM EASING CURVES
+   Brand guide (pg 16B): cubic-out 0.22, 1 - nothing bounces
    ============================================ */
 :root {
+  /* Brand guide spec: cubic-out (0.22, 1) */
+  --ease-out: cubic-bezier(0.22, 1, 0.22, 1);
+  /* Legacy/strong variants kept for backward compat */
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ============================================
+   TYPOGRAPHY SCALE UTILITIES (Brand Guide pg 12-13)
+   DM Sans: Display, Headline, Quote
+   Inter: Lead, Body, Small
+   JetBrains Mono: Label, Data, Code
+   ============================================ */
+.text-display {
+  font-family: var(--font-display), sans-serif;
+  font-size: 96px;
+  line-height: 92px;
+  font-weight: 700;
+}
+
+.text-headline {
+  font-family: var(--font-display), sans-serif;
+  font-size: 64px;
+  line-height: 64px;
+  font-weight: 700;
+}
+
+.text-quote {
+  font-family: var(--font-display), sans-serif;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 400;
+}
+
+.text-lead {
+  font-family: var(--font-body), sans-serif;
+  font-size: 22px;
+  line-height: 34px;
+  font-weight: 400;
+}
+
+.text-body {
+  font-family: var(--font-body), sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+}
+
+.text-small {
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.text-data {
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.text-code {
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+/* Tabular nums utility for data display (brand guide pg 12) */
+.tnum {
+  font-variant-numeric: tabular-nums;
 }
 
 /* ============================================
