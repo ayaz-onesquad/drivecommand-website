@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 Phase: 2 of 4 (Landing Page)
 Plan: 4 of 4 in current phase
 Status: Phase 2 COMPLETE
-Last activity: 2026-04-23 — Completed quick task 5: DriveCommand rebrand rollout (Signal Blue palette)
+Last activity: 2026-05-07 — Completed quick task 6: Brand guide alignment (colors, typography, corners, motion)
 
 Progress: [██████████] 100% (Phase 1 + 2)
 
@@ -53,6 +53,10 @@ Recent decisions affecting current work:
 - [Phase quick-5]: Signal Blue (#0a21c0) replaces Mint as primary accent; Ink (#141619) replaces Midnight as primary dark bg
 - [Phase quick-5]: "Miles Ahead." tagline added to hero with bone/Signal Blue color split
 - [Phase quick-5]: Domain updated to drivecommand.co (FLAG: audit showed .com, brand guide uses .co)
+- [Phase quick-6]: Brand Blue (#0066CC) replaces Signal Blue (#0a21c0) per brand guide pg 10
+- [Phase quick-6]: Ink corrected to #1D1D1F, Bone to #F5F5F7 per brand guide
+- [Phase quick-6]: Typography scale added (Display 96/92 through Code 14/24) per pg 12-13
+- [Phase quick-6]: Motion easing cubic-out (0.22, 1) and 0px corner radius per pg 14, 16B
 
 ### Pending Todos
 
@@ -72,9 +76,10 @@ None yet.
 | 3 | Colors 3 palette migration with mint (#75F0D4) accent, midnight backgrounds, WCAG AA contrast | 2026-04-02 | 3e3e59b | [3-replace-brand-colors-with-colors-3-palet](./quick/3-replace-brand-colors-with-colors-3-palet/) |
 | 4 | Remove fine print from Hero and static icons in FeaturesGrid | 2026-04-04 | aca660b | [4-remove-fine-print-from-hero-and-stop-all](./quick/4-remove-fine-print-from-hero-and-stop-all/) |
 | 5 | DriveCommand rebrand rollout: Signal Blue palette, "Miles Ahead." tagline, drivecommand.co | 2026-04-23 | 5d5f5f2 | [5-drivecommand-rebrand-rollout-migrate-leg](./quick/5-drivecommand-rebrand-rollout-migrate-leg/) |
+| 6 | Brand guide alignment: colors, typography, corners 0px, motion cubic-out | 2026-05-07 | e9cff21 | [6-full-drivecommand-marketing-site-redesig](./quick/6-full-drivecommand-marketing-site-redesig/) |
 
 ## Session Continuity
 
-Last session: 2026-04-23
-Stopped at: Completed quick-5 (DriveCommand rebrand rollout) — 13 tasks, 13 files modified, ~8m duration
+Last session: 2026-05-07
+Stopped at: Completed quick-6 (Brand guide alignment) — 3 tasks, 9 files modified, ~4m duration
 Resume file: None
