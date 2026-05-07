@@ -23,7 +23,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="w-9 h-9 rounded-full bg-transparent border transition-colors"
+        className="w-9 h-9 rounded-none bg-transparent border transition-colors"
         style={{ borderColor: 'var(--border-medium)' }}
         aria-label="Toggle theme"
       >
@@ -37,10 +37,10 @@ export function ThemeToggle() {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="relative w-9 h-9 rounded-full bg-transparent border transition-all duration-200 hover:border-[var(--accent-cyan)] hover:bg-sky-400/10 flex items-center justify-center"
+      className="relative w-9 h-9 rounded-none bg-transparent border transition-all duration-200 hover:border-[var(--accent-cyan)] hover:bg-sky-400/10 flex items-center justify-center"
       style={{ borderColor: 'var(--border-medium)' }}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-      whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
+      whileHover={prefersReducedMotion ? {} : { scale: 1.04 }}
       whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
     >

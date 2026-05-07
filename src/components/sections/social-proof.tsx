@@ -136,7 +136,7 @@ export function SocialProof() {
           {TESTIMONIALS.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
-              className="relative rounded-xl p-6 shadow-sm texture-steel border-panel"
+              className="relative rounded-none p-6 shadow-sm texture-steel border-panel"
               initial={{
                 opacity: 0,
                 x: prefersReducedMotion ? 0 : index % 2 === 0 ? -30 : 30,

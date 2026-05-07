@@ -7,7 +7,9 @@ import { ArrowRight, Shield, Zap, Lock } from 'lucide-react'
 import { StatusBadge } from '@/components/shared/status-badge'
 import { useIsDesktop } from '@/hooks/use-is-desktop'
 
-// Emil Kowalski's custom easing curves for punchy animations
+// Brand guide (pg 16B): cubic-out 0.22, 1 - nothing bounces
+const easeOutBrand: [number, number, number, number] = [0.22, 1, 0.22, 1]
+// Legacy easing kept for backward compat
 const easeOutStrong: [number, number, number, number] = [0.23, 1, 0.32, 1]
 const easeInOutStrong: [number, number, number, number] = [0.77, 0, 0.175, 1]
 
@@ -279,7 +281,7 @@ export function Hero() {
               >
                 <Link href="/contact" className="block">
                   <motion.span
-                    className="inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold rounded-lg text-center"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold rounded-none text-center"
                     style={{
                       backgroundColor: 'var(--color-accent)',
                       color: 'var(--color-text-on-accent)'
@@ -310,7 +312,7 @@ export function Hero() {
               >
                 <Link
                   href="#demo"
-                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-lg transition-colors duration-150 text-center"
+                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-none transition-colors duration-150 text-center"
                   style={{
                     borderColor: 'var(--color-accent)',
                     color: 'var(--color-accent)'
@@ -331,11 +333,11 @@ export function Hero() {
             transition={{ duration: 0.4, ease: easeOutStrong, delay: shouldAnimate ? 0.25 : 0 }}
           >
             <div
-              className="rounded-xl overflow-hidden"
+              className="rounded-none overflow-hidden"
               style={{
                 border: '1px solid var(--color-border)',
                 background: 'rgba(22, 32, 46, 0.9)',
-                boxShadow: '0 25px 50px -12px rgba(10, 33, 192, 0.15), 0 0 0 1px rgba(10, 33, 192, 0.05)',
+                boxShadow: '0 25px 50px -12px rgba(0, 102, 204, 0.15), 0 0 0 1px rgba(0, 102, 204, 0.05)',
               }}
             >
               {/* Title bar */}
@@ -446,7 +448,7 @@ export function Hero() {
                 {loadCards.map((card, i) => (
                   <motion.div
                     key={card.id}
-                    className="p-3 rounded-lg cursor-pointer"
+                    className="p-3 rounded-none cursor-pointer"
                     style={{
                       backgroundColor: 'rgba(30, 37, 51, 0.8)',
                       border: '1px solid rgba(42, 58, 80, 0.5)',

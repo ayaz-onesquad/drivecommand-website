@@ -57,7 +57,7 @@ function Slider({ id, label, value, min, max, step, onChange, suffix = '' }: Sli
           onChange={handleNumberChange}
           onBlur={handleNumberBlur}
           onFocus={handleNumberFocus}
-          className="w-16 h-8 px-2 py-1 text-sm text-right font-body text-theme-primary bg-theme-card border border-[var(--border-medium)] rounded-md focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="w-16 h-8 px-2 py-1 text-sm text-right font-body text-theme-primary bg-theme-card border border-[var(--border-medium)] rounded-none focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           aria-label={`${label} value`}
         />
       </div>
@@ -142,7 +142,7 @@ export function PricingCalculator() {
             <motion.div
               key={tier.id}
               className={cn(
-                'relative rounded-xl border p-6',
+                'relative rounded-none border p-6',
                 tier.highlighted
                   ? 'border-[var(--color-accent)]'
                   : 'border-theme-medium'
@@ -168,7 +168,7 @@ export function PricingCalculator() {
               }
             >
               {tier.highlighted && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-dc-accent text-dc-text-on-accent">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-none bg-dc-accent text-dc-text-on-accent">
                   <span className="font-body text-xs font-medium" style={{ color: 'var(--color-text-on-accent)' }}>Most Popular</span>
                 </div>
               )}
@@ -199,7 +199,7 @@ export function PricingCalculator() {
               <Link
                 href={tier.id === 'enterprise' ? tier.ctaHref : '/contact'}
                 className={cn(
-                  'block w-full text-center py-3 rounded-lg font-body font-medium text-sm transition-colors',
+                  'block w-full text-center py-3 rounded-none font-body font-medium text-sm transition-colors',
                   tier.highlighted
                     ? 'bg-dc-accent hover:opacity-90'
                     : tier.id === 'enterprise'
@@ -220,7 +220,7 @@ export function PricingCalculator() {
 
         {/* Calculator section */}
         <motion.div
-          className="rounded-2xl border p-8 bg-theme-secondary border-theme-medium"
+          className="rounded-none border p-8 bg-theme-secondary border-theme-medium"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -241,7 +241,7 @@ export function PricingCalculator() {
                       key={plan}
                       onClick={() => setSelectedPlan(plan)}
                       className={cn(
-                        'py-3 px-4 rounded-lg font-body font-medium text-sm transition-colors',
+                        'py-3 px-4 rounded-none font-body font-medium text-sm transition-colors',
                         selectedPlan === plan
                           ? 'bg-dc-accent text-dc-text-on-accent'
                           : 'text-theme-secondary hover:bg-theme-card'
@@ -288,7 +288,7 @@ export function PricingCalculator() {
             </div>
 
             {/* Right: Output panel */}
-            <div className="rounded-xl p-6 bg-theme-card">
+            <div className="rounded-none p-6 bg-theme-card">
               <h4 className="font-display text-lg font-semibold text-theme-primary mb-6">
                 Monthly Estimate
               </h4>
@@ -339,7 +339,7 @@ export function PricingCalculator() {
                   <motion.span
                     key={pricing.total}
                     className="font-display text-3xl font-bold text-accent-green"
-                    initial={{ scale: 1.1 }}
+                    initial={{ scale: 1.04 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -354,7 +354,7 @@ export function PricingCalculator() {
               {/* CTA */}
               <Link
                 href="/contact"
-                className="block w-full text-center py-3 font-body font-medium rounded-lg transition-colors bg-dc-accent text-dc-text-on-accent hover:opacity-90"
+                className="block w-full text-center py-3 font-body font-medium rounded-none transition-colors bg-dc-accent text-dc-text-on-accent hover:opacity-90"
               >
                 Get Early Access at This Price
               </Link>

@@ -106,7 +106,7 @@ function LoadsTableMockup() {
   }, [loads.length, prefersReducedMotion])
 
   return (
-    <div ref={ref} className="relative rounded-xl border overflow-hidden shadow-2xl bg-theme-secondary border-theme-medium">
+    <div ref={ref} className="relative rounded-none border overflow-hidden shadow-2xl bg-theme-secondary border-theme-medium">
       {/* Animated truck traveling across top */}
       <AnimatedTableTruck animate={isInView} />
 
@@ -218,7 +218,7 @@ export function DemoVideo() {
           transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : 0.2 }}
         >
           {videoUrl ? (
-            <div className="relative aspect-video rounded-xl overflow-hidden bg-theme-secondary">
+            <div className="relative aspect-video rounded-none overflow-hidden bg-theme-secondary">
               <iframe
                 src={videoUrl}
                 className="absolute inset-0 w-full h-full"
@@ -255,7 +255,7 @@ export function DemoVideo() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex px-8 py-4 font-body font-medium rounded-lg transition-colors shadow-lg bg-dc-accent hover:bg-dc-accent-hover text-dc-text-on-accent"
+            className="inline-flex px-8 py-4 font-body font-medium rounded-none transition-colors shadow-lg bg-dc-accent hover:bg-dc-accent-hover text-dc-text-on-accent"
             style={{ boxShadow: '0 10px 15px -3px var(--color-glow-accent)' }}
           >
             Get Early Access

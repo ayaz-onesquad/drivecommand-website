@@ -155,7 +155,7 @@ export function FeaturesGrid() {
           {FEATURES.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="group relative rounded-xl p-6 shadow-sm overflow-hidden texture-steel border-panel transition-all duration-200"
+              className="group relative rounded-none p-6 shadow-sm overflow-hidden texture-steel border-panel transition-all duration-200"
               initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -177,7 +177,7 @@ export function FeaturesGrid() {
             >
               <div className="relative z-10">
                 <div
-                  className={`inline-flex items-center justify-center w-12 h-12 rounded-lg ${feature.bgColor} mb-4`}
+                  className={`inline-flex items-center justify-center w-12 h-12 rounded-none ${feature.bgColor} mb-4`}
                 >
                   <feature.icon size={24} className={feature.color} />
                 </div>
