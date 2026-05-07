@@ -1,155 +1,149 @@
-/* DriveCommand Brand Color Tokens - Colors 3 Palette
+/* DriveCommand Brand Color Tokens (v2.0 May 2026)
    =================================================
-   Components NEVER reference --p-* directly.
-   Always use semantic aliases below.
+   BRAND GUIDE ALIGNED (pg 10-11)
+
+   Primary: Ink (#1D1D1F), Bone (#F5F5F7), Graphite (#6E6E73)
+   Accent: Brand Blue (#0066CC)
+
+   Neutral Ramp: N000-N900
+   Brand Blue Ramp: B050-B800
+   Semantic States: Success, Warning, Critical, Info
+
+   Components use semantic aliases (--color-*) or --dc-* tokens.
 */
 
 :root {
-  /* === PALETTE STOPS (internal only) === */
-  --p-mint: #75F0D4;       /* Bright cyan-green - CTA accent */
-  --p-slate-teal: #5B878A; /* Muted teal-grey - secondary */
-  --p-ocean: #3B8696;      /* Mid ocean blue-teal */
-  --p-deep-blue: #21657F;  /* Rich dark teal-blue */
-  --p-navy: #19334D;       /* Dark blue-navy */
-  --p-forest: #005228;     /* Very dark green - badge bg */
-  --p-midnight: #000D23;   /* Near-black blue - primary bg */
+  /* === BRAND GUIDE NEUTRAL RAMP N000-N900 (pg 10) === */
+  --dc-n000: #FFFFFF;           /* White */
+  --dc-n050: #F5F5F7;           /* Bone */
+  --dc-n100: #E8E8ED;           /* Mist */
+  --dc-n200: #D2D2D7;           /* Fog */
+  --dc-n300: #AEAEB2;           /* Quiet */
+  --dc-n400: #86868B;           /* Silver */
+  --dc-n500: #6E6E73;           /* Graphite */
+  --dc-n600: #48484A;           /* Iron */
+  --dc-n700: #363638;           /* Coal */
+  --dc-n800: #2C2C2E;           /* Slate */
+  --dc-n900: #1D1D1F;           /* Ink */
+
+  /* === BRAND GUIDE BLUE RAMP B050-B800 (pg 10) === */
+  --dc-b050: #E5F0FB;           /* Tint */
+  --dc-b100: #C9E0F4;           /* Wash */
+  --dc-b200: #8FBEEA;           /* Sky */
+  --dc-b300: #5AC8FA;           /* Air */
+  --dc-b400: #2D8FE0;           /* Hover */
+  --dc-b500: #0066CC;           /* Brand Blue */
+  --dc-b600: #003C82;           /* Deep */
+  --dc-b700: #002654;           /* Trench */
+  --dc-b800: #001A3D;           /* Abyss */
+
+  /* === SEMANTIC STATE COLORS (pg 11) === */
+  --dc-state-success: #006B40;
+  --dc-state-warning: #9A4A00;
+  --dc-state-critical: #C8102E;
+  --dc-state-info: #0066CC;
+
+  /* === PRIMARY PALETTE ALIASES === */
+  --dc-ink: #1D1D1F;            /* Primary dark - same as N900 */
+  --dc-bone: #F5F5F7;           /* Primary light - same as N050 */
+  --dc-graphite: #6E6E73;       /* Primary muted - same as N500 */
+  --dc-brand: #0066CC;          /* Brand Blue - same as B500 */
+
+  /* === SURFACE COLORS === */
+  --dc-bone2: #E8E8ED;          /* Same as N100 */
+  --dc-paper: #FFFFFF;          /* Same as N000 */
+
+  /* === BACKWARD COMPATIBILITY (legacy tokens mapped to new values) === */
+  /* Old --dc-slate maps to N800 */
+  --dc-slate: #2C2C2E;
+  /* Old --dc-navy approximates B700 */
+  --dc-navy: #002654;
+  /* Old --dc-signal now maps to Brand Blue B500 */
+  --dc-signal: #0066CC;
+  /* Old --dc-silver maps to N400 */
+  --dc-silver: #86868B;
+
+  /* === LEGACY INK RAMP (mapped to new N values) === */
+  --dc-n0: var(--dc-n050);
+  /* Note: old n100-n900 values are replaced by brand guide N ramp above */
+
+  /* === SEMANTIC STATE COLORS (8 States) - UI specific === */
+  --dc-state-on-time: #006B40;     /* Success */
+  --dc-state-at-risk: #9A4A00;     /* Warning */
+  --dc-state-delayed: #C8102E;     /* Critical */
+  --dc-state-detention: #8c6fff;   /* Kept for backward compat */
+  --dc-state-in-transit: #0066CC;  /* Brand Blue */
+  --dc-state-delivered: #006B40;   /* Success */
+  --dc-state-scheduled: #86868B;   /* N400 Silver */
+  --dc-state-unassigned: #002654;  /* B700 */
 
   /* === SEMANTIC ALIASES (use these in components) === */
-  /* Updated 2026-04-23: Now reference new --dc-* palette (Signal Blue accent) */
 
   /* Backgrounds */
-  --color-bg-dark: var(--dc-ink);
-  --color-bg-light: var(--dc-bone);
-  --color-bg-card: var(--dc-slate);
-  --color-bg-secondary: var(--dc-s450);
+  --color-bg-dark: var(--dc-n900);
+  --color-bg-light: var(--dc-n050);
+  --color-bg-card: var(--dc-n800);
+  --color-bg-secondary: var(--dc-n700);
 
   /* Brand */
-  --color-brand: var(--dc-signal);
-  --color-brand-mid: var(--dc-l250);
+  --color-brand: var(--dc-b500);
+  --color-brand-mid: var(--dc-b400);
 
-  /* Accent (CTAs, links, highlights) - SIGNAL BLUE */
-  --color-accent: var(--dc-signal);
-  --color-accent-hover: var(--dc-l250);
-  --color-text-on-accent: var(--dc-bone); /* Light text on Signal Blue buttons */
+  /* Accent (CTAs, links, highlights) - BRAND BLUE */
+  --color-accent: var(--dc-b500);
+  --color-accent-hover: var(--dc-b400);
+  --color-text-on-accent: var(--dc-n050); /* Light text on Brand Blue buttons */
 
   /* Text */
   --color-text-primary: #FFFFFF;
   --color-text-secondary: var(--dc-n300);
-  --color-text-dark: var(--dc-ink);
+  --color-text-dark: var(--dc-n900);
   --color-text-dark-secondary: var(--dc-n500);
   --color-text-muted: var(--dc-n400);
 
   /* Borders */
-  --color-border: var(--dc-slate);
+  --color-border: var(--dc-n700);
   --color-border-light: var(--dc-n100);
 
   /* Status colors (semantic per brand guide) */
-  --color-live-green: #22c07a;         /* On-Time */
-  --color-status-transit: #f5b841;     /* At-Risk (kept amber for warning semantics) */
-  --color-status-dispatched: #8c6fff;  /* Detention */
-  --color-status-invoiced: #2bb5a5;    /* Delivered */
+  --color-live-green: var(--dc-state-success);
+  --color-status-transit: var(--dc-state-warning);
+  --color-status-dispatched: #8c6fff;  /* Kept for UI distinction */
+  --color-status-invoiced: var(--dc-state-success);
 
-  /* Glows (Signal Blue based) */
-  --color-glow-primary: rgba(10, 33, 192, 0.4);
-  --color-glow-accent: rgba(10, 33, 192, 0.15);
-}
+  /* Glows (Brand Blue based) */
+  --color-glow-primary: rgba(0, 102, 204, 0.4);
+  --color-glow-accent: rgba(0, 102, 204, 0.15);
 
-/* =====================================================
-   NEW DRIVECOMMAND BRAND SYSTEM (v1.0 April 2026)
-   =====================================================
-   All new tokens use --dc-* prefix to avoid collisions.
-   Existing components continue using old tokens above.
-   New components use these tokens via dc2.* Tailwind classes.
-*/
-
-:root {
-  /* === PRIMARY PALETTE (5 Colors) === */
-  --dc-ink: #141619;           /* Midnight Ink - 40% balance */
-  --dc-slate: #2c2e3a;         /* Graphite Slate - 20% balance */
-  --dc-navy: #050a44;          /* Deep Navy - 15% balance */
-  --dc-signal: #0a21c0;        /* Signal Blue - 10% balance (CTA accent) */
-  --dc-silver: #b3b4bd;        /* Platinum Silver - 15% balance */
-
-  /* === INK RAMP (Surfaces & Text) n0-n900 === */
-  --dc-n0: #f4f5f7;
-  --dc-n100: #e6e7eb;
-  --dc-n200: #d0d1d7;
-  --dc-n300: #b3b4bd;
-  --dc-n400: #8e909a;
-  --dc-n500: #6b6e78;
-  --dc-n600: #4a4d56;
-  --dc-n700: #2c2e3a;
-  --dc-n800: #1c1e26;
-  --dc-n900: #141619;
-
-  /* === NAVY RAMP (Depth & Ground) s50-s500 === */
-  --dc-s50: #e8eaf5;
-  --dc-s100: #bfc4e0;
-  --dc-s150: #8f97c0;
-  --dc-s200: #5e69a0;
-  --dc-s250: #363f7d;
-  --dc-s300: #1a225b;
-  --dc-s350: #0f153f;
-  --dc-s400: #0a0f32;
-  --dc-s450: #070a28;
-  --dc-s500: #050a44;
-
-  /* === ELECTRIC RAMP (Signal & Accent) l50-l500 === */
-  --dc-l50: #e7eaff;
-  --dc-l100: #bfc7ff;
-  --dc-l150: #8e9bff;
-  --dc-l200: #5e70ff;
-  --dc-l250: #3449f0;
-  --dc-l300: #0a21c0;
-  --dc-l350: #081a99;
-  --dc-l400: #061473;
-  --dc-l450: #040d4d;
-  --dc-l500: #020726;
-
-  /* === SURFACE COLORS === */
-  --dc-bone: #f4f5f7;
-  --dc-bone2: #e6e7eb;
-  --dc-paper: #ffffff;
-
-  /* === SEMANTIC STATE COLORS (8 States) === */
-  --dc-state-on-time: #22c07a;
-  --dc-state-at-risk: #f5b841;
-  --dc-state-delayed: #ff3b30;
-  --dc-state-detention: #8c6fff;
-  --dc-state-in-transit: #0a21c0;
-  --dc-state-delivered: #2bb5a5;
-  --dc-state-scheduled: #64748b;
-  --dc-state-unassigned: #050a44;
-
-  /* === SEMANTIC ALIASES (New Brand System) === */
+  /* === NEW BRAND SYSTEM ALIASES (dc2.* Tailwind classes) === */
 
   /* Backgrounds */
-  --dc-color-bg-dark: var(--dc-ink);
-  --dc-color-bg-card: var(--dc-slate);
-  --dc-color-bg-light: var(--dc-bone);
-  --dc-color-bg-secondary: var(--dc-s450);
+  --dc-color-bg-dark: var(--dc-n900);
+  --dc-color-bg-card: var(--dc-n800);
+  --dc-color-bg-light: var(--dc-n050);
+  --dc-color-bg-secondary: var(--dc-n700);
 
   /* Brand */
-  --dc-color-brand: var(--dc-navy);
-  --dc-color-brand-signal: var(--dc-signal);
+  --dc-color-brand: var(--dc-b500);
+  --dc-color-brand-signal: var(--dc-b500);
 
-  /* Accent (CTAs, links, highlights) - SIGNAL BLUE */
-  --dc-color-accent: var(--dc-signal);
-  --dc-color-accent-hover: var(--dc-l250);
-  --dc-color-text-on-accent: #ffffff;
+  /* Accent (CTAs, links, highlights) - BRAND BLUE */
+  --dc-color-accent: var(--dc-b500);
+  --dc-color-accent-hover: var(--dc-b400);
+  --dc-color-text-on-accent: var(--dc-n050);
 
   /* Text */
-  --dc-color-text-primary: #ffffff;
-  --dc-color-text-secondary: var(--dc-silver);
-  --dc-color-text-dark: var(--dc-ink);
+  --dc-color-text-primary: #FFFFFF;
+  --dc-color-text-secondary: var(--dc-n300);
+  --dc-color-text-dark: var(--dc-n900);
   --dc-color-text-dark-secondary: var(--dc-n500);
   --dc-color-text-muted: var(--dc-n400);
 
   /* Borders */
-  --dc-color-border: var(--dc-slate);
+  --dc-color-border: var(--dc-n700);
   --dc-color-border-light: var(--dc-n100);
 
-  /* Glows (Signal Blue based) */
-  --dc-color-glow-primary: rgba(10, 33, 192, 0.4);
-  --dc-color-glow-accent: rgba(10, 33, 192, 0.15);
+  /* Glows (Brand Blue based) */
+  --dc-color-glow-primary: rgba(0, 102, 204, 0.4);
+  --dc-color-glow-accent: rgba(0, 102, 204, 0.15);
 }
