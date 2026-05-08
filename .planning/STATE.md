@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 Phase: 2 of 4 (Landing Page)
 Plan: 4 of 4 in current phase
 Status: Phase 2 COMPLETE
-Last activity: 2026-05-08 — Completed quick task 8: GSAP scroll dependencies + WhyDriveCommandScroll 5-panel section
+Last activity: 2026-05-08 — Completed quick task 9: Mount WhyDriveCommandScroll on home page with navigation links
 
 Progress: [██████████] 100% (Phase 1 + 2)
 
@@ -80,9 +80,10 @@ None yet.
 | 6 | Brand guide alignment: colors, typography, corners 0px, motion cubic-out | 2026-05-07 | e9cff21 | [6-full-drivecommand-marketing-site-redesig](./quick/6-full-drivecommand-marketing-site-redesig/) |
 | 7 | Token-driven UX refactor: brand/tokens.json single source of truth, Tailwind import, zero hardcoded colors | 2026-05-08 | c44277b | [7-token-driven-ux-refactor-for-drivecomman](./quick/7-token-driven-ux-refactor-for-drivecomman/) |
 | 8 | GSAP scroll dependencies + WhyDriveCommandScroll 5-panel scroll-pinned section with rotation animations | 2026-05-08 | 7a43c43 | [8-add-gsap-scroll-dependencies-and-whydriv](./quick/8-add-gsap-scroll-dependencies-and-whydriv/) |
+| 9 | Mount WhyDriveCommandScroll on home page with Why us navigation links | 2026-05-08 | 0fd6d5d | [9-mount-whydrivecommandscroll-on-home-page](./quick/9-mount-whydrivecommandscroll-on-home-page/) |
 
 ## Session Continuity
 
 Last session: 2026-05-08
-Stopped at: Completed quick-8 (GSAP + WhyDriveCommandScroll) — 3 tasks, 3 files modified, ~2m duration
+Stopped at: Completed quick-9 (Mount WhyDriveCommandScroll) — 3 tasks, 4 files modified, ~2m duration
 Resume file: None
