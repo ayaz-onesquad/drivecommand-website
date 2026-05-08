@@ -150,4 +150,106 @@
   /* Glows (Brand Blue based) */
   --dc-color-glow-primary: rgba(0, 102, 204, 0.4);
   --dc-color-glow-accent: rgba(0, 102, 204, 0.15);
+
+  /* === NEW: SEMANTIC DUAL-MODE TOKENS (Apple-style) ===
+     These flip automatically based on light/dark mode.
+     Components use ONLY these — never raw ramp values.
+     Reference: brand/tokens.json semanticMode section
+  */
+
+  /* N950 for sunken dark surfaces */
+  --dc-n950: #0F0F11;
+}
+
+/* ============================================
+   SEMANTIC MODE TOKENS — LIGHT MODE (default)
+   Apple HIG: softened backgrounds, high contrast text
+   ============================================ */
+:root {
+  /* Surfaces */
+  --surface-base: #F5F5F7;      /* Bone - default page background */
+  --surface-elevated: #FFFFFF;  /* White - cards on light */
+  --surface-sunken: #E8E8ED;    /* Mist - inset sections */
+
+  /* Text */
+  --text-primary: #1D1D1F;      /* Ink - headlines, body */
+  --text-secondary: #6E6E73;    /* Graphite - supporting */
+  --text-tertiary: #86868B;     /* Silver - metadata */
+  --text-on-brand: #FFFFFF;     /* White - on brand buttons */
+
+  /* Accent */
+  --accent-brand: #0066CC;      /* Brand Blue - CTAs, links */
+  --accent-brand-hover: #2D8FE0; /* Hover state */
+
+  /* Borders */
+  --border-divider: #D2D2D7;    /* Fog - hairlines */
+  --border-subtle: #E8E8ED;     /* Mist - subtle borders */
+
+  /* States (per Apple HIG - brighter in dark mode) */
+  --state-success: #006B40;
+  --state-warning: #9A4A00;
+  --state-critical: #C8102E;
+  --state-info: #0066CC;
+}
+
+/* ============================================
+   SEMANTIC MODE TOKENS — DARK MODE
+   Apple HIG: softened blacks (not #000), brighter accents
+   ============================================ */
+:root[data-theme="dark"],
+:root.dark {
+  /* Surfaces */
+  --surface-base: #1D1D1F;      /* Ink - page background */
+  --surface-elevated: #2C2C2E;  /* Slate - elevated cards */
+  --surface-sunken: #0F0F11;    /* N950 - deepest dark */
+
+  /* Text */
+  --text-primary: #F5F5F7;      /* Bone - headlines, body */
+  --text-secondary: #AEAEB2;    /* Quiet - supporting */
+  --text-tertiary: #86868B;     /* Silver - metadata (same) */
+  --text-on-brand: #FFFFFF;     /* White - on brand buttons */
+
+  /* Accent (brighter for dark mode legibility) */
+  --accent-brand: #5AC8FA;      /* Air - brighter for contrast */
+  --accent-brand-hover: #2D8FE0; /* Hover state */
+
+  /* Borders */
+  --border-divider: #363638;    /* Coal - hairlines */
+  --border-subtle: #2C2C2E;     /* Slate - subtle borders */
+
+  /* States (Apple HIG dark mode values) */
+  --state-success: #34C759;
+  --state-warning: #FF9F0A;
+  --state-critical: #FF453A;
+  --state-info: #5AC8FA;
+}
+
+/* System preference fallback (if no explicit theme set) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* Surfaces */
+    --surface-base: #1D1D1F;
+    --surface-elevated: #2C2C2E;
+    --surface-sunken: #0F0F11;
+
+    /* Text */
+    --text-primary: #F5F5F7;
+    --text-secondary: #AEAEB2;
+    --text-tertiary: #86868B;
+    --text-on-brand: #FFFFFF;
+
+    /* Accent */
+    --accent-brand: #5AC8FA;
+    --accent-brand-hover: #2D8FE0;
+
+    /* Borders */
+    --border-divider: #363638;
+    --border-subtle: #2C2C2E;
+
+    /* States */
+    --state-success: #34C759;
+    --state-warning: #FF9F0A;
+    --state-critical: #FF453A;
+    --state-info: #5AC8FA;
+  }
 }

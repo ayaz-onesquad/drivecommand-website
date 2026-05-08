@@ -52,6 +52,23 @@ export const metadata: Metadata = {
   },
 }
 
+// No-flash theme script - runs before React hydration
+const themeScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    var theme = stored || 'system';
+    if (theme === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  } catch (e) {}
+})();
+`
+
 export default function RootLayout({
   children,
 }: {
@@ -63,6 +80,10 @@ export default function RootLayout({
       className={`${dmSans.variable} ${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <meta name="color-scheme" content="light dark" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <ThemeProvider>
           <Navbar />

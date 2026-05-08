@@ -61,11 +61,38 @@ const config: Config = {
         b: brandColors,
         // Semantic aliases from tokens.json: bg-ink, text-bone, bg-brand
         ...aliasColors,
-        // Semantic states
+        // Semantic states (raw values for direct use)
         success: tokens.color.semantic.success,
         warning: tokens.color.semantic.warning,
         critical: tokens.color.semantic.critical,
         info: tokens.color.semantic.info,
+        // NEW: Semantic dual-mode tokens (switch via CSS variables)
+        // Usage: bg-surface-base, text-primary, border-divider, etc.
+        surface: {
+          base: 'var(--surface-base)',
+          elevated: 'var(--surface-elevated)',
+          sunken: 'var(--surface-sunken)',
+        },
+        'text-sem': {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
+          'on-brand': 'var(--text-on-brand)',
+        },
+        'accent-sem': {
+          brand: 'var(--accent-brand)',
+          'brand-hover': 'var(--accent-brand-hover)',
+        },
+        'border-sem': {
+          divider: 'var(--border-divider)',
+          subtle: 'var(--border-subtle)',
+        },
+        'state-sem': {
+          success: 'var(--state-success)',
+          warning: 'var(--state-warning)',
+          critical: 'var(--state-critical)',
+          info: 'var(--state-info)',
+        },
         // Backward compatibility dc2.* namespace
         dc2: {
           // Primary palette
