@@ -122,7 +122,7 @@ export function FlowArt({ children, className }: FlowArtProps) {
   )
 
   return (
-    <section id="why-drivecommand" ref={containerRef} className={cn('relative', className)}>
+    <section id="why-drivecommand" ref={containerRef} className={cn('relative scroll-mt-16', className)}>
       {/* Panel 01 - The carrier truth */}
       <Panel
         bg="#1D1D1F"
