@@ -1,4 +1,29 @@
 import type { Config } from 'tailwindcss'
+import tokens from './brand/tokens.json'
+
+// Build color utilities from tokens.json
+const neutralColors = Object.fromEntries(
+  Object.entries(tokens.color.neutral).map(([k, v]) => [k.replace('n', ''), v])
+)
+
+const brandColors = Object.fromEntries(
+  Object.entries(tokens.color.brand).map(([k, v]) => [k.replace('b', ''), v])
+)
+
+// Resolve alias values to actual hex colors
+const resolveAlias = (alias: string): string => {
+  if (alias.startsWith('n')) {
+    return tokens.color.neutral[alias as keyof typeof tokens.color.neutral]
+  }
+  if (alias.startsWith('b')) {
+    return tokens.color.brand[alias as keyof typeof tokens.color.brand]
+  }
+  return alias
+}
+
+const aliasColors = Object.fromEntries(
+  Object.entries(tokens.alias).map(([name, tokenRef]) => [name, resolveAlias(tokenRef)])
+)
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -6,6 +31,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Legacy dc.* classes (backward compatibility)
         dc: {
           'bg-dark': 'var(--color-bg-dark)',
           'bg-light': 'var(--color-bg-light)',
@@ -28,83 +54,95 @@ const config: Config = {
           'status-dispatched': 'var(--color-status-dispatched)',
           'status-invoiced': 'var(--color-status-invoiced)',
         },
-        // NEW BRAND SYSTEM (v2.0 May 2026) - use dc2.* classes
+        // NEW: Token-driven colors from tokens.json
+        // Direct neutral ramp access: bg-n050, text-n900
+        n: neutralColors,
+        // Direct brand ramp access: bg-b500, text-b400
+        b: brandColors,
+        // Semantic aliases from tokens.json: bg-ink, text-bone, bg-brand
+        ...aliasColors,
+        // Semantic states
+        success: tokens.color.semantic.success,
+        warning: tokens.color.semantic.warning,
+        critical: tokens.color.semantic.critical,
+        info: tokens.color.semantic.info,
+        // Backward compatibility dc2.* namespace
         dc2: {
           // Primary palette
-          ink: 'var(--dc-ink)',
-          bone: 'var(--dc-bone)',
-          graphite: 'var(--dc-graphite)',
-          brand: 'var(--dc-brand)',
+          ink: aliasColors.ink,
+          bone: aliasColors.bone,
+          graphite: aliasColors.graphite,
+          brand: aliasColors.brand,
           // Neutral ramp (N000-N900)
           n: {
-            '000': 'var(--dc-n000)',
-            '050': 'var(--dc-n050)',
-            100: 'var(--dc-n100)',
-            200: 'var(--dc-n200)',
-            300: 'var(--dc-n300)',
-            400: 'var(--dc-n400)',
-            500: 'var(--dc-n500)',
-            600: 'var(--dc-n600)',
-            700: 'var(--dc-n700)',
-            800: 'var(--dc-n800)',
-            900: 'var(--dc-n900)',
+            '000': tokens.color.neutral.n000,
+            '050': tokens.color.neutral.n050,
+            100: tokens.color.neutral.n100,
+            200: tokens.color.neutral.n200,
+            300: tokens.color.neutral.n300,
+            400: tokens.color.neutral.n400,
+            500: tokens.color.neutral.n500,
+            600: tokens.color.neutral.n600,
+            700: tokens.color.neutral.n700,
+            800: tokens.color.neutral.n800,
+            900: tokens.color.neutral.n900,
           },
           // Brand Blue ramp (B050-B800)
           b: {
-            '050': 'var(--dc-b050)',
-            100: 'var(--dc-b100)',
-            200: 'var(--dc-b200)',
-            300: 'var(--dc-b300)',
-            400: 'var(--dc-b400)',
-            500: 'var(--dc-b500)',
-            600: 'var(--dc-b600)',
-            700: 'var(--dc-b700)',
-            800: 'var(--dc-b800)',
+            '050': tokens.color.brand.b050,
+            100: tokens.color.brand.b100,
+            200: tokens.color.brand.b200,
+            300: tokens.color.brand.b300,
+            400: tokens.color.brand.b400,
+            500: tokens.color.brand.b500,
+            600: tokens.color.brand.b600,
+            700: tokens.color.brand.b700,
+            800: tokens.color.brand.b800,
           },
           // Surface colors
-          paper: 'var(--dc-paper)',
+          paper: tokens.color.neutral.n000,
           // Backward compat aliases
-          slate: 'var(--dc-slate)',
-          navy: 'var(--dc-navy)',
-          signal: 'var(--dc-signal)',
-          silver: 'var(--dc-silver)',
+          slate: aliasColors.slate,
+          navy: aliasColors.trench,
+          signal: aliasColors.brand,
+          silver: aliasColors.silver,
           // Semantic state colors
           state: {
-            success: 'var(--dc-state-success)',
-            warning: 'var(--dc-state-warning)',
-            critical: 'var(--dc-state-critical)',
-            info: 'var(--dc-state-info)',
-            onTime: 'var(--dc-state-on-time)',
-            atRisk: 'var(--dc-state-at-risk)',
-            delayed: 'var(--dc-state-delayed)',
-            detention: 'var(--dc-state-detention)',
-            inTransit: 'var(--dc-state-in-transit)',
-            delivered: 'var(--dc-state-delivered)',
-            scheduled: 'var(--dc-state-scheduled)',
-            unassigned: 'var(--dc-state-unassigned)',
+            success: tokens.color.semantic.success,
+            warning: tokens.color.semantic.warning,
+            critical: tokens.color.semantic.critical,
+            info: tokens.color.semantic.info,
+            onTime: tokens.color.semantic.success,
+            atRisk: tokens.color.semantic.warning,
+            delayed: tokens.color.semantic.critical,
+            detention: '#8c6fff',
+            inTransit: tokens.color.semantic.info,
+            delivered: tokens.color.semantic.success,
+            scheduled: tokens.color.neutral.n400,
+            unassigned: tokens.color.brand.b700,
           },
           // Semantic aliases
           bg: {
-            dark: 'var(--dc-color-bg-dark)',
-            card: 'var(--dc-color-bg-card)',
-            light: 'var(--dc-color-bg-light)',
-            secondary: 'var(--dc-color-bg-secondary)',
+            dark: tokens.color.neutral.n900,
+            card: tokens.color.neutral.n800,
+            light: tokens.color.neutral.n050,
+            secondary: tokens.color.neutral.n700,
           },
           accent: {
-            DEFAULT: 'var(--dc-color-accent)',
-            hover: 'var(--dc-color-accent-hover)',
+            DEFAULT: tokens.color.brand.b500,
+            hover: tokens.color.brand.b400,
           },
           text: {
-            primary: 'var(--dc-color-text-primary)',
-            secondary: 'var(--dc-color-text-secondary)',
-            dark: 'var(--dc-color-text-dark)',
-            darkSecondary: 'var(--dc-color-text-dark-secondary)',
-            muted: 'var(--dc-color-text-muted)',
-            onAccent: 'var(--dc-color-text-on-accent)',
+            primary: '#FFFFFF',
+            secondary: tokens.color.neutral.n300,
+            dark: tokens.color.neutral.n900,
+            darkSecondary: tokens.color.neutral.n500,
+            muted: tokens.color.neutral.n400,
+            onAccent: tokens.color.neutral.n050,
           },
           border: {
-            DEFAULT: 'var(--dc-color-border)',
-            light: 'var(--dc-color-border-light)',
+            DEFAULT: tokens.color.neutral.n700,
+            light: tokens.color.neutral.n100,
           },
         },
       },
@@ -113,20 +151,35 @@ const config: Config = {
         body: ['var(--font-body)', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
       },
-      // Typography scale per brand guide (pg 12-13)
+      // Typography scale per brand guide (from tokens.json)
       fontSize: {
         // DM Sans scales
-        'display': ['96px', { lineHeight: '92px', fontWeight: '700' }],
-        'headline': ['64px', { lineHeight: '64px', fontWeight: '700' }],
-        'quote': ['40px', { lineHeight: '48px', fontWeight: '400' }],
+        'display': [`${tokens.typography.scale.display.size}px`, { lineHeight: `${tokens.typography.scale.display.lineHeight}px`, fontWeight: `${tokens.typography.scale.display.weight}` }],
+        'headline': [`${tokens.typography.scale.headline.size}px`, { lineHeight: `${tokens.typography.scale.headline.lineHeight}px`, fontWeight: `${tokens.typography.scale.headline.weight}` }],
+        'quote': [`${tokens.typography.scale.quote.size}px`, { lineHeight: `${tokens.typography.scale.quote.lineHeight}px`, fontWeight: `${tokens.typography.scale.quote.weight}` }],
         // Inter scales
-        'lead': ['22px', { lineHeight: '34px', fontWeight: '400' }],
-        'body': ['16px', { lineHeight: '26px', fontWeight: '400' }],
-        'small': ['13px', { lineHeight: '20px', fontWeight: '400' }],
+        'lead': [`${tokens.typography.scale.lead.size}px`, { lineHeight: `${tokens.typography.scale.lead.lineHeight}px`, fontWeight: `${tokens.typography.scale.lead.weight}` }],
+        'body': [`${tokens.typography.scale.body.size}px`, { lineHeight: `${tokens.typography.scale.body.lineHeight}px`, fontWeight: `${tokens.typography.scale.body.weight}` }],
+        'small': [`${tokens.typography.scale.small.size}px`, { lineHeight: `${tokens.typography.scale.small.lineHeight}px`, fontWeight: `${tokens.typography.scale.small.weight}` }],
         // JetBrains Mono scales
-        'label': ['12px', { lineHeight: '16px', fontWeight: '500' }],
-        'data': ['14px', { lineHeight: '20px', fontWeight: '400' }],
-        'code': ['14px', { lineHeight: '24px', fontWeight: '400' }],
+        'label': [`${tokens.typography.scale.label.size}px`, { lineHeight: `${tokens.typography.scale.label.lineHeight}px`, fontWeight: `${tokens.typography.scale.label.weight}` }],
+        'data': [`${tokens.typography.scale.data.size}px`, { lineHeight: `${tokens.typography.scale.data.lineHeight}px`, fontWeight: `${tokens.typography.scale.data.weight}` }],
+        'code': [`${tokens.typography.scale.code.size}px`, { lineHeight: `${tokens.typography.scale.code.lineHeight}px`, fontWeight: `${tokens.typography.scale.code.weight}` }],
+      },
+      // Motion from tokens.json
+      transitionTimingFunction: {
+        brand: tokens.motion.easing.brand,
+      },
+      transitionDuration: {
+        fast: tokens.motion.duration.fast,
+        medium: tokens.motion.duration.medium,
+        slow: tokens.motion.duration.slow,
+      },
+      // Border radius from tokens.json
+      borderRadius: {
+        none: tokens.radius.none,
+        input: tokens.radius.input,
+        full: tokens.radius.full,
       },
     },
   },
