@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 Phase: 2 of 4 (Landing Page)
 Plan: 4 of 4 in current phase
 Status: Phase 2 COMPLETE
-Last activity: 2026-05-07 — Completed quick task 6: Brand guide alignment (colors, typography, corners, motion)
+Last activity: 2026-05-08 — Completed quick task 7: Token-driven UX refactor (single source of truth)
 
 Progress: [██████████] 100% (Phase 1 + 2)
 
@@ -57,6 +57,7 @@ Recent decisions affecting current work:
 - [Phase quick-6]: Ink corrected to #1D1D1F, Bone to #F5F5F7 per brand guide
 - [Phase quick-6]: Typography scale added (Display 96/92 through Code 14/24) per pg 12-13
 - [Phase quick-6]: Motion easing cubic-out (0.22, 1) and 0px corner radius per pg 14, 16B
+- [Phase quick-7]: Import tokens.json directly into tailwind.config.ts for single source of truth - changing brand colors now requires editing ONE file only
 
 ### Pending Todos
 
@@ -77,9 +78,10 @@ None yet.
 | 4 | Remove fine print from Hero and static icons in FeaturesGrid | 2026-04-04 | aca660b | [4-remove-fine-print-from-hero-and-stop-all](./quick/4-remove-fine-print-from-hero-and-stop-all/) |
 | 5 | DriveCommand rebrand rollout: Signal Blue palette, "Miles Ahead." tagline, drivecommand.co | 2026-04-23 | 5d5f5f2 | [5-drivecommand-rebrand-rollout-migrate-leg](./quick/5-drivecommand-rebrand-rollout-migrate-leg/) |
 | 6 | Brand guide alignment: colors, typography, corners 0px, motion cubic-out | 2026-05-07 | e9cff21 | [6-full-drivecommand-marketing-site-redesig](./quick/6-full-drivecommand-marketing-site-redesig/) |
+| 7 | Token-driven UX refactor: brand/tokens.json single source of truth, Tailwind import, zero hardcoded colors | 2026-05-08 | c44277b | [7-token-driven-ux-refactor-for-drivecomman](./quick/7-token-driven-ux-refactor-for-drivecomman/) |
 
 ## Session Continuity
 
-Last session: 2026-05-07
-Stopped at: Completed quick-6 (Brand guide alignment) — 3 tasks, 9 files modified, ~4m duration
+Last session: 2026-05-08
+Stopped at: Completed quick-7 (Token-driven UX refactor) — 3 tasks, 13 files modified, ~5m duration
 Resume file: None
