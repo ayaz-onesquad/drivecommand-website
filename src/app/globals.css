@@ -39,15 +39,15 @@
 
 /* Light Mode */
 [data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f8fafc;
+  --bg-primary: var(--dc-n050);
+  --bg-secondary: var(--dc-n100);
+  --bg-card: var(--dc-n000);
+  --bg-card-hover: var(--dc-n050);
   --border-subtle: rgba(15, 23, 42, 0.08);
   --border-medium: rgba(15, 23, 42, 0.15);
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-primary: var(--dc-n900);
+  --text-secondary: var(--dc-n500);
+  --text-muted: var(--dc-n400);
   /* Accent in light mode uses deep blue for better contrast on white */
   --accent-blue: var(--color-brand);
   --accent-blue-hover: #1a5570;
@@ -112,6 +112,26 @@
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ============================================
+     GLOW TOKENS (derived from Brand Blue #0066CC)
+     Used for shadows, glows, hover states
+     ============================================ */
+  --glow-brand-xs: 0 2px 8px rgba(0, 102, 204, 0.20);
+  --glow-brand-sm: 0 4px 15px rgba(0, 102, 204, 0.25);
+  --glow-brand-md: 0 8px 25px rgba(0, 102, 204, 0.35);
+  --glow-brand-lg: 0 10px 40px rgba(0, 102, 204, 0.30);
+  --glow-brand-lift: 0 10px 15px -3px rgba(0, 102, 204, 0.25);
+  --glow-brand-tap: 0 4px 12px rgba(0, 102, 204, 0.2);
+
+  /* Feature-specific glows */
+  --glow-success: 0 10px 40px -10px rgba(0, 107, 64, 0.3);
+  --glow-info: 0 10px 40px -10px rgba(0, 102, 204, 0.3);
+
+  /* Legacy gradient glows */
+  --glow-brand-light: rgba(0, 102, 204, 0.15);
+  --glow-brand-radial: radial-gradient(circle, rgba(0, 102, 204, 0.15) 0%, transparent 70%);
+  --glow-brand-radial-alt: radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%);
 }
 
 /* ============================================
@@ -288,7 +308,7 @@
 /* Headline glow pulse (one-time effect for Signal Blue text) */
 @keyframes headline-glow {
   0% { text-shadow: 0 0 0 transparent; }
-  40% { text-shadow: 0 0 24px rgba(10, 33, 192, 0.5); }
+  40% { text-shadow: 0 0 24px rgba(0, 102, 204, 0.5); }
   100% { text-shadow: 0 0 0 transparent; }
 }
 
@@ -379,12 +399,12 @@
 @media (hover: hover) and (pointer: fine) {
   .pricing-slider::-webkit-slider-thumb:hover {
     transform: scale(1.1);
-    box-shadow: 0 3px 10px rgba(10, 33, 192, 0.4);
+    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.4);
   }
 
   .pricing-slider::-moz-range-thumb:hover {
     transform: scale(1.1);
-    box-shadow: 0 3px 10px rgba(10, 33, 192, 0.4);
+    box-shadow: 0 3px 10px rgba(0, 102, 204, 0.4);
   }
 }
 
@@ -393,11 +413,11 @@
 }
 
 .pricing-slider:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 3px rgba(10, 33, 192, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .pricing-slider:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 3px rgba(10, 33, 192, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3), 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 @layer utilities {
@@ -453,8 +473,8 @@
 
   /* Button hover utilities */
   .btn-glow-blue {
-    --btn-glow: 0 8px 25px rgba(10, 33, 192, 0.35);
-    --btn-glow-active: 0 4px 15px rgba(10, 33, 192, 0.25);
+    --btn-glow: 0 8px 25px rgba(0, 102, 204, 0.35);
+    --btn-glow-active: 0 4px 15px rgba(0, 102, 204, 0.25);
   }
 
   .btn-glow-cyan {
@@ -503,7 +523,7 @@
 
   /* Glow: Signal Blue accent, for hover and active states */
   .glow-load {
-    box-shadow: 0 0 24px rgba(10, 33, 192, 0.2);
+    box-shadow: 0 0 24px rgba(0, 102, 204, 0.2);
   }
 
   /* Signal green pulse — for live/active indicators */

@@ -15,9 +15,9 @@ const easeInOutStrong: [number, number, number, number] = [0.77, 0, 0.175, 1]
 
 // Variant A: Primary filled button with lift + glow + arrow animation
 const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(10, 33, 192, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(10, 33, 192, 0.35)' },
-  tap: { y: 0, scale: 0.97, boxShadow: '0 4px 12px rgba(10, 33, 192, 0.2)' },
+  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(0, 102, 204, 0.25)' },
+  hover: { y: -2, boxShadow: '0 8px 25px rgba(0, 102, 204, 0.35)' },
+  tap: { y: 0, scale: 0.97, boxShadow: '0 4px 12px rgba(0, 102, 204, 0.2)' },
 }
 
 const arrowVariants = {
@@ -141,7 +141,7 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(10, 33, 192, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(0, 102, 204, 0.15) 0%, transparent 70%)',
           }}
         />
         {/* Signal Blue glow behind dashboard */}
@@ -153,7 +153,7 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(50%, -50%)',
-            background: 'radial-gradient(circle, rgba(10, 33, 192, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%)',
           }}
         />
       </motion.div>
@@ -458,7 +458,7 @@ export function Hero() {
                     whileHover={prefersReducedMotion ? {} : {
                       y: -2,
                       backgroundColor: 'rgba(30, 37, 51, 0.95)',
-                      borderColor: 'rgba(10, 33, 192, 0.3)'
+                      borderColor: 'rgba(0, 102, 204, 0.3)'
                     }}
                     whileTap={prefersReducedMotion ? {} : { y: 0, scale: 0.98 }}
                     transition={{

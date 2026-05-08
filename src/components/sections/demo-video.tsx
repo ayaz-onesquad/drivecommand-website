@@ -233,7 +233,7 @@ export function DemoVideo() {
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <motion.div
                   className="w-20 h-20 rounded-full flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ backgroundColor: 'rgba(117, 240, 212, 0.8)' }}
+                  style={{ backgroundColor: 'rgba(0, 102, 204, 0.8)' }}
                   animate={prefersReducedMotion ? {} : { scale: [1, 1.1, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >

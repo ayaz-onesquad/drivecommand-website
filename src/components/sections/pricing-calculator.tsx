@@ -162,7 +162,7 @@ export function PricingCalculator() {
                   : {
                       y: -4,
                       boxShadow: tier.highlighted
-                        ? '0 20px 40px -15px rgba(117, 240, 212, 0.3)'
+                        ? '0 20px 40px -15px rgba(0, 102, 204, 0.3)'
                         : '0 20px 40px -15px rgba(0, 0, 0, 0.3)',
                     }
               }

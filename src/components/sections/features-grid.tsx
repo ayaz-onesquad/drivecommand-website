@@ -50,8 +50,8 @@ const FEATURES: Feature[] = [
       'Book loads, assign drivers, and track delivery status in one board. Your dispatcher sees everything. No phone tag.',
     color: 'text-dc-accent',
     bgColor: 'bg-dc-accent/10',
-    hoverBorderColor: 'rgba(10, 33, 192, 0.6)',
-    hoverGlowShadow: '0 10px 40px -10px rgba(10, 33, 192, 0.3)',
+    hoverBorderColor: 'rgba(0, 102, 204, 0.6)',
+    hoverGlowShadow: '0 10px 40px -10px rgba(0, 102, 204, 0.3)',
   },
   {
     icon: MapPin,
@@ -100,8 +100,8 @@ const FEATURES: Feature[] = [
       'DriveCommand flags late loads, suggests optimal driver assignments, and drafts rate confirmations — so your dispatcher spends less time on admin.',
     color: 'text-dc-accent',
     bgColor: 'bg-dc-accent/10',
-    hoverBorderColor: 'rgba(10, 33, 192, 0.6)',
-    hoverGlowShadow: '0 10px 40px -10px rgba(10, 33, 192, 0.3)',
+    hoverBorderColor: 'rgba(0, 102, 204, 0.6)',
+    hoverGlowShadow: '0 10px 40px -10px rgba(0, 102, 204, 0.3)',
   },
 ]
 

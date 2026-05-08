@@ -99,7 +99,7 @@ export function ParallaxWorld() {
         style={{
           left: light1X,
           top: light1Y,
-          background: 'radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 102, 204, 0.05) 0%, transparent 70%)',
           transform: 'translate(-50%, -50%)',
         }}
       />
@@ -108,7 +108,7 @@ export function ParallaxWorld() {
         style={{
           left: light2X,
           top: light2Y,
-          background: 'radial-gradient(circle, rgba(117, 240, 212, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 102, 204, 0.04) 0%, transparent 70%)',
           transform: 'translate(-50%, -50%)',
         }}
       />
@@ -117,7 +117,7 @@ export function ParallaxWorld() {
         style={{
           left: light3X,
           top: light3Y,
-          background: 'radial-gradient(circle, rgba(56, 189, 248, 0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 102, 204, 0.03) 0%, transparent 70%)',
           transform: 'translate(-50%, -50%)',
         }}
       />

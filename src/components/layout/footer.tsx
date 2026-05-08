@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Logo } from '@/components/brand/Logo'
 
 const FOOTER_LINKS = {
   Product: [
@@ -44,13 +45,8 @@ export function Footer() {
 
         {/* Logo + tagline */}
         <div className="mb-10">
-          <Link
-            href="/"
-            className="font-display font-bold text-xl"
-            style={{ color: 'var(--text-primary)' }}
-            aria-label="DriveCommand home"
-          >
-            DriveCommand
+          <Link href="/" aria-label="DriveCommand home">
+            <Logo variant="horizontal" size="md" background="ink" />
           </Link>
           <p
             className="mt-2 text-sm font-body max-w-xs"
