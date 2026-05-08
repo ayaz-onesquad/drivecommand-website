@@ -9,6 +9,7 @@ import {
   SocialProof,
   FinalCTA,
 } from '@/components/sections'
+import WhyDriveCommandScroll from '@/components/sections/why-drivecommand-scroll'
 import { ParallaxWorld } from '@/components/shared/parallax-world'
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function HomePage() {
       <Hero />
       <ProblemBar />
       <FeaturesGrid />
+      <WhyDriveCommandScroll />
       <DemoVideo />
       <InteractiveDemo />
       <PricingCalculator />
