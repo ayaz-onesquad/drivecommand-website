@@ -11,6 +11,7 @@ import { Logo } from '@/components/brand/Logo'
 
 const NAV_LINKS = [
   { href: '/#features', label: 'Features' },
+  { href: '#why-drivecommand', label: 'Why us' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/demo', label: 'Demo' },
   { href: '/about', label: 'About' },
