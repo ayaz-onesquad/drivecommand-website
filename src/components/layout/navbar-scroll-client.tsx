@@ -19,21 +19,22 @@ export function NavbarScrollWrapper({
   return (
     <motion.header
       className="fixed top-0 left-0 right-0 z-50"
+      style={{ WebkitBackdropFilter: isScrolled ? 'saturate(180%) blur(20px)' : 'blur(0px)' }}
       animate={
         isScrolled
           ? {
               backgroundColor: 'var(--navbar-bg)',
-              backdropFilter: 'blur(8px)',
-              boxShadow: '0 1px 3px 0 rgba(0,0,0,0.1)',
-              borderBottomWidth: '1px',
-              borderBottomColor: 'var(--navbar-border)',
+              backdropFilter: 'saturate(180%) blur(20px)',
+              boxShadow: '0 1px 0 0 var(--navbar-border)',
+              borderBottomWidth: '0px',
+              borderBottomColor: 'transparent',
             }
           : {
               backgroundColor: 'rgba(0, 0, 0, 0)',
               backdropFilter: 'blur(0px)',
               boxShadow: 'none',
-              borderBottomWidth: '1px',
-              borderBottomColor: 'rgba(0,0,0,0)',
+              borderBottomWidth: '0px',
+              borderBottomColor: 'transparent',
             }
       }
       transition={{ duration: 0.3, ease: 'easeInOut' }}

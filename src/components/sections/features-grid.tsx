@@ -21,10 +21,19 @@ function ParallaxDotGrid({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
       style={{ y }}
       aria-hidden="true"
     >
+      {/* Dark mode: light dots on dark */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-20 dark:block hidden"
         style={{
           backgroundImage: `radial-gradient(circle, rgb(71 85 105 / 0.4) 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
+        }}
+      />
+      {/* Light mode: subtle dark dots */}
+      <div
+        className="absolute inset-0 opacity-[0.15] dark:hidden block"
+        style={{
+          backgroundImage: `radial-gradient(circle, rgb(0 0 0 / 0.15) 1px, transparent 1px)`,
           backgroundSize: '24px 24px',
         }}
       />

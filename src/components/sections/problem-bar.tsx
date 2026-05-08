@@ -18,10 +18,12 @@ function ParallaxHighwayLines({ y }: { y: ReturnType<typeof useParallax>['y'] })
         className="w-full h-full opacity-100"
         preserveAspectRatio="xMidYMid slice"
       >
-        {/* Faint horizontal dashed lines suggesting a highway */}
-        <line x1="0" y1="30%" x2="100%" y2="30%" stroke="white" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="24 16" />
-        <line x1="0" y1="50%" x2="100%" y2="50%" stroke="white" strokeOpacity="0.03" strokeWidth="1" strokeDasharray="24 16" />
-        <line x1="0" y1="70%" x2="100%" y2="70%" stroke="white" strokeOpacity="0.04" strokeWidth="1" strokeDasharray="24 16" />
+        {/* Faint horizontal dashed lines suggesting a highway - uses currentColor for theme awareness */}
+        <g style={{ color: 'var(--border-divider)' }}>
+          <line x1="0" y1="30%" x2="100%" y2="30%" stroke="currentColor" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="24 16" />
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1" strokeDasharray="24 16" />
+          <line x1="0" y1="70%" x2="100%" y2="70%" stroke="currentColor" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="24 16" />
+        </g>
       </svg>
     </motion.div>
   )

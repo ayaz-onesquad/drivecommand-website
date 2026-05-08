@@ -57,7 +57,8 @@ export function FinalCTA() {
             preserveAspectRatio="xMidYMid slice"
           >
             {/* Highway interchange pattern - top-down stylized view */}
-            <g stroke="rgba(255,255,255,0.04)" strokeWidth="4" fill="none">
+            {/* Dark mode: white lines, Light mode: dark lines */}
+            <g className="stroke-white/[0.04] dark:stroke-white/[0.04]" style={{ stroke: 'var(--border-divider)' }} strokeWidth="4" fill="none" opacity="0.15">
               {/* Main horizontal road */}
               <line x1="0" y1="450" x2="1440" y2="450" />
               {/* Main vertical road */}
@@ -69,7 +70,7 @@ export function FinalCTA() {
               <path d="M720,450 Q720,630 540,630" />
             </g>
             {/* Center dashed lines */}
-            <g stroke="rgba(255,255,255,0.06)" strokeWidth="2" strokeDasharray="12 8" fill="none">
+            <g className="stroke-white/[0.06] dark:stroke-white/[0.06]" style={{ stroke: 'var(--accent-blue)' }} strokeWidth="2" strokeDasharray="12 8" fill="none" opacity="0.2">
               <line x1="0" y1="450" x2="1440" y2="450" />
               <line x1="720" y1="0" x2="720" y2="900" />
             </g>

@@ -118,29 +118,28 @@ export function Hero() {
   return (
     <section
       ref={ref}
-      data-force-dark
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ backgroundColor: 'var(--color-bg-dark)' }}
+      style={{ backgroundColor: 'var(--surface-base)' }}
     >
       {/* LAYER 1 — Base color */}
-      <div className="absolute inset-0 z-0" style={{ backgroundColor: 'var(--color-bg-dark)' }} />
+      <div className="absolute inset-0 z-0" style={{ backgroundColor: 'var(--surface-base)' }} />
 
-      {/* LAYER 2 — Animated dot-grid */}
+      {/* LAYER 2 — Animated dot-grid (theme-aware) */}
       <motion.div
         className="absolute inset-0 z-10 will-change-transform animate-dot-grid-drift"
         style={{
           y: shouldParallax ? dotGridY : 0,
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, var(--pattern-dot-strong) 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       />
 
-      {/* LAYER 3 — Radial gradient glows */}
+      {/* LAYER 3 — Radial gradient glows (theme-aware) */}
       <motion.div
         className="absolute inset-0 z-20 pointer-events-none will-change-transform"
         style={{ y: shouldParallax ? glowY : 0 }}
       >
-        {/* Signal Blue glow behind headline */}
+        {/* Brand glow behind headline */}
         <div
           className="absolute"
           style={{
@@ -149,10 +148,10 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(0, 102, 204, 0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, var(--pattern-glow-strong) 0%, transparent 70%)',
           }}
         />
-        {/* Signal Blue glow behind dashboard */}
+        {/* Brand glow behind dashboard */}
         <div
           className="absolute"
           style={{
@@ -161,7 +160,7 @@ export function Hero() {
             width: '600px',
             height: '600px',
             transform: 'translate(50%, -50%)',
-            background: 'radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, var(--pattern-glow) 0%, transparent 70%)',
           }}
         />
       </motion.div>
@@ -177,7 +176,7 @@ export function Hero() {
 
       {/* Content Grid */}
       <motion.div
-        className="relative z-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full py-12"
+        className="relative z-40 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full pt-12 pb-24"
         style={{ opacity: shouldParallax ? contentOpacity : 1 }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 lg:gap-12 items-center">
@@ -207,7 +206,7 @@ export function Hero() {
               </motion.span>
               <motion.span
                 className="block animate-headline-glow"
-                style={{ color: 'var(--color-accent)' }}
+                style={{ color: 'var(--accent-brand)' }}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: easeOutStrong, delay: shouldAnimate ? 0.32 : 0 }}
@@ -216,7 +215,7 @@ export function Hero() {
                 {/* Terminal cursor */}
                 <motion.span
                   className="inline-block w-[3px] h-[0.85em] ml-1 align-middle"
-                  style={{ backgroundColor: 'var(--color-accent)' }}
+                  style={{ backgroundColor: 'var(--accent-brand)' }}
                   initial={{ opacity: 1 }}
                   animate={{
                     opacity: showCursor ? [1, 0, 1, 0, 1] : 0
@@ -236,8 +235,8 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.38 : 0 }}
             >
-              <span style={{ color: 'var(--dc-bone)' }}>Miles </span>
-              <span style={{ color: 'var(--dc-signal)' }}>Ahead.</span>
+              <span style={{ color: 'var(--text-primary)' }}>Miles </span>
+              <span style={{ color: 'var(--accent-brand)' }}>Ahead.</span>
             </motion.p>
 
             {/* Subheadline */}
@@ -261,8 +260,12 @@ export function Hero() {
               {trustBadges.map((badge, i) => (
                 <motion.div
                   key={badge.label}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs border-panel"
-                  style={{ backgroundColor: 'rgba(45, 55, 72, 0.6)', color: 'var(--text-secondary)' }}
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs"
+                  style={{
+                    backgroundColor: 'var(--surface-elevated)',
+                    color: 'var(--text-secondary)',
+                    border: '1px solid var(--border-subtle)'
+                  }}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.25, ease: easeOutStrong, delay: shouldAnimate ? 0.52 + i * 0.06 : 0 }}
@@ -289,10 +292,10 @@ export function Hero() {
               >
                 <Link href="/contact" className="block">
                   <motion.span
-                    className="inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold rounded-none text-center"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold rounded-lg text-center"
                     style={{
-                      backgroundColor: 'var(--color-accent)',
-                      color: 'var(--color-text-on-accent)'
+                      backgroundColor: 'var(--accent-brand)',
+                      color: 'var(--text-on-brand)'
                     }}
                     variants={prefersReducedMotion ? {} : primaryButtonVariants}
                     transition={{ duration: 0.16, ease: easeOutStrong }}
@@ -320,10 +323,10 @@ export function Hero() {
               >
                 <Link
                   href="#demo"
-                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-none transition-colors duration-150 text-center"
+                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-lg transition-colors duration-150 text-center"
                   style={{
-                    borderColor: 'var(--color-accent)',
-                    color: 'var(--color-accent)'
+                    borderColor: 'var(--accent-brand)',
+                    color: 'var(--accent-brand)'
                   }}
                 >
                   Watch It Work
@@ -341,24 +344,27 @@ export function Hero() {
             transition={{ duration: 0.4, ease: easeOutStrong, delay: shouldAnimate ? 0.25 : 0 }}
           >
             <div
-              className="rounded-none overflow-hidden"
+              className="rounded-lg overflow-hidden"
               style={{
-                border: '1px solid var(--color-border)',
-                background: 'rgba(22, 32, 46, 0.9)',
-                boxShadow: '0 25px 50px -12px rgba(0, 102, 204, 0.15), 0 0 0 1px rgba(0, 102, 204, 0.05)',
+                border: '1px solid var(--surface-dashboard-border)',
+                background: 'var(--surface-dashboard)',
+                boxShadow: 'var(--shadow-elevated)',
               }}
             >
               {/* Title bar */}
               <div
                 className="flex items-center justify-between px-4 py-3 border-b"
-                style={{ borderColor: 'var(--border-divider)' }}
+                style={{
+                  borderColor: 'var(--border-divider)',
+                  backgroundColor: 'var(--surface-dashboard-header)'
+                }}
               >
                 <div className="flex items-center gap-2">
-                  {/* Mock window controls - muted semantic colors */}
+                  {/* Mock window controls */}
                   <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(var(--state-critical-rgb, 200, 16, 46), 0.6)' }} />
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(var(--state-warning-rgb, 154, 74, 0), 0.6)' }} />
-                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(var(--state-success-rgb, 0, 107, 64), 0.6)' }} />
+                    <div className="w-3 h-3 rounded-full opacity-60" style={{ backgroundColor: 'var(--state-critical)' }} />
+                    <div className="w-3 h-3 rounded-full opacity-60" style={{ backgroundColor: 'var(--state-warning)' }} />
+                    <div className="w-3 h-3 rounded-full opacity-60" style={{ backgroundColor: 'var(--state-success)' }} />
                   </div>
                   <span className="text-xs ml-2" style={{ color: 'var(--text-tertiary)' }}>DriveCommand — Active Loads</span>
                 </div>
@@ -374,27 +380,27 @@ export function Hero() {
                 style={{ borderColor: 'var(--border-subtle)' }}
               >
                 <svg viewBox="0 0 340 180" className="w-full h-auto">
-                  {/* Simplified continental US outline (very subtle) */}
+                  {/* Simplified continental US outline (theme-aware) */}
                   <path
                     d="M20,100 Q60,40 160,50 Q260,60 300,80 Q320,100 300,140 Q240,160 160,150 Q80,140 40,120 Q20,110 20,100"
                     fill="none"
-                    stroke="rgba(255,255,255,0.05)"
+                    stroke="var(--pattern-dot)"
                     strokeWidth="1"
                   />
 
-                  {/* City markers */}
-                  <g fill="rgba(255,255,255,0.3)" fontSize="8">
-                    <circle cx="160" cy="80" r="3" /> {/* CHI */}
+                  {/* City markers (theme-aware) */}
+                  <g fontSize="8">
+                    <circle cx="160" cy="80" r="3" fill="var(--text-tertiary)" opacity="0.5" /> {/* CHI */}
                     <text x="165" y="75" fill="var(--text-tertiary)">CHI</text>
-                    <circle cx="220" cy="140" r="3" /> {/* ATL */}
+                    <circle cx="220" cy="140" r="3" fill="var(--text-tertiary)" opacity="0.5" /> {/* ATL */}
                     <text x="225" y="135" fill="var(--text-tertiary)">ATL</text>
-                    <circle cx="140" cy="120" r="3" /> {/* DAL */}
+                    <circle cx="140" cy="120" r="3" fill="var(--text-tertiary)" opacity="0.5" /> {/* DAL */}
                     <text x="125" y="130" fill="var(--text-tertiary)">DAL</text>
-                    <circle cx="60" cy="110" r="3" /> {/* LAX */}
+                    <circle cx="60" cy="110" r="3" fill="var(--text-tertiary)" opacity="0.5" /> {/* LAX */}
                     <text x="45" y="105" fill="var(--text-tertiary)">LAX</text>
-                    <circle cx="280" cy="60" r="3" /> {/* NYC */}
+                    <circle cx="280" cy="60" r="3" fill="var(--text-tertiary)" opacity="0.5" /> {/* NYC */}
                     <text x="285" y="55" fill="var(--text-tertiary)">NYC</text>
-                    <circle cx="260" cy="160" r="3" /> {/* MIA */}
+                    <circle cx="260" cy="160" r="3" fill="var(--text-tertiary)" opacity="0.5" /> {/* MIA */}
                     <text x="265" y="155" fill="var(--text-tertiary)">MIA</text>
                   </g>
 
@@ -496,9 +502,29 @@ export function Hero() {
         </div>
       </motion.div>
 
-      {/* Live Status Ticker */}
+      {/* Scroll indicator - positioned above the ticker */}
       <motion.div
-        className="absolute bottom-24 left-0 right-0 z-40 overflow-hidden"
+        className="absolute bottom-16 left-1/2 -translate-x-1/2 z-40"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, ease: easeOutStrong, delay: shouldAnimate ? 0.85 : 0 }}
+      >
+        <motion.div
+          className="w-6 h-10 border-2 rounded-full flex justify-center"
+          style={{ borderColor: 'var(--text-tertiary)' }}
+        >
+          <motion.div
+            className="w-1.5 h-1.5 rounded-full mt-2"
+            style={{ backgroundColor: 'var(--text-secondary)' }}
+            animate={shouldAnimate ? { y: [0, 16, 0] } : undefined}
+            transition={{ duration: 2, ease: easeInOutStrong, repeat: Infinity }}
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Live Status Ticker - pinned to bottom of hero, not overlapping content */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 z-40 overflow-hidden"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.6 : 0 }}
@@ -506,7 +532,7 @@ export function Hero() {
         <div
           className="h-10 flex items-center border-t"
           style={{
-            backgroundColor: 'var(--surface-sunken)',
+            backgroundColor: 'var(--surface-elevated)',
             borderColor: 'var(--border-divider)'
           }}
         >
@@ -527,7 +553,7 @@ export function Hero() {
                 <span
                   key={i}
                   className="flex items-center gap-2 text-xs font-mono whitespace-nowrap px-6"
-                  style={{ color: 'var(--text-primary)' }}
+                  style={{ color: 'var(--text-secondary)' }}
                 >
                   <span className="w-2 h-2 rounded-full" style={getStatusDotStyle(item.status)} />
                   {item.text}
@@ -536,26 +562,6 @@ export function Hero() {
             </div>
           </div>
         </div>
-      </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, ease: easeOutStrong, delay: shouldAnimate ? 0.85 : 0 }}
-      >
-        <motion.div
-          className="w-6 h-10 border-2 rounded-full flex justify-center"
-          style={{ borderColor: 'var(--color-text-muted)' }}
-        >
-          <motion.div
-            className="w-1.5 h-1.5 rounded-full mt-2"
-            style={{ backgroundColor: 'var(--color-text-secondary)' }}
-            animate={shouldAnimate ? { y: [0, 16, 0] } : undefined}
-            transition={{ duration: 2, ease: easeInOutStrong, repeat: Infinity }}
-          />
-        </motion.div>
       </motion.div>
     </section>
   )

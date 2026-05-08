@@ -16,8 +16,8 @@ function ParallaxQuoteMarks({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
     >
       {/* Large quote mark - left side */}
       <svg
-        className="absolute top-20 left-[10%] w-48 h-48 opacity-[0.08]"
-        style={{ color: 'var(--text-muted)' }}
+        className="absolute top-20 left-[10%] w-48 h-48 opacity-[0.06] dark:opacity-[0.08]"
+        style={{ color: 'var(--text-tertiary)' }}
         viewBox="0 0 24 24"
         fill="currentColor"
       >
@@ -26,8 +26,8 @@ function ParallaxQuoteMarks({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
 
       {/* Large quote mark - right side (closing) */}
       <svg
-        className="absolute bottom-32 right-[10%] w-40 h-40 opacity-[0.06] rotate-180"
-        style={{ color: 'var(--text-muted)' }}
+        className="absolute bottom-32 right-[10%] w-40 h-40 opacity-[0.04] dark:opacity-[0.06] rotate-180"
+        style={{ color: 'var(--text-tertiary)' }}
         viewBox="0 0 24 24"
         fill="currentColor"
       >

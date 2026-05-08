@@ -37,30 +37,42 @@
   --navbar-border: rgba(42, 58, 80, 0.5);
 }
 
-/* Light Mode */
+/* Light Mode — Apple HIG inspired
+   Pure white base, high contrast text, subtle shadows for elevation */
 [data-theme="light"] {
-  --bg-primary: var(--dc-n050);
-  --bg-secondary: var(--dc-n100);
-  --bg-card: var(--dc-n000);
-  --bg-card-hover: var(--dc-n050);
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-medium: rgba(15, 23, 42, 0.15);
-  --text-primary: var(--dc-n900);
-  --text-secondary: var(--dc-n500);
-  --text-muted: var(--dc-n400);
-  /* Accent in light mode uses deep blue for better contrast on white */
-  --accent-blue: var(--color-brand);
-  --accent-blue-hover: #1a5570;
-  --accent-cyan: #0284c7;
-  --accent-green: #059669;
-  /* Logo/icon color that contrasts on white - use deep blue not mint */
-  --accent-load: var(--color-brand);
-  --glow-blue: rgba(33, 101, 127, 0.12);
-  --glow-cyan: rgba(2, 132, 199, 0.08);
+  /* Backgrounds - Apple uses pure white as primary */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F5F7;        /* Subtle gray for alternating sections */
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FAFAFA;
 
-  /* Navbar specific */
-  --navbar-bg: rgba(248, 250, 252, 0.95);
-  --navbar-border: rgba(226, 232, 240, 0.8);
+  /* Borders - More visible in light mode */
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --border-panel: rgba(0, 0, 0, 0.08);
+  --border-road: rgba(0, 0, 0, 0.1);
+
+  /* Text - High contrast like Apple */
+  --text-primary: #1D1D1F;        /* Near-black for headlines */
+  --text-secondary: #424245;      /* Dark gray for body - more contrast */
+  --text-muted: #6E6E73;          /* Graphite for metadata */
+
+  /* Accent - Apple Blue */
+  --accent-blue: #0071E3;
+  --accent-blue-hover: #0077ED;
+  --accent-cyan: #007AFF;
+  --accent-green: #34A853;
+  --accent-load: #0071E3;
+  --accent-signal: #34A853;
+  --accent-stripe: #F5A623;
+
+  /* Glows - Softer for light mode */
+  --glow-blue: rgba(0, 113, 227, 0.1);
+  --glow-cyan: rgba(0, 122, 255, 0.08);
+
+  /* Navbar - Frosted glass effect */
+  --navbar-bg: rgba(255, 255, 255, 0.72);
+  --navbar-border: rgba(0, 0, 0, 0.08);
 }
 
 /* Force dark mode scoping for hero section - Logistics Theme */
@@ -483,27 +495,99 @@
   }
 
   /* ============================================
+     APPLE-STYLE CARD & ELEVATION SYSTEM
+     ============================================ */
+
+  /* Card with Apple-style shadow elevation */
+  .card-elevated {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Apple-style section with alternating backgrounds */
+  .section-white {
+    background-color: #FFFFFF;
+  }
+
+  .section-gray {
+    background-color: #F5F5F7;
+  }
+
+  /* Apple-style rounded corners */
+  .rounded-apple {
+    border-radius: 12px;
+  }
+
+  .rounded-apple-lg {
+    border-radius: 18px;
+  }
+
+  .rounded-apple-xl {
+    border-radius: 24px;
+  }
+
+  /* Apple-style frosted glass */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  [data-theme="dark"] .glass-panel {
+    background: rgba(30, 37, 51, 0.72);
+  }
+
+  /* ============================================
      LOGISTICS VISUAL TEXTURE SYSTEM
      ============================================ */
 
-  /* Road asphalt texture — subtle noise grain on dark backgrounds */
+  /* Road asphalt texture — subtle noise grain (mode-aware) */
   .texture-asphalt {
     background-color: var(--bg-primary);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
     background-size: 200px 200px;
   }
 
-  /* Steel panel — for card backgrounds */
+  /* Light mode: subtle gray with light noise */
+  [data-theme="light"] .texture-asphalt {
+    background-color: #F5F5F7;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  }
+
+  /* Steel panel — for card backgrounds (mode-aware) */
   .texture-steel {
     background-color: var(--bg-card);
     background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
   }
 
-  /* Road lane divider — horizontal white dashed line, use as section separator */
+  /* Light mode: Apple-style clean card with subtle shadow */
+  [data-theme="light"] .texture-steel {
+    background-color: #FFFFFF;
+    background-image: none;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-card);
+  }
+
+  [data-theme="light"] .texture-steel:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Road lane divider — horizontal dashed line, use as section separator */
   .divider-road {
     border: none;
     border-top: 2px dashed rgba(255, 255, 255, 0.08);
     margin: 0;
+  }
+
+  [data-theme="light"] .divider-road {
+    border-top-color: rgba(0, 0, 0, 0.08);
   }
 
   /* Reflective stripe — the highway centerline, use as heading accent */
@@ -516,9 +600,17 @@
     margin-bottom: 1rem;
   }
 
-  /* Panel border — used on all cards */
+  [data-theme="light"] .stripe-accent {
+    background: var(--accent-blue);
+  }
+
+  /* Panel border — used on all cards (mode-aware) */
   .border-panel {
     border: 1px solid var(--border-panel);
+  }
+
+  [data-theme="light"] .border-panel {
+    border-color: var(--border-card);
   }
 
   /* Glow: Signal Blue accent, for hover and active states */
@@ -536,6 +628,45 @@
 @keyframes signal-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
   50%      { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+}
+
+/* ============================================
+   CONTRAST-SAFE PATTERN SYSTEM
+   These utilities ensure text/content never blends with backgrounds
+   ============================================ */
+
+/* Contrast-safe text on any background */
+.text-contrast-safe {
+  color: var(--text-primary);
+  text-shadow: 0 0 0 transparent; /* Can add shadow if needed */
+}
+
+/* Dot grid pattern that adapts to theme */
+.pattern-dots {
+  background-image: radial-gradient(circle, var(--pattern-dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pattern-dots-strong {
+  background-image: radial-gradient(circle, var(--pattern-dot-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Line grid pattern that adapts to theme */
+.pattern-lines {
+  background-image:
+    linear-gradient(var(--pattern-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pattern-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Glow effect that adapts to theme */
+.pattern-glow {
+  background: radial-gradient(circle at center, var(--pattern-glow) 0%, transparent 70%);
+}
+
+.pattern-glow-strong {
+  background: radial-gradient(circle at center, var(--pattern-glow-strong) 0%, transparent 70%);
 }
 
 /* Ticker animation for hero status strip */
