@@ -112,9 +112,9 @@ function LoadsTableMockup() {
 
       {/* Header bar */}
       <div className="flex items-center gap-2 px-4 py-3 border-b bg-theme-card border-theme-medium">
-        <div className="w-3 h-3 rounded-full bg-red-500" />
-        <div className="w-3 h-3 rounded-full bg-yellow-500" />
-        <div className="w-3 h-3 rounded-full bg-green-500" />
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--state-critical)' }} />
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--state-warning)' }} />
+        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--state-success)' }} />
         <span className="ml-4 font-body text-sm text-theme-secondary">DriveCommand — Loads</span>
       </div>
 
@@ -143,7 +143,7 @@ function LoadsTableMockup() {
                 <td className="px-4 py-3 font-body text-sm text-theme-secondary">{load.customer}</td>
                 <td className="px-4 py-3 font-body text-sm text-theme-secondary">{load.route}</td>
                 <td className="px-4 py-3 font-body text-sm text-theme-muted">{load.date}</td>
-                <td className="px-4 py-3 font-body text-sm font-medium text-accent-green">{load.rate}</td>
+                <td className="px-4 py-3 font-body text-sm font-medium" style={{ color: 'var(--state-success)' }}>{load.rate}</td>
                 <td className="px-4 py-3 font-body text-sm text-theme-secondary">{load.driver}</td>
                 <td className="px-4 py-3">
                   <StatusBadge status={load.status} />

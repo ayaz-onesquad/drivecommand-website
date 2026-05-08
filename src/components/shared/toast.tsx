@@ -1,3 +1,17 @@
+/**
+ * Toast — Notification component with semantic state colors.
+ * UX reference: UX_GUIDELINES.md §6 Components, §11 Motion
+ *
+ * Per brand guide:
+ * - Motion: 240ms cubic-out for modals/notifications
+ * - Radius: 0px (exception: could use input radius for softer feel)
+ * - No bounce animations
+ *
+ * Contrast pairings used:
+ *   --state-success on --state-success-tint (high contrast)
+ *   --state-critical on --state-critical-tint (high contrast)
+ */
+
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -21,6 +35,8 @@ export function Toast({ message, type, isVisible, onClose, duration = 5000 }: To
     }
   }, [isVisible, duration, onClose])
 
+  const isSuccess = type === 'success'
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -29,33 +45,36 @@ export function Toast({ message, type, isVisible, onClose, duration = 5000 }: To
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
         >
           <div
-            className={cn(
-              'flex items-start gap-3 p-4 rounded-lg shadow-lg max-w-md',
-              type === 'success'
-                ? 'bg-brand-green/10 border border-brand-green/30'
-                : 'bg-red-500/10 border border-red-500/30'
-            )}
+            className="flex items-start gap-3 p-4 rounded-none shadow-lg max-w-md border"
+            style={{
+              backgroundColor: isSuccess ? 'var(--state-success-tint)' : 'var(--state-critical-tint)',
+              borderColor: isSuccess ? 'var(--state-success)' : 'var(--state-critical)',
+            }}
           >
-            {type === 'success' ? (
-              <CheckCircle className="w-5 h-5 text-brand-green flex-shrink-0 mt-0.5" />
+            {isSuccess ? (
+              <CheckCircle
+                className="w-5 h-5 flex-shrink-0 mt-0.5"
+                style={{ color: 'var(--state-success)' }}
+              />
             ) : (
-              <XCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+              <XCircle
+                className="w-5 h-5 flex-shrink-0 mt-0.5"
+                style={{ color: 'var(--state-critical)' }}
+              />
             )}
-            <p className={cn(
-              'font-body text-sm flex-1',
-              type === 'success' ? 'text-brand-green' : 'text-red-400'
-            )}>
+            <p
+              className="font-body text-sm flex-1"
+              style={{ color: isSuccess ? 'var(--state-success)' : 'var(--state-critical)' }}
+            >
               {message}
             </p>
             <button
               onClick={onClose}
-              className={cn(
-                'flex-shrink-0 p-1 rounded hover:bg-white/10 transition-colors',
-                type === 'success' ? 'text-brand-green' : 'text-red-400'
-              )}
+              className="flex-shrink-0 p-1 rounded-none hover:opacity-70 transition-opacity"
+              style={{ color: isSuccess ? 'var(--state-success)' : 'var(--state-critical)' }}
             >
               <X className="w-4 h-4" />
             </button>

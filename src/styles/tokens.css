@@ -190,6 +190,12 @@
   --state-warning: #9A4A00;
   --state-critical: #C8102E;
   --state-info: #0066CC;
+
+  /* State tints (10% opacity for status pill backgrounds) */
+  --state-success-tint: rgba(0, 107, 64, 0.1);
+  --state-warning-tint: rgba(154, 74, 0, 0.1);
+  --state-critical-tint: rgba(200, 16, 46, 0.1);
+  --state-info-tint: rgba(0, 102, 204, 0.1);
 }
 
 /* ============================================
@@ -222,6 +228,12 @@
   --state-warning: #FF9F0A;
   --state-critical: #FF453A;
   --state-info: #5AC8FA;
+
+  /* State tints (10% opacity for status pill backgrounds - dark mode) */
+  --state-success-tint: rgba(52, 199, 89, 0.15);
+  --state-warning-tint: rgba(255, 159, 10, 0.15);
+  --state-critical-tint: rgba(255, 69, 58, 0.15);
+  --state-info-tint: rgba(90, 200, 250, 0.15);
 }
 
 /* System preference fallback (if no explicit theme set) */
@@ -251,5 +263,11 @@
     --state-warning: #FF9F0A;
     --state-critical: #FF453A;
     --state-info: #5AC8FA;
+
+    /* State tints */
+    --state-success-tint: rgba(52, 199, 89, 0.15);
+    --state-warning-tint: rgba(255, 159, 10, 0.15);
+    --state-critical-tint: rgba(255, 69, 58, 0.15);
+    --state-info-tint: rgba(90, 200, 250, 0.15);
   }
 }

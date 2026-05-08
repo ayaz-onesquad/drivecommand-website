@@ -38,7 +38,7 @@ export function ContactForm() {
         {/* Name */}
         <div>
           <label htmlFor="name" className="block font-body text-sm text-theme-secondary mb-2">
-            Full Name <span className="text-red-400">*</span>
+            Full Name <span className="text-[var(--state-critical)]">*</span>
           </label>
           <input
             type="text"
@@ -46,20 +46,20 @@ export function ContactForm() {
             name="name"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
-              state.errors?.name ? 'border-red-500' : 'border-theme-medium'
+              'w-full px-4 py-3 rounded-input border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.name ? 'border-[var(--state-critical)]' : 'border-theme-medium'
             )}
             placeholder="John Smith"
           />
           {state.errors?.name && (
-            <p className="mt-1 font-body text-sm text-red-400">{state.errors.name[0]}</p>
+            <p className="mt-1 font-body text-sm text-[var(--state-critical)]">{state.errors.name[0]}</p>
           )}
         </div>
 
         {/* Email */}
         <div>
           <label htmlFor="email" className="block font-body text-sm text-theme-secondary mb-2">
-            Work Email <span className="text-red-400">*</span>
+            Work Email <span className="text-[var(--state-critical)]">*</span>
           </label>
           <input
             type="email"
@@ -67,20 +67,20 @@ export function ContactForm() {
             name="email"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
-              state.errors?.email ? 'border-red-500' : 'border-theme-medium'
+              'w-full px-4 py-3 rounded-input border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.email ? 'border-[var(--state-critical)]' : 'border-theme-medium'
             )}
             placeholder="john@company.com"
           />
           {state.errors?.email && (
-            <p className="mt-1 font-body text-sm text-red-400">{state.errors.email[0]}</p>
+            <p className="mt-1 font-body text-sm text-[var(--state-critical)]">{state.errors.email[0]}</p>
           )}
         </div>
 
         {/* Company */}
         <div>
           <label htmlFor="company" className="block font-body text-sm text-theme-secondary mb-2">
-            Company Name <span className="text-red-400">*</span>
+            Company Name <span className="text-[var(--state-critical)]">*</span>
           </label>
           <input
             type="text"
@@ -88,28 +88,28 @@ export function ContactForm() {
             name="company"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
-              state.errors?.company ? 'border-red-500' : 'border-theme-medium'
+              'w-full px-4 py-3 rounded-input border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.company ? 'border-[var(--state-critical)]' : 'border-theme-medium'
             )}
             placeholder="ABC Trucking"
           />
           {state.errors?.company && (
-            <p className="mt-1 font-body text-sm text-red-400">{state.errors.company[0]}</p>
+            <p className="mt-1 font-body text-sm text-[var(--state-critical)]">{state.errors.company[0]}</p>
           )}
         </div>
 
         {/* Fleet Size */}
         <div>
           <label htmlFor="fleetSize" className="block font-body text-sm text-theme-secondary mb-2">
-            Fleet Size <span className="text-red-400">*</span>
+            Fleet Size <span className="text-[var(--state-critical)]">*</span>
           </label>
           <select
             id="fleetSize"
             name="fleetSize"
             required
             className={cn(
-              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
-              state.errors?.fleetSize ? 'border-red-500' : 'border-theme-medium'
+              'w-full px-4 py-3 rounded-input border font-body text-theme-primary focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.fleetSize ? 'border-[var(--state-critical)]' : 'border-theme-medium'
             )}
           >
             {FLEET_SIZES.map((size) => (
@@ -119,14 +119,14 @@ export function ContactForm() {
             ))}
           </select>
           {state.errors?.fleetSize && (
-            <p className="mt-1 font-body text-sm text-red-400">{state.errors.fleetSize[0]}</p>
+            <p className="mt-1 font-body text-sm text-[var(--state-critical)]">{state.errors.fleetSize[0]}</p>
           )}
         </div>
 
         {/* Message */}
         <div>
           <label htmlFor="message" className="block font-body text-sm text-theme-secondary mb-2">
-            How Can We Help? <span className="text-red-400">*</span>
+            How Can We Help? <span className="text-[var(--state-critical)]">*</span>
           </label>
           <textarea
             id="message"
@@ -134,13 +134,13 @@ export function ContactForm() {
             required
             rows={4}
             className={cn(
-              'w-full px-4 py-3 rounded-lg border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors resize-none bg-theme-secondary',
-              state.errors?.message ? 'border-red-500' : 'border-theme-medium'
+              'w-full px-4 py-3 rounded-input border font-body text-theme-primary placeholder-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors resize-none bg-theme-secondary',
+              state.errors?.message ? 'border-[var(--state-critical)]' : 'border-theme-medium'
             )}
             placeholder="Tell us about your fleet and what you're looking for..."
           />
           {state.errors?.message && (
-            <p className="mt-1 font-body text-sm text-red-400">{state.errors.message[0]}</p>
+            <p className="mt-1 font-body text-sm text-[var(--state-critical)]">{state.errors.message[0]}</p>
           )}
         </div>
 
@@ -149,7 +149,7 @@ export function ContactForm() {
           type="submit"
           disabled={isPending}
           className={cn(
-            'w-full py-4 rounded-lg font-body font-medium transition-colors flex items-center justify-center gap-2',
+            'w-full py-4 rounded-input font-body font-medium transition-colors flex items-center justify-center gap-2',
             isPending
               ? 'bg-dc-accent/50 text-dc-text-on-accent cursor-not-allowed'
               : 'bg-dc-accent text-dc-text-on-accent hover:opacity-90'

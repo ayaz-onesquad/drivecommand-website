@@ -58,10 +58,10 @@ const FEATURES: Feature[] = [
     title: 'Live GPS',
     description:
       'See every truck on a live map. Get alerts when a driver is off-route, stopped too long, or approaching the delivery window.',
-    color: 'text-emerald-400',
-    bgColor: 'bg-emerald-500/10',
-    hoverBorderColor: 'rgba(34, 192, 122, 0.6)',
-    hoverGlowShadow: '0 10px 40px -10px rgba(34, 192, 122, 0.3)',
+    color: 'text-[var(--state-success)]',
+    bgColor: 'bg-[var(--state-success-tint)]',
+    hoverBorderColor: 'var(--state-success)',
+    hoverGlowShadow: '0 10px 40px -10px var(--state-success-tint)',
   },
   {
     icon: Users,
@@ -78,20 +78,20 @@ const FEATURES: Feature[] = [
     title: 'Invoicing',
     description:
       'Generate invoices the moment a POD is uploaded. One click, done. Chase receivables with automated reminders — not phone calls.',
-    color: 'text-indigo-400',
-    bgColor: 'bg-indigo-500/10',
-    hoverBorderColor: 'rgba(129, 140, 248, 0.6)',
-    hoverGlowShadow: '0 10px 40px -10px rgba(129, 140, 248, 0.3)',
+    color: 'text-[var(--state-info)]',
+    bgColor: 'bg-[var(--state-info-tint)]',
+    hoverBorderColor: 'var(--state-info)',
+    hoverGlowShadow: '0 10px 40px -10px var(--state-info-tint)',
   },
   {
     icon: Shield,
     title: 'Compliance & Safety',
     description:
       'HOS logs, inspection reports, and license expiration alerts built in. Never get caught at a weigh station without paperwork again.',
-    color: 'text-emerald-400',
-    bgColor: 'bg-emerald-500/10',
-    hoverBorderColor: 'rgba(52, 211, 153, 0.6)',
-    hoverGlowShadow: '0 10px 40px -10px rgba(52, 211, 153, 0.3)',
+    color: 'text-[var(--state-success)]',
+    bgColor: 'bg-[var(--state-success-tint)]',
+    hoverBorderColor: 'var(--state-success)',
+    hoverGlowShadow: '0 10px 40px -10px var(--state-success-tint)',
   },
   {
     icon: Sparkles,

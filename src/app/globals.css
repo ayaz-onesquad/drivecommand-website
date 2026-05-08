@@ -27,8 +27,8 @@
   --accent-cyan: var(--dc-l150);             /* Electric L150 */
   --accent-green: var(--color-live-green);
   --accent-load: var(--color-accent);        /* Signal Blue */
-  --accent-signal: var(--dc-state-on-time);  /* On-Time green */
-  --accent-stripe: var(--dc-state-at-risk);  /* At-Risk amber */
+  --accent-signal: var(--state-success);  /* Success green - semantic */
+  --accent-stripe: var(--state-warning);  /* Warning amber - semantic */
   --glow-blue: var(--color-glow-accent);     /* Signal Blue glow */
   --glow-cyan: rgba(142, 155, 255, 0.10);    /* Electric L150 glow */
 
@@ -81,8 +81,8 @@
   --accent-cyan: var(--dc-l150);
   --accent-green: var(--color-live-green);
   --accent-load: var(--color-accent);
-  --accent-signal: var(--dc-state-on-time);
-  --accent-stripe: var(--dc-state-at-risk);
+  --accent-signal: var(--state-success);  /* Success green - semantic */
+  --accent-stripe: var(--state-warning);  /* Warning amber - semantic */
   --glow-blue: var(--color-glow-accent);
   --glow-cyan: rgba(142, 155, 255, 0.10);
 }

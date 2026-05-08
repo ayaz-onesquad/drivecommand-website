@@ -41,9 +41,9 @@ function ParallaxQuoteMarks({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
 function RoleBadge({ initials, role }: { initials: string; role: string }) {
   // Using brand colors that contrast well with white text
   const roleColors: Record<string, { bg: string; text: string }> = {
-    'Owner-Operator': { bg: 'bg-sky-500', text: 'text-white' },
+    'Owner-Operator': { bg: 'bg-[var(--state-info)]', text: 'text-[var(--text-on-brand)]' },
     'Fleet Manager': { bg: 'bg-dc-accent', text: 'text-dc-text-on-accent' },
-    'Safety Director': { bg: 'bg-emerald-600', text: 'text-white' },
+    'Safety Director': { bg: 'bg-[var(--state-success)]', text: 'text-[var(--text-on-brand)]' },
   }
 
   const colors = roleColors[role] || { bg: 'bg-slate-500', text: 'text-white' }

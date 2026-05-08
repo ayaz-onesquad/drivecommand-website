@@ -56,6 +56,15 @@ const PAIN_CARDS: Omit<PainCardProps, 'delay'>[] = [
   },
 ]
 
+/**
+ * PainCard — Statistics card showing carrier pain points.
+ * Contrast pairings used:
+ *   --text-primary on --surface-elevated (15.46:1 AAA)
+ *   --text-secondary on --surface-elevated (9.20:1 AAA)
+ *   --text-tertiary on --surface-elevated (4.61:1 AA)
+ *
+ * Numbers carry weight through Display-scale typography — no decorative color.
+ */
 function PainCard({ icon: Icon, stat, label, cost, delay }: PainCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
@@ -64,21 +73,25 @@ function PainCard({ icon: Icon, stat, label, cost, delay }: PainCardProps) {
   return (
     <motion.div
       ref={ref}
-      className="relative texture-steel border-panel rounded-xl p-6"
+      className="relative rounded-none p-8 border"
+      style={{
+        backgroundColor: 'var(--surface-elevated)',
+        borderColor: 'var(--border-divider)',
+      }}
       initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : delay }}
     >
       {/* Icon in top-left */}
-      <div className="absolute top-4 left-4">
-        <Icon size={20} style={{ color: 'var(--text-muted)' }} />
+      <div className="absolute top-6 left-6">
+        <Icon size={20} style={{ color: 'var(--text-tertiary)' }} />
       </div>
 
-      <div className="pt-6">
-        {/* Stat number in stripe yellow */}
+      <div className="pt-8">
+        {/* Stat number — Display-scale carries weight, no decorative color */}
         <div
-          className="font-display text-4xl sm:text-5xl font-bold mb-2"
-          style={{ color: 'var(--accent-stripe)' }}
+          className="font-display text-4xl sm:text-5xl font-bold mb-2 tnum"
+          style={{ color: 'var(--text-primary)' }}
         >
           {stat}
         </div>
@@ -120,13 +133,13 @@ export function ProblemBar() {
   return (
     <section
       ref={sectionRef}
-      className="relative z-[1] py-20 overflow-hidden"
-      style={{ backgroundColor: 'var(--bg-secondary)' }}
+      className="relative z-[1] py-24 lg:py-32 overflow-hidden"
+      style={{ backgroundColor: 'var(--surface-sunken)' }}
     >
       {/* TIER 2: Parallax highway lines (desktop only, respects reduced motion) */}
       {shouldAnimate && <ParallaxHighwayLines y={decorativeY} />}
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         {/* TIER 3: Content with micro-parallax */}
         <motion.div
           className="mb-12 will-change-transform"
@@ -137,13 +150,12 @@ export function ProblemBar() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            {/* Section header with stripe accent */}
-            <span className="stripe-accent" />
+            {/* Eyebrow — mono uppercase, brand accent */}
             <p
-              className="uppercase tracking-widest text-xs font-mono"
-              style={{ color: 'var(--text-secondary)' }}
+              className="uppercase tracking-widest text-xs font-mono mb-6"
+              style={{ color: 'var(--accent-brand)' }}
             >
-              The Cost of Running Blind
+              The cost of running blind
             </p>
           </motion.div>
         </motion.div>

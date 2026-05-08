@@ -55,19 +55,27 @@ const trustBadges = [
   { icon: Lock, label: 'No Contract' },
 ]
 
-// Status dot colors
-const statusDotColors: Record<string, string> = {
-  'in-transit': 'bg-amber-500',
-  'delivered': 'bg-green-500',
-  'dispatched': 'bg-indigo-500',
-  'invoiced': 'bg-white',
+// Status dot colors - using inline styles for semantic state colors
+const getStatusDotStyle = (status: string): React.CSSProperties => {
+  switch (status) {
+    case 'in-transit':
+      return { backgroundColor: 'var(--state-warning)' }
+    case 'delivered':
+      return { backgroundColor: 'var(--state-success)' }
+    case 'dispatched':
+      return { backgroundColor: 'var(--state-info)' }
+    case 'invoiced':
+      return { backgroundColor: 'var(--text-primary)' }
+    default:
+      return { backgroundColor: 'var(--state-info)' }
+  }
 }
 
 // Route paths for animated map (simplified curved paths)
 const routePaths = [
-  { id: 'chi-atl', d: 'M160,80 Q200,100 220,140', color: 'var(--color-brand)' },
-  { id: 'dal-lax', d: 'M140,120 Q100,130 60,110', color: 'var(--color-status-dispatched)' },
-  { id: 'nyc-mia', d: 'M280,60 Q290,100 260,160', color: 'var(--color-live-green)' },
+  { id: 'chi-atl', d: 'M160,80 Q200,100 220,140', color: 'var(--accent-brand)' },
+  { id: 'dal-lax', d: 'M140,120 Q100,130 60,110', color: 'var(--state-info)' },
+  { id: 'nyc-mia', d: 'M280,60 Q290,100 260,160', color: 'var(--state-success)' },
 ]
 
 export function Hero() {
@@ -341,24 +349,30 @@ export function Hero() {
               }}
             >
               {/* Title bar */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-700/50">
+              <div
+                className="flex items-center justify-between px-4 py-3 border-b"
+                style={{ borderColor: 'var(--border-divider)' }}
+              >
                 <div className="flex items-center gap-2">
-                  {/* Mock window controls */}
+                  {/* Mock window controls - muted semantic colors */}
                   <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(var(--state-critical-rgb, 200, 16, 46), 0.6)' }} />
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(var(--state-warning-rgb, 154, 74, 0), 0.6)' }} />
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'rgba(var(--state-success-rgb, 0, 107, 64), 0.6)' }} />
                   </div>
-                  <span className="text-xs text-gray-400 ml-2">DriveCommand — Active Loads</span>
+                  <span className="text-xs ml-2" style={{ color: 'var(--text-tertiary)' }}>DriveCommand — Active Loads</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 bg-green-500 rounded-full animate-live-pulse" />
-                  <span className="text-xs text-green-400 font-mono">LIVE</span>
+                  <span className="w-2 h-2 rounded-full animate-live-pulse" style={{ backgroundColor: 'var(--state-success)' }} />
+                  <span className="text-xs font-mono" style={{ color: 'var(--state-success)' }}>LIVE</span>
                 </div>
               </div>
 
               {/* Route map SVG - hidden on mobile */}
-              <div className="hidden md:block p-4 border-b border-slate-700/30">
+              <div
+                className="hidden md:block p-4 border-b"
+                style={{ borderColor: 'var(--border-subtle)' }}
+              >
                 <svg viewBox="0 0 340 180" className="w-full h-auto">
                   {/* Simplified continental US outline (very subtle) */}
                   <path
@@ -371,17 +385,17 @@ export function Hero() {
                   {/* City markers */}
                   <g fill="rgba(255,255,255,0.3)" fontSize="8">
                     <circle cx="160" cy="80" r="3" /> {/* CHI */}
-                    <text x="165" y="75" className="fill-slate-500">CHI</text>
+                    <text x="165" y="75" fill="var(--text-tertiary)">CHI</text>
                     <circle cx="220" cy="140" r="3" /> {/* ATL */}
-                    <text x="225" y="135" className="fill-slate-500">ATL</text>
+                    <text x="225" y="135" fill="var(--text-tertiary)">ATL</text>
                     <circle cx="140" cy="120" r="3" /> {/* DAL */}
-                    <text x="125" y="130" className="fill-slate-500">DAL</text>
+                    <text x="125" y="130" fill="var(--text-tertiary)">DAL</text>
                     <circle cx="60" cy="110" r="3" /> {/* LAX */}
-                    <text x="45" y="105" className="fill-slate-500">LAX</text>
+                    <text x="45" y="105" fill="var(--text-tertiary)">LAX</text>
                     <circle cx="280" cy="60" r="3" /> {/* NYC */}
-                    <text x="285" y="55" className="fill-slate-500">NYC</text>
+                    <text x="285" y="55" fill="var(--text-tertiary)">NYC</text>
                     <circle cx="260" cy="160" r="3" /> {/* MIA */}
-                    <text x="265" y="155" className="fill-slate-500">MIA</text>
+                    <text x="265" y="155" fill="var(--text-tertiary)">MIA</text>
                   </g>
 
                   {/* Route paths with draw animation */}
@@ -450,15 +464,14 @@ export function Hero() {
                     key={card.id}
                     className="p-3 rounded-none cursor-pointer"
                     style={{
-                      backgroundColor: 'rgba(30, 37, 51, 0.8)',
-                      border: '1px solid rgba(42, 58, 80, 0.5)',
+                      backgroundColor: 'var(--surface-elevated)',
+                      border: '1px solid var(--border-subtle)',
                     }}
                     initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     whileHover={prefersReducedMotion ? {} : {
                       y: -2,
-                      backgroundColor: 'rgba(30, 37, 51, 0.95)',
-                      borderColor: 'rgba(0, 102, 204, 0.3)'
+                      borderColor: 'var(--accent-brand)'
                     }}
                     whileTap={prefersReducedMotion ? {} : { y: 0, scale: 0.98 }}
                     transition={{
@@ -468,12 +481,12 @@ export function Hero() {
                     }}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-mono text-slate-400">Load #{card.id}</span>
+                      <span className="text-xs font-mono" style={{ color: 'var(--text-tertiary)' }}>Load #{card.id}</span>
                       <StatusBadge status={card.status} />
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-slate-200">{card.route}</span>
-                      <span className="text-sm font-bold text-blue-400">{card.rate}</span>
+                      <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{card.route}</span>
+                      <span className="text-sm font-bold font-mono tnum" style={{ color: 'var(--accent-brand)' }}>{card.rate}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -493,14 +506,17 @@ export function Hero() {
         <div
           className="h-10 flex items-center border-t"
           style={{
-            backgroundColor: 'rgb(15, 23, 42)',
-            borderColor: 'rgb(30, 41, 59)'
+            backgroundColor: 'var(--surface-sunken)',
+            borderColor: 'var(--border-divider)'
           }}
         >
           {/* LIVE FEED label */}
-          <div className="flex items-center gap-2 px-4 border-r border-slate-800 h-full">
-            <span className="w-2 h-2 bg-red-500 rounded-full animate-red-pulse" />
-            <span className="text-xs font-mono uppercase text-red-400 tracking-wider">Live Feed</span>
+          <div
+            className="flex items-center gap-2 px-4 border-r h-full"
+            style={{ borderColor: 'var(--border-divider)' }}
+          >
+            <span className="w-2 h-2 rounded-full animate-red-pulse" style={{ backgroundColor: 'var(--state-critical)' }} />
+            <span className="text-xs font-mono uppercase tracking-wider" style={{ color: 'var(--state-critical)' }}>Live Feed</span>
           </div>
 
           {/* Ticker track */}
@@ -510,9 +526,10 @@ export function Hero() {
               {[...tickerItems, ...tickerItems].map((item, i) => (
                 <span
                   key={i}
-                  className="flex items-center gap-2 text-xs font-mono whitespace-nowrap px-6 text-white"
+                  className="flex items-center gap-2 text-xs font-mono whitespace-nowrap px-6"
+                  style={{ color: 'var(--text-primary)' }}
                 >
-                  <span className={`w-2 h-2 rounded-full ${statusDotColors[item.status]}`} />
+                  <span className="w-2 h-2 rounded-full" style={getStatusDotStyle(item.status)} />
                   {item.text}
                 </span>
               ))}

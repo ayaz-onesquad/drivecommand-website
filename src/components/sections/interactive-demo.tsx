@@ -117,7 +117,8 @@ function Step1BookLoad() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-4 left-4 right-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-2 text-emerald-400 text-sm font-body flex items-center gap-2"
+            className="absolute top-4 left-4 right-4 rounded-lg px-4 py-2 text-sm font-body flex items-center gap-2"
+            style={{ backgroundColor: 'var(--state-success-tint)', borderWidth: '1px', borderColor: 'var(--state-success)', color: 'var(--state-success)' }}
           >
             <Check className="w-4 h-4" />
             Load LD-2024-0891 created successfully
@@ -184,7 +185,7 @@ function Step1BookLoad() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block font-body text-xs text-theme-secondary mb-1">Rate</label>
-            <div className="rounded-lg px-3 py-2 font-body text-sm text-accent-green bg-theme-card">
+            <div className="rounded-lg px-3 py-2 font-body text-sm bg-theme-card" style={{ color: 'var(--state-success)' }}>
               $2,400.00
             </div>
           </div>
@@ -201,11 +202,12 @@ function Step1BookLoad() {
           className={cn(
             'w-full py-3 font-body font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors',
             isBooked
-              ? 'bg-emerald-500 text-white cursor-not-allowed opacity-60 pointer-events-none'
+              ? 'cursor-not-allowed opacity-60 pointer-events-none'
               : 'bg-dc-accent text-dc-text-on-accent hover:border-sky-400/60'
           )}
           onClick={handleBook}
           disabled={isBooked}
+          style={isBooked ? { backgroundColor: 'var(--state-success)', color: 'var(--text-on-brand)' } : undefined}
           initial="rest"
           whileHover={!isBooked ? "hover" : undefined}
           whileTap={!isBooked ? "tap" : undefined}
@@ -267,7 +269,7 @@ function Step2ActiveLoads() {
           <div key={load.id}>
             <div className={cn(
               'grid grid-cols-3 sm:grid-cols-12 gap-2 px-3 py-3 rounded-lg bg-theme-card items-center',
-              index === 0 && row1Updated && 'ring-1 ring-amber-500/30'
+              index === 0 && row1Updated && 'ring-1'
             )}>
               {/* Mobile: Load #, Status, Rate */}
               {/* Desktop: Full row */}
@@ -289,11 +291,14 @@ function Step2ActiveLoads() {
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <div className="col-span-1 sm:col-span-1 font-body text-sm text-accent-green">{load.rate}</div>
-              <div className={cn(
-                'hidden sm:block sm:col-span-2 font-body text-sm',
-                load.etaDelay ? 'text-amber-400' : 'text-theme-secondary'
-              )}>
+              <div className="col-span-1 sm:col-span-1 font-body text-sm" style={{ color: 'var(--state-success)' }}>{load.rate}</div>
+              <div
+                className={cn(
+                  'hidden sm:block sm:col-span-2 font-body text-sm',
+                  !load.etaDelay && 'text-theme-secondary'
+                )}
+                style={load.etaDelay ? { color: 'var(--state-warning)' } : undefined}
+              >
                 {load.eta}
                 {load.etaDelay && <span className="text-xs ml-1">+2hr delay</span>}
               </div>
@@ -322,7 +327,8 @@ function Step2ActiveLoads() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="ml-3 mt-1 px-3 py-2 bg-amber-500/10 border-l-2 border-amber-500 rounded-r text-sm font-body text-amber-300"
+                  className="ml-3 mt-1 px-3 py-2 rounded-r text-sm font-body"
+                  style={{ backgroundColor: 'var(--state-warning-tint)', borderLeftWidth: '2px', borderLeftColor: 'var(--state-warning)', color: 'var(--state-warning)' }}
                 >
                   Mike Torres checked in at Indianapolis, IN — 340 mi remaining
                 </motion.div>
@@ -399,10 +405,10 @@ function Step3DriverComms() {
                 <div className="w-8 h-8 rounded-full bg-theme-secondary flex items-center justify-center">
                   <span className="font-body text-xs text-theme-primary">{driver.initials}</span>
                 </div>
-                <div className={cn(
-                  'absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-theme-card',
-                  driver.status === 'available' ? 'bg-emerald-500' : 'bg-amber-500'
-                )} />
+                <div
+                  className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-theme-card"
+                  style={{ backgroundColor: driver.status === 'available' ? 'var(--state-success)' : 'var(--state-warning)' }}
+                />
               </div>
               <span className="font-body text-xs text-theme-primary truncate">{driver.name.split(' ')[0]}</span>
             </div>
@@ -418,7 +424,7 @@ function Step3DriverComms() {
             </div>
             <div>
               <div className="font-body text-sm font-medium text-theme-primary">Mike Torres</div>
-              <div className="font-body text-xs text-amber-400">On route · CHI → ATL</div>
+              <div className="font-body text-xs" style={{ color: 'var(--state-warning)' }}>On route · CHI → ATL</div>
             </div>
           </div>
 
@@ -514,7 +520,8 @@ function Step4DriverDocs() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-4 left-4 right-4 bg-emerald-500/10 border border-emerald-500/30 rounded-lg px-4 py-2 text-emerald-400 text-sm font-body"
+            className="absolute top-4 left-4 right-4 rounded-lg px-4 py-2 text-sm font-body"
+            style={{ backgroundColor: 'var(--state-success-tint)', borderWidth: '1px', borderColor: 'var(--state-success)', color: 'var(--state-success)' }}
           >
             POD received for LD-2024-0891 — invoice can now be generated
           </motion.div>
@@ -556,11 +563,17 @@ function Step4DriverDocs() {
                   exit={{ opacity: 0, scale: 0.8 }}
                 >
                   {doc.status === 'uploaded' ? (
-                    <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium bg-emerald-500/10 text-emerald-400">
+                    <span
+                      className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium"
+                      style={{ backgroundColor: 'var(--state-success-tint)', color: 'var(--state-success)' }}
+                    >
                       Uploaded
                     </span>
                   ) : (
-                    <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium bg-amber-500/10 text-amber-400">
+                    <span
+                      className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium"
+                      style={{ backgroundColor: 'var(--state-warning-tint)', color: 'var(--state-warning)' }}
+                    >
                       Pending
                     </span>
                   )}
@@ -580,10 +593,11 @@ function Step4DriverDocs() {
       <motion.button
         onClick={handleSimulateUpload}
         disabled={podUploaded}
+        style={podUploaded ? { backgroundColor: 'var(--state-success)', color: 'var(--text-on-brand)' } : undefined}
         className={cn(
           'w-full py-3 font-body font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors',
           podUploaded
-            ? 'bg-emerald-500 text-white cursor-not-allowed opacity-60 pointer-events-none'
+            ? 'cursor-not-allowed opacity-60 pointer-events-none'
             : 'bg-dc-accent text-dc-text-on-accent hover:border-sky-400/60'
         )}
         initial="rest"
@@ -633,13 +647,13 @@ function Step5Financials() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'sent':
-        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium bg-blue-500/10 text-blue-400">Sent</span>
+        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium" style={{ backgroundColor: 'var(--state-info-tint)', color: 'var(--state-info)' }}>Sent</span>
       case 'overdue':
-        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium bg-red-500/10 text-red-400">Overdue</span>
+        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium" style={{ backgroundColor: 'var(--state-critical-tint)', color: 'var(--state-critical)' }}>Overdue</span>
       case 'reminder-sent':
-        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium bg-blue-500/10 text-blue-400">Reminder Sent</span>
+        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium" style={{ backgroundColor: 'var(--state-info-tint)', color: 'var(--state-info)' }}>Reminder Sent</span>
       case 'paid':
-        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium bg-emerald-500/10 text-emerald-400">Paid</span>
+        return <span className="inline-flex items-center px-2 py-1 rounded text-xs font-body font-medium" style={{ backgroundColor: 'var(--state-success-tint)', color: 'var(--state-success)' }}>Paid</span>
       default:
         return null
     }
@@ -653,18 +667,19 @@ function Step5Financials() {
       <div className="grid grid-cols-3 gap-3 mb-6">
         <div className="p-4 rounded-lg bg-theme-card text-center">
           <div className="font-body text-xs text-theme-muted mb-1">This Month Revenue</div>
-          <div className="font-display text-xl font-bold text-emerald-400">$47,200</div>
+          <div className="font-display text-xl font-bold" style={{ color: 'var(--state-success)' }}>$47,200</div>
         </div>
         <div className="p-4 rounded-lg bg-theme-card text-center">
           <div className="font-body text-xs text-theme-muted mb-1">Outstanding</div>
-          <div className="font-display text-xl font-bold text-sky-400">$8,900</div>
+          <div className="font-display text-xl font-bold" style={{ color: 'var(--state-info)' }}>$8,900</div>
           <div className="font-body text-xs text-theme-muted">
             3 invoices
             {reminderSent && (
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="block text-blue-400"
+                className="block"
+                style={{ color: 'var(--state-info)' }}
               >
                 (reminder sent)
               </motion.span>
@@ -700,7 +715,7 @@ function Step5Financials() {
             <div className="hidden sm:block sm:col-span-3 font-body text-sm text-theme-secondary">
               {invoice.customer}
             </div>
-            <div className="col-span-1 sm:col-span-2 font-body text-sm text-accent-green">
+            <div className="col-span-1 sm:col-span-2 font-body text-sm" style={{ color: 'var(--state-success)' }}>
               {invoice.amount}
             </div>
             <div className="col-span-1 sm:col-span-2">
@@ -745,7 +760,8 @@ function Step5Financials() {
                 <motion.span
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-xs text-emerald-400 flex items-center gap-1"
+                  className="text-xs flex items-center gap-1"
+                  style={{ color: 'var(--state-success)' }}
                 >
                   <Check className="w-3 h-3" />
                   Sent
