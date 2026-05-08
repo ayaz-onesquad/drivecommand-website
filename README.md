@@ -99,6 +99,54 @@ vercel
 | Watch the Demo | `#demo-video` (scroll) |
 | Contact Sales / Enterprise | `/contact` |
 
+## Brand System
+
+DriveCommand uses a comprehensive design token system. See the [Brand Usage Guide](/docs/BRAND_USAGE.md) for developer documentation.
+
+### Quick Links
+
+| Resource | Location |
+|----------|----------|
+| **Brand Usage Guide** | [`/docs/BRAND_USAGE.md`](/docs/BRAND_USAGE.md) |
+| **Design Tokens (CSS)** | [`/src/styles/tokens.css`](/src/styles/tokens.css) |
+| **Design Tokens (JSON)** | [`/brand/tokens.json`](/brand/tokens.json) |
+| **Brand Guide Summary** | [`/brand/BRAND_GUIDE_SUMMARY.md`](/brand/BRAND_GUIDE_SUMMARY.md) |
+| **Logo Component** | [`/src/components/brand/Logo.tsx`](/src/components/brand/Logo.tsx) |
+| **Brand Preview** | `http://localhost:3000/brand-preview` (dev only) |
+
+### Logo Usage
+
+```tsx
+import { Logo } from '@/components/brand/Logo'
+
+// Navbar
+<Logo variant="horizontal" size="md" background="ink" />
+
+// Footer
+<Logo variant="horizontal" size="md" background="ink" />
+
+// Hero
+<Logo variant="horizontal" size="xl" background="ink" />
+```
+
+### Color Tokens
+
+Use Tailwind's `dc-*` and `dc2-*` prefixes:
+
+```tsx
+// Backgrounds
+<div className="bg-dc-bg-dark" />      // Primary dark
+<div className="bg-dc2-signal" />      // Signal Blue accent
+
+// Text
+<span className="text-dc-text-primary" />   // White on dark
+<span className="text-dc-text-on-accent" /> // On Signal Blue buttons
+
+// Status
+<span className="text-dc2-state-onTime" />  // Green
+<span className="text-dc2-state-atRisk" />  // Amber
+```
+
 ## License
 
 Private — All rights reserved.

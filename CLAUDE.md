@@ -12,37 +12,59 @@ npm run lint   # ESLint
 
 All colors are defined in `src/styles/tokens.css`. Components use semantic tokens exclusively.
 
-### Color System
+### Color System (v1.0 April 2026)
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--color-accent` | #75F0D4 (mint) | ALL CTA buttons, links, highlights |
-| `--color-accent-hover` | #5CD9BE | Button hover state |
-| `--color-text-on-accent` | #000D23 | Text on mint buttons (REQUIRED) |
-| `--color-bg-dark` | #000D23 (midnight) | Hero, dark sections |
-| `--color-bg-light` | #D9F0F7 | Light sections, feature cards |
-| `--color-bg-card` | #19334D (navy) | Dashboard cards |
-| `--color-brand` | #21657F (deep-blue) | Brand identity, nav |
-| `--color-brand-mid` | #3B8696 (ocean) | Hover states, secondary UI |
+| `--dc-ink` | #141619 | Primary dark background (40% balance) |
+| `--dc-slate` | #2c2e3a | Card backgrounds, secondary dark (20%) |
+| `--dc-navy` | #050a44 | Depth, ground (15%) |
+| `--dc-signal` | #0a21c0 | CTA accent, links, highlights (10%) |
+| `--dc-silver` | #b3b4bd | Connecting element (15%) |
+| `--dc-bone` | #f4f5f7 | Light backgrounds |
+| `--color-accent` | var(--dc-signal) | ALL CTA buttons, links |
+| `--color-text-on-accent` | var(--dc-bone) | Text on Signal Blue buttons |
 | `--color-text-primary` | #FFFFFF | Text on dark backgrounds |
-| `--color-text-secondary` | #A8C4D4 | Muted text on dark |
-| `--color-text-dark` | #000D23 | Text on light backgrounds |
+| `--color-text-secondary` | var(--dc-n300) | Muted text on dark |
 
 ### Tailwind Utilities
 
-Use `dc-*` prefix for brand colors:
-- `bg-dc-accent`, `text-dc-accent` (mint - use text only for large headings)
-- `bg-dc-bg-dark`, `bg-dc-bg-light`
-- `text-dc-text-primary`, `text-dc-text-secondary`
-- `text-dc-text-on-accent` (REQUIRED for buttons with mint background)
+Use `dc-*` prefix for semantic colors and `dc2-*` for direct palette access:
+
+```tsx
+// Semantic (recommended)
+<button className="bg-dc-accent text-dc-text-on-accent hover:bg-dc-accent-hover" />
+<div className="bg-dc-bg-dark text-dc-text-primary" />
+
+// Direct palette (dc2)
+<div className="bg-dc2-ink text-dc2-signal" />
+<span className="text-dc2-state-onTime" />  // Status green
+```
 
 ### Rules
 
 1. **Never use raw hex values** in components
-2. **CTAs are ALWAYS mint** (`--color-accent`) with **midnight text** (`--color-text-on-accent`)
-3. **Mint is never body text** on dark backgrounds (contrast too low for small text)
-4. **Status colors** use semantic tokens: `--color-live-green`, `--color-status-transit`, etc.
-5. **Ocean (#3B8696)** OK for links/large text, not body copy
+2. **CTAs are ALWAYS Signal Blue** (`--dc-signal` / `#0a21c0`) with **light text** (`--dc-bone`)
+3. **Status colors** use semantic tokens: `--dc-state-on-time`, `--dc-state-at-risk`, etc.
+4. **Tagline** is "Miles Ahead." — always with the period
+
+### Logo Usage
+
+The Logo component (`src/components/brand/Logo.tsx`) automatically selects the correct glyph variant:
+- **Dark backgrounds** (ink, navy, signal, slate) → `glyph-on-dark.svg` (light fills)
+- **Light backgrounds** (bone, bone2, silver, paper) → `glyph-on-light.svg` (dark fills)
+
+Use the `background` prop to specify context:
+```tsx
+<Logo variant="horizontal" background="ink" />   // Dark bg → light glyph
+<Logo variant="horizontal" background="paper" /> // Light bg → dark glyph
+```
+
+### Brand Documentation
+
+- **Developer Guide:** `/docs/BRAND_USAGE.md`
+- **Design Tokens (JSON):** `/brand/tokens.json`
+- **Brand Preview (dev):** `http://localhost:3000/brand-preview`
 
 ## Project Structure
 
@@ -50,6 +72,7 @@ Use `dc-*` prefix for brand colors:
 src/
   app/           # Next.js app router pages
   components/
+    brand/       # Logo component
     layout/      # Navbar, Footer
     sections/    # Hero, Features, etc.
     shared/      # Reusable components
@@ -61,7 +84,7 @@ src/
 
 ## Tech Stack
 
-- Next.js 14 (App Router)
+- Next.js 15 (App Router)
 - TypeScript
 - Tailwind CSS
 - Motion (Framer Motion)

@@ -139,7 +139,7 @@ export function Logo({
   const wordmarkFontSize = Math.max(12, pixelSize * 0.35)
   const gap = Math.max(4, pixelSize * 0.1)
 
-  // Render glyph SVG inline for color control (the SVG uses its own fills)
+  // Render glyph SVG - use unoptimized for SVGs to avoid optimization issues
   const GlyphMark = (
     <Image
       src={glyphSrc}
@@ -148,6 +148,7 @@ export function Logo({
       height={glyphSize}
       className="flex-shrink-0"
       priority
+      unoptimized
     />
   )
 
