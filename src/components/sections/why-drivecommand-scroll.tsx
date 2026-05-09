@@ -39,7 +39,7 @@ export function FlowSection({ children, className }: FlowSectionProps) {
 function Panel({ bg, text, divider, eyebrow, headline, body, children, className }: PanelProps) {
   return (
     <div
-      className={cn('panel relative flex min-h-screen items-center justify-center p-8 md:p-16', className)}
+      className={cn('panel relative flex min-h-screen items-start py-24 px-8 md:px-16 md:py-32', className)}
       style={{ backgroundColor: bg, color: text }}
     >
       <div className="mx-auto w-full max-w-7xl">
@@ -156,22 +156,22 @@ export function FlowArt({ children, className }: FlowArtProps) {
       >
         {/* Sub-cards */}
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <div className="rounded-none border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider opacity-75">DISPATCH</p>
-            <p className="mt-3 font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Drag-and-drop loads onto drivers in real time. Status, miles, ETA — all live.
+          <div className="rounded-none border border-white/30 bg-white/15 p-6 backdrop-blur-sm">
+            <p className="font-mono text-sm font-semibold uppercase tracking-wider">DISPATCH</p>
+            <p className="mt-3 font-body text-base leading-relaxed opacity-90">
+              Drag-and-drop loads onto drivers. See status, miles, and ETA update live. No refresh needed.
             </p>
           </div>
-          <div className="rounded-none border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider opacity-75">SETTLEMENTS</p>
-            <p className="mt-3 font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Pay drivers correctly the first time. Per-mile, percentage, or hybrid — all automated.
+          <div className="rounded-none border border-white/30 bg-white/15 p-6 backdrop-blur-sm">
+            <p className="font-mono text-sm font-semibold uppercase tracking-wider">SETTLEMENTS</p>
+            <p className="mt-3 font-body text-base leading-relaxed opacity-90">
+              Pay drivers correctly the first time. Per-mile, percentage, or hybrid splits calculated automatically.
             </p>
           </div>
-          <div className="rounded-none border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider opacity-75">COMPLIANCE</p>
-            <p className="mt-3 font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              HOS, DOT, IFTA, and FMCSA logs — generated from data you already have.
+          <div className="rounded-none border border-white/30 bg-white/15 p-6 backdrop-blur-sm">
+            <p className="font-mono text-sm font-semibold uppercase tracking-wider">COMPLIANCE</p>
+            <p className="mt-3 font-body text-base leading-relaxed opacity-90">
+              HOS, DOT, IFTA logs generated from data you already have. No double entry.
             </p>
           </div>
         </div>
@@ -194,22 +194,22 @@ export function FlowArt({ children, className }: FlowArtProps) {
       >
         {/* Sub-cards */}
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          <div className="rounded-none border border-black/10 bg-white p-6">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider opacity-60">PER-TRUCK</p>
-            <p className="mt-3 font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+          <div className="rounded-none border border-black/10 bg-white p-6 shadow-sm">
+            <p className="font-mono text-sm font-semibold uppercase tracking-wider text-[#6E6E73]">PER-TRUCK</p>
+            <p className="mt-3 font-body text-base leading-relaxed">
               Pay only for active trucks. Scale up in busy season, down in quiet months. No seat charges.
             </p>
           </div>
-          <div className="rounded-none border border-black/10 bg-white p-6">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider opacity-60">NO LOCK-IN</p>
-            <p className="mt-3 font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Month-to-month by default. Annual discount available, never required.
+          <div className="rounded-none border border-black/10 bg-white p-6 shadow-sm">
+            <p className="font-mono text-sm font-semibold uppercase tracking-wider text-[#6E6E73]">NO LOCK-IN</p>
+            <p className="mt-3 font-body text-base leading-relaxed">
+              Month-to-month by default. Annual discount available, but never required.
             </p>
           </div>
-          <div className="rounded-none border border-black/10 bg-white p-6">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider opacity-60">EVERY FEATURE</p>
-            <p className="mt-3 font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Same product across every tier. We don't gate compliance behind enterprise plans.
+          <div className="rounded-none border border-black/10 bg-white p-6 shadow-sm">
+            <p className="font-mono text-sm font-semibold uppercase tracking-wider text-[#6E6E73]">ALL FEATURES</p>
+            <p className="mt-3 font-body text-base leading-relaxed">
+              Same product on every tier. We don&apos;t gate compliance behind enterprise pricing.
             </p>
           </div>
         </div>
@@ -234,20 +234,20 @@ export function FlowArt({ children, className }: FlowArtProps) {
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           <div className="space-y-3">
             <p className="font-mono text-[clamp(3rem,6vw,5rem)] font-bold leading-none">99.7%</p>
-            <p className="font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <p className="font-body text-base leading-relaxed opacity-90">
               HOS compliance rate across customer fleets in the last 12 months.
             </p>
           </div>
           <div className="space-y-3">
             <p className="font-mono text-[clamp(3rem,6vw,5rem)] font-bold leading-none">0</p>
-            <p className="font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Manual IFTA filings required. We file from the GPS data you're already capturing.
+            <p className="font-body text-base leading-relaxed opacity-90">
+              Manual IFTA filings required. Filed automatically from GPS data.
             </p>
           </div>
           <div className="space-y-3">
             <p className="font-mono text-[clamp(3rem,6vw,5rem)] font-bold leading-none">1-CLICK</p>
-            <p className="font-body text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              DOT audit packages. Past 6 months of logs, in seconds.
+            <p className="font-body text-base leading-relaxed opacity-90">
+              DOT audit packages. Six months of logs exported in seconds.
             </p>
           </div>
         </div>

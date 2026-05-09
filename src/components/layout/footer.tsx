@@ -46,7 +46,7 @@ export function Footer() {
         {/* Logo + tagline */}
         <div className="mb-10">
           <Link href="/" aria-label="DriveCommand home">
-            <Logo variant="horizontal" size="md" background="ink" />
+            <Logo variant="horizontal" size="md" background="auto" />
           </Link>
           <p
             className="mt-2 text-sm font-body max-w-xs"
