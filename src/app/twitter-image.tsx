@@ -11,7 +11,7 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-// Image generation - same as OG image
+// Image generation - same as OG image for consistency
 export default async function Image() {
   return new ImageResponse(
     (
@@ -23,31 +23,35 @@ export default async function Image() {
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          backgroundColor: '#1D1D1F',
+          backgroundColor: '#141619',
           padding: '80px',
         }}
       >
-        {/* Logo glyph */}
+        {/* Logo glyph - correct 500x500 viewBox */}
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '40px' }}>
           <svg
-            width="80"
-            height="80"
-            viewBox="0 0 400 500"
+            width="100"
+            height="100"
+            viewBox="0 0 500 500"
             fill="none"
           >
-            {/* Blue arrow/D shape */}
+            {/* Signal Blue left shape */}
             <path
-              d="M 152 227 L 126 213 L 109 203 L 87 191 L 79 186 L 78 279 L 83 281 L 107 294 L 158 320 L 158 410 L 81 371 L 56 357 L 32 343 L 5 328 L 1 325 L 1 145 L 24 132 L 39 123 L 68 106 L 77 101 L 81 102 L 100 112 L 123 125 L 152 141 L 152 228 L 152 227 Z"
-              fill="#0066CC"
+              d="M 252.861 234.066 L 226.697 219.631 L 209.697 209.631 L 187.697 197.631 L 179.697 192.631 L 178.697 285.631 L 183.697 287.631 L 207.697 300.631 L 258.409 326.536 L 258.951 416.518 L 181.698 377.631 L 156.698 363.631 L 132.698 349.631 L 105.698 334.631 L 101.698 331.631 L 101.698 151.631 L 124.698 138.631 L 139.698 129.631 L 168.698 112.631 L 177.698 107.631 L 181.698 108.631 L 200.698 118.631 L 223.698 131.631 L 252.564 147.557 L 253.219 234.263 L 252.861 234.066 Z"
+              fill="#0a21c0"
+            />
+            <path
+              d="M 255.697 235.631 L 253.219 234.263 L 252.564 147.557 L 252.698 147.631 L 257.243 149.904 L 259.662 151.094 L 260.765 236.629 L 255.697 235.631 Z"
+              fill="#0a21c0"
             />
             {/* Silver right panels */}
             <path
-              d="M 160 317 L 160 237 L 234 205 L 235 377 L 161 409 L 160 317 Z"
-              fill="#B3B4BD"
+              d="M 260.697 323.631 L 260.697 243.469 L 334.732 210.887 L 335.667 383.128 L 261.695 415.408 L 260.697 323.631 Z"
+              fill="#b3b4bd"
             />
             <path
-              d="M 159 138 L 159 58 L 233 26 L 234 198 L 160 230 L 159 138 Z"
-              fill="#B3B4BD"
+              d="M 259.646 144.791 L 259.646 64.629 L 333.681 32.047 L 334.616 204.288 L 260.644 236.568 L 259.646 144.791 Z"
+              fill="#b3b4bd"
             />
           </svg>
         </div>
@@ -76,18 +80,18 @@ export default async function Image() {
           }}
         >
           <span style={{ color: '#FFFFFF' }}>Miles </span>
-          <span style={{ color: '#0066CC' }}>Ahead.</span>
+          <span style={{ color: '#0a21c0' }}>Ahead.</span>
         </div>
 
         {/* Subtitle */}
         <div
           style={{
             fontSize: '28px',
-            color: '#AEAEB2',
+            color: '#b3b4bd',
             fontFamily: 'system-ui, sans-serif',
           }}
         >
-          Fleet management built for carriers. Dispatch, track, and invoice — all in one place.
+          Fleet management built for carriers.
         </div>
       </div>
     ),
