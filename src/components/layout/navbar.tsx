@@ -25,8 +25,8 @@ function NavLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="relative text-sm font-body transition-colors px-3 py-2"
-      style={{ color: 'var(--text-secondary)' }}
+      className="relative text-sm font-body transition-all duration-200 px-3 py-2"
+      style={{ color: isHovered ? 'var(--text-primary)' : 'var(--text-secondary)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

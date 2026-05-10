@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
-import { useRef, useEffect, useState } from 'react'
-import { ArrowRight, Shield, Zap, Lock } from 'lucide-react'
+import { useRef, useEffect, useState, FormEvent } from 'react'
+import { ArrowRight, Shield, Zap, Lock, Mail, CheckCircle, Loader2 } from 'lucide-react'
 import { StatusBadge } from '@/components/shared/status-badge'
 import { useIsDesktop } from '@/hooks/use-is-desktop'
 
@@ -85,6 +85,35 @@ export function Hero() {
   const [mounted, setMounted] = useState(false)
   const [showCursor, setShowCursor] = useState(true)
   const [pathLengths, setPathLengths] = useState<Record<string, number>>({})
+
+  // Waitlist form state
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleWaitlistSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setError('')
+
+    if (!email || !email.includes('@')) {
+      setError('Please enter a valid email')
+      return
+    }
+
+    setIsSubmitting(true)
+
+    // Simulate API call - replace with actual endpoint
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      setIsSubmitted(true)
+      setEmail('')
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -276,43 +305,110 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* Waitlist Form */}
             <motion.div
-              className="flex flex-col sm:flex-row items-start gap-4 mb-6"
+              className="mb-6 w-full max-w-md"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.64 : 0 }}
             >
-              {/* Variant A: Primary CTA with lift + glow + arrow */}
-              <motion.div
-                initial="rest"
-                whileHover="hover"
-                whileTap="tap"
-                animate="rest"
-              >
-                <Link href="/contact" className="block">
-                  <motion.span
-                    className="inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold rounded-lg text-center"
-                    style={{
-                      backgroundColor: 'var(--accent-brand)',
-                      color: 'var(--text-on-brand)'
-                    }}
-                    variants={prefersReducedMotion ? {} : primaryButtonVariants}
-                    transition={{ duration: 0.16, ease: easeOutStrong }}
-                  >
-                    Get Early Access
-                    <motion.span
-                      className="inline-flex"
-                      variants={prefersReducedMotion ? {} : arrowVariants}
+              {isSubmitted ? (
+                <motion.div
+                  className="flex items-center gap-3 p-4 rounded-lg"
+                  style={{
+                    backgroundColor: 'var(--state-success-tint)',
+                    border: '1px solid var(--state-success)'
+                  }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, ease: easeOutStrong }}
+                >
+                  <CheckCircle size={20} style={{ color: 'var(--state-success)' }} />
+                  <span className="font-body font-medium" style={{ color: 'var(--text-primary)' }}>
+                    You&apos;re on the list! We&apos;ll be in touch soon.
+                  </span>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleWaitlistSubmit} className="space-y-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="relative flex-1">
+                      <Mail
+                        size={18}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+                        style={{ color: 'var(--text-tertiary)' }}
+                      />
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        disabled={isSubmitting}
+                        className="w-full pl-11 pr-4 py-3.5 rounded-lg font-body text-base transition-all duration-200 outline-none focus:ring-2 focus:ring-[var(--accent-brand)] focus:border-[var(--accent-brand)]"
+                        style={{
+                          backgroundColor: 'var(--surface-elevated)',
+                          color: 'var(--text-primary)',
+                          border: '1px solid var(--border-subtle)',
+                        }}
+                      />
+                    </div>
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 font-body font-semibold rounded-lg text-center whitespace-nowrap disabled:opacity-70"
+                      style={{
+                        backgroundColor: 'var(--accent-brand)',
+                        color: 'var(--text-on-brand)'
+                      }}
+                      initial="rest"
+                      whileHover={isSubmitting ? {} : "hover"}
+                      whileTap={isSubmitting ? {} : "tap"}
+                      animate="rest"
+                      variants={prefersReducedMotion ? {} : primaryButtonVariants}
                       transition={{ duration: 0.16, ease: easeOutStrong }}
                     >
-                      <ArrowRight size={16} />
-                    </motion.span>
-                  </motion.span>
-                </Link>
-              </motion.div>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          Joining...
+                        </>
+                      ) : (
+                        <>
+                          Join Waitlist
+                          <motion.span
+                            className="inline-flex"
+                            variants={prefersReducedMotion ? {} : arrowVariants}
+                            transition={{ duration: 0.16, ease: easeOutStrong }}
+                          >
+                            <ArrowRight size={16} />
+                          </motion.span>
+                        </>
+                      )}
+                    </motion.button>
+                  </div>
+                  {error && (
+                    <motion.p
+                      className="text-sm font-body"
+                      style={{ color: 'var(--state-critical)' }}
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                    >
+                      {error}
+                    </motion.p>
+                  )}
+                  <p className="text-xs font-body" style={{ color: 'var(--text-tertiary)' }}>
+                    No spam, ever. Unsubscribe anytime.
+                  </p>
+                </form>
+              )}
+            </motion.div>
 
-              {/* Variant B: Ghost button with border fill + press feedback */}
+            {/* Secondary CTA */}
+            <motion.div
+              className="flex items-center gap-4"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.72 : 0 }}
+            >
               <motion.div
                 initial="rest"
                 whileHover="hover"
@@ -323,15 +419,23 @@ export function Hero() {
               >
                 <Link
                   href="#demo"
-                  className="inline-flex items-center px-7 py-3.5 border-2 font-body font-medium rounded-lg transition-colors duration-150 text-center"
+                  className="inline-flex items-center px-5 py-2.5 border-2 font-body font-medium rounded-lg transition-colors duration-150 text-center text-sm"
                   style={{
                     borderColor: 'var(--accent-brand)',
                     color: 'var(--accent-brand)'
                   }}
                 >
-                  Watch It Work
+                  Watch Demo
                 </Link>
               </motion.div>
+              <span className="text-sm" style={{ color: 'var(--text-tertiary)' }}>or</span>
+              <Link
+                href="/contact"
+                className="text-sm font-body font-medium hover:underline"
+                style={{ color: 'var(--accent-brand)' }}
+              >
+                Talk to sales →
+              </Link>
             </motion.div>
           </div>
 
