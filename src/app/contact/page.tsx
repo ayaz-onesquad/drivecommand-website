@@ -4,10 +4,10 @@ import { Mail, Phone, MapPin } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Contact Sales',
-  description: 'Talk to our team about Enterprise pricing, custom integrations, and onboarding support.',
+  description: 'Talk to our team about custom integrations, onboarding support, and finding the right plan for your fleet.',
   openGraph: {
     title: 'Contact DriveCommand Sales',
-    description: 'Talk to our team about Enterprise pricing and custom solutions.',
+    description: 'Talk to our team about fleet management solutions for any size.',
     type: 'website',
   },
 }
@@ -16,19 +16,19 @@ const CONTACT_INFO = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'sales@drivecommand.co',
-    href: 'mailto:sales@drivecommand.co',
+    value: 'team@drivecommand.io',
+    href: 'mailto:team@drivecommand.io',
   },
   {
     icon: Phone,
     label: 'Phone',
-    value: '(888) 555-0123',
-    href: 'tel:+18885550123',
+    value: '(219) 487-0146',
+    href: 'tel:+12194870146',
   },
   {
     icon: MapPin,
     label: 'Office',
-    value: 'Austin, TX',
+    value: 'Munster, IN',
     href: null,
   },
 ]
@@ -43,7 +43,7 @@ export default function ContactPage() {
             Let&apos;s Talk
           </h1>
           <p className="font-body text-lg text-theme-secondary max-w-2xl mx-auto">
-            Interested in Enterprise? Have questions about DriveCommand?
+            Have questions about DriveCommand? Ready to get started?
             Fill out the form and we&apos;ll get back to you within one business day.
           </p>
         </div>
@@ -83,14 +83,14 @@ export default function ContactPage() {
 
               <div className="mt-10 p-6 rounded-xl border bg-theme-card border-theme-medium">
                 <h3 className="font-display text-lg font-semibold text-theme-primary mb-3">
-                  Enterprise Benefits
+                  Why DriveCommand?
                 </h3>
                 <ul className="space-y-2 font-body text-sm text-theme-secondary">
-                  <li>• Unlimited trucks and users</li>
-                  <li>• Custom integrations & API access</li>
-                  <li>• Dedicated account manager</li>
-                  <li>• SLA-backed uptime guarantee</li>
-                  <li>• Custom onboarding & training</li>
+                  <li>• Scales with you — 1 truck or 100+</li>
+                  <li>• All features included, no upsells</li>
+                  <li>• Real support from trucking experts</li>
+                  <li>• No long-term contracts required</li>
+                  <li>• Built by carriers, for carriers</li>
                 </ul>
               </div>
             </div>

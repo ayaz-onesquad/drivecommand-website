@@ -40,7 +40,7 @@ export function Footer() {
           className="text-xs font-mono mb-10"
           style={{ color: 'var(--text-muted)' }}
         >
-          DriveCommand · Built for carriers · Not for enterprise
+          DriveCommand · Built for carriers · Scales with you
         </p>
 
         {/* Logo + tagline */}

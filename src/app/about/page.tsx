@@ -26,7 +26,7 @@ const VALUES = [
   {
     icon: Target,
     title: 'Focused Simplicity',
-    description: 'Enterprise tools are bloated. We build what you need, skip what you don\'t, and make it all work together.',
+    description: 'Most fleet software is bloated. We build what you need, skip what you don\'t, and make it all work together.',
   },
   {
     icon: Shield,
@@ -37,24 +37,19 @@ const VALUES = [
 
 const TEAM = [
   {
-    name: 'Marcus Chen',
-    role: 'Co-Founder & CEO',
-    bio: 'Former logistics operator. Built and sold a 50-truck fleet before starting DriveCommand to solve the software problems he faced firsthand.',
+    name: 'Ayaz Mohammed',
+    role: 'Co-Founder',
+    bio: 'Former logistics carrier owner who built and ran a 20-truck fleet. Software engineer who experienced firsthand the gaps in fleet management tools and set out to fix them.',
   },
   {
-    name: 'Sarah Williams',
-    role: 'Co-Founder & CTO',
-    bio: 'Ex-Convoy engineering lead. 12 years building logistics systems that scale from startup to enterprise.',
+    name: 'Sammy Issa',
+    role: 'Co-Founder',
+    bio: 'Owner-operator turned software engineer. Brings real-world experience from behind the wheel and under the hood to every feature we build.',
   },
   {
-    name: 'James Rodriguez',
-    role: 'Head of Product',
-    bio: 'Previously product at Samsara. Obsessed with building software that trucking professionals actually want to use.',
-  },
-  {
-    name: 'Lisa Thompson',
-    role: 'Head of Customer Success',
-    bio: '15 years in trucking operations. Knows the industry inside and out and leads our support team.',
+    name: 'Nadeem Awawda',
+    role: 'Co-Founder',
+    bio: 'Former dispatcher and software engineer. Knows the daily chaos of coordinating loads and drivers, and builds tools that actually solve those problems.',
   },
 ]
 
@@ -88,8 +83,8 @@ export default function AboutPage() {
           <div className="rounded-2xl border p-8 md:p-12 bg-theme-card border-theme-medium">
             <h2 className="font-display text-2xl font-bold text-theme-primary mb-6">Our Mission</h2>
             <p className="font-body text-lg text-theme-secondary leading-relaxed mb-6">
-              We believe independent truckers and growing fleets deserve the same powerful tools
-              that enterprise carriers have — without the enterprise complexity or price tag.
+              We believe every carrier — from owner-operators to growing fleets — deserves powerful,
+              professional tools without the complexity or inflated price tags.
             </p>
             <p className="font-body text-lg text-theme-secondary leading-relaxed">
               DriveCommand exists to level the playing field. We build software that helps smaller
@@ -151,9 +146,9 @@ export default function AboutPage() {
             Leadership Team
           </h2>
           <p className="font-body text-theme-secondary text-center mb-12 max-w-2xl mx-auto">
-            A team with deep roots in trucking and logistics, building software that actually solves real problems.
+            We grew up around logistics and technology. Three software engineers who lived the trucking life — running fleets, dispatching loads, and driving trucks — combined both worlds to build DriveCommand.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {TEAM.map((person) => (
               <div
                 key={person.name}

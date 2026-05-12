@@ -5,7 +5,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { cn } from '@/lib/utils'
-import { CountUp, CountUpPercentage } from '@/components/shared/count-up'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -154,25 +153,26 @@ export function FlowArt({ children, className }: FlowArtProps) {
           </>
         }
         body="Stop paying for separate dispatch, GPS, payroll, invoicing, and compliance tools. DriveCommand collapses them into one surface — loads, lanes, drivers, hours, settlements — so decisions happen in seconds, not minutes."
+        className="pb-8 md:pb-12"
       >
-        {/* Sub-cards */}
-        <div className="mt-8 md:mt-10 grid gap-4 md:gap-5 md:grid-cols-3">
-          <div className="rounded-lg border border-white/30 bg-white/15 p-4 md:p-5 backdrop-blur-sm">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider">DISPATCH</p>
-            <p className="mt-2 font-body text-sm leading-relaxed opacity-90">
-              Drag-and-drop loads onto drivers. See status, miles, and ETA update live. No refresh needed.
+        {/* Sub-cards - added extra bottom padding to prevent cutoff */}
+        <div className="mt-6 md:mt-8 grid gap-3 md:gap-4 md:grid-cols-3 pb-4">
+          <div className="rounded-lg border border-white/30 bg-white/15 p-3 md:p-4 backdrop-blur-sm">
+            <p className="font-mono text-[10px] md:text-xs font-semibold uppercase tracking-wider">DISPATCH</p>
+            <p className="mt-1.5 font-body text-xs md:text-sm leading-relaxed opacity-90">
+              Drag-and-drop loads onto drivers. Live status, miles, and ETA updates.
             </p>
           </div>
-          <div className="rounded-lg border border-white/30 bg-white/15 p-4 md:p-5 backdrop-blur-sm">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider">SETTLEMENTS</p>
-            <p className="mt-2 font-body text-sm leading-relaxed opacity-90">
-              Pay drivers correctly the first time. Per-mile, percentage, or hybrid splits calculated automatically.
+          <div className="rounded-lg border border-white/30 bg-white/15 p-3 md:p-4 backdrop-blur-sm">
+            <p className="font-mono text-[10px] md:text-xs font-semibold uppercase tracking-wider">SETTLEMENTS</p>
+            <p className="mt-1.5 font-body text-xs md:text-sm leading-relaxed opacity-90">
+              Pay drivers correctly the first time. Auto-calculated splits.
             </p>
           </div>
-          <div className="rounded-lg border border-white/30 bg-white/15 p-4 md:p-5 backdrop-blur-sm">
-            <p className="font-mono text-xs font-semibold uppercase tracking-wider">COMPLIANCE</p>
-            <p className="mt-2 font-body text-sm leading-relaxed opacity-90">
-              HOS, DOT, IFTA logs generated from data you already have. No double entry.
+          <div className="rounded-lg border border-white/30 bg-white/15 p-3 md:p-4 backdrop-blur-sm">
+            <p className="font-mono text-[10px] md:text-xs font-semibold uppercase tracking-wider">COMPLIANCE</p>
+            <p className="mt-1.5 font-body text-xs md:text-sm leading-relaxed opacity-90">
+              HOS, DOT, IFTA logs generated automatically. No double entry.
             </p>
           </div>
         </div>
@@ -210,60 +210,51 @@ export function FlowArt({ children, className }: FlowArtProps) {
           <div className="rounded-lg border border-black/10 bg-white p-4 md:p-5 shadow-sm">
             <p className="font-mono text-xs font-semibold uppercase tracking-wider text-[#6E6E73]">ALL FEATURES</p>
             <p className="mt-2 font-body text-sm leading-relaxed">
-              Same product on every tier. We don&apos;t gate compliance behind enterprise pricing.
+              Same product on every plan. We don&apos;t gate critical features behind premium tiers.
             </p>
           </div>
         </div>
       </Panel>
 
-      {/* Panel 04 - Compliance built in */}
+      {/* Panel 04 - Why choose us */}
       <Panel
         bg="#003C82"
         text="#E5F0FB"
         divider="rgba(229,240,251,0.3)"
-        eyebrow="04 — COMPLIANCE, AUTOMATED"
+        eyebrow="04 — WHY CHOOSE US"
         headline={
           <>
-            DOT-Ready. <br />
-            IFTA-Ready. <br />
-            Audit-Ready.
+            Built By <br />
+            Carriers, <br />
+            For Carriers.
           </>
         }
-        body="Compliance isn't a feature we tacked on — it's how the platform was built. HOS violations flagged before they happen. IFTA filed from the data you're already capturing. Audit packages generated in one click."
+        body="We're not another Silicon Valley startup guessing what trucking needs. Our team grew up in logistics — running trucks, dispatching loads, and dealing with the same headaches you face. DriveCommand is the tool we wished we had."
       >
-        {/* Stat cards */}
+        {/* Value props */}
         <div className="mt-8 md:mt-10 grid gap-6 md:gap-8 md:grid-cols-3">
           <div className="space-y-2">
-            <CountUpPercentage
-              end={99.7}
-              duration={1500}
-              className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none block"
-            />
+            <p className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none">20+</p>
             <p className="font-body text-sm leading-relaxed opacity-90">
-              HOS compliance rate across customer fleets in the last 12 months.
+              Years of combined logistics experience on our founding team.
             </p>
           </div>
           <div className="space-y-2">
-            <CountUp
-              end={0}
-              duration={800}
-              delay={200}
-              className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none block"
-            />
+            <p className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none">24/7</p>
             <p className="font-body text-sm leading-relaxed opacity-90">
-              Manual IFTA filings required. Filed automatically from GPS data.
+              Real support from people who understand trucking, not scripts.
             </p>
           </div>
           <div className="space-y-2">
-            <p className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none">1-CLICK</p>
+            <p className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none">100%</p>
             <p className="font-body text-sm leading-relaxed opacity-90">
-              DOT audit packages. Six months of logs exported in seconds.
+              Designed around how carriers actually work, not how software thinks they should.
             </p>
           </div>
         </div>
       </Panel>
 
-      {/* Panel 05 - Built for SMB */}
+      {/* Panel 05 - Built for all carriers */}
       <Panel
         bg="#1D1D1F"
         text="#FFFFFF"
@@ -272,11 +263,11 @@ export function FlowArt({ children, className }: FlowArtProps) {
         headline={
           <>
             For <span style={{ color: '#0066CC' }}>Carriers</span> <br />
-            Running 1 To 25 <br />
-            Trucks.
+            Of Every <br />
+            Size.
           </>
         }
-        body="Samsara built for 500-truck fleets. Motive built for ELD compliance. We built DriveCommand for the operators they ignore — owner-ops, family carriers, growing fleets. Start a 14-day trial. No credit card. No demo gate."
+        body="Whether you're an owner-operator with one truck or a growing fleet with hundreds, DriveCommand scales with you. Start lean, grow big — our platform adapts to your needs. 14-day trial. No credit card. No demo gate."
         className="pb-32 md:pb-40"
       >
         {/* CTA section */}

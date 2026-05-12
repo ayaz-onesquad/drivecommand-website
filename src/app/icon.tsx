@@ -3,10 +3,10 @@ import { ImageResponse } from 'next/og'
 // Route segment config
 export const runtime = 'edge'
 
-// Image metadata
+// Image metadata - larger for crisp display on retina
 export const size = {
-  width: 32,
-  height: 32,
+  width: 180,
+  height: 180,
 }
 export const contentType = 'image/png'
 
@@ -22,13 +22,13 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#141619',
-          borderRadius: '6px',
+          borderRadius: '22px',
         }}
       >
-        {/* Glyph with correct 500x500 viewBox */}
+        {/* Glyph with correct 500x500 viewBox - fills most of the icon */}
         <svg
-          width="26"
-          height="26"
+          width="140"
+          height="140"
           viewBox="0 0 500 500"
           fill="none"
         >

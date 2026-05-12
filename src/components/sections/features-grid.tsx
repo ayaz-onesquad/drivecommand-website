@@ -340,7 +340,7 @@ export function FeaturesGrid() {
               Everything Your Fleet Needs. Nothing It Doesn&apos;t.
             </h2>
             <p className="font-body text-lg max-w-2xl" style={{ color: 'var(--text-secondary)' }}>
-              Built for carriers running 2 to 200 trucks. No enterprise bloat. No per-seat games.
+              Built for carriers of any size. Scales with you as you grow. No per-seat games.
             </p>
           </motion.div>
         </motion.div>

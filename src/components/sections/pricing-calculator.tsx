@@ -362,11 +362,11 @@ export function PricingCalculator() {
                 Available in early access
               </p>
 
-              {/* Enterprise note */}
+              {/* Large fleet note */}
               <p className="font-body text-xs text-theme-muted text-center mt-4">
                 Need more than 50 trucks?{' '}
                 <Link href="/contact" className="text-accent-blue hover:underline">
-                  Contact us for Enterprise pricing
+                  Contact us for custom pricing
                 </Link>
               </p>
             </div>

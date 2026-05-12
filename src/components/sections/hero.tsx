@@ -305,16 +305,22 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* Waitlist Form */}
+            {/* Waitlist Form - Prominent with glow effect */}
             <motion.div
-              className="mb-6 w-full max-w-md"
+              className="mb-6 w-full max-w-md relative"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: easeOutStrong, delay: shouldAnimate ? 0.64 : 0 }}
             >
+              {/* Subtle glow behind form */}
+              <div
+                className="absolute -inset-2 rounded-xl blur-xl opacity-30 pointer-events-none"
+                style={{ backgroundColor: 'var(--accent-brand)' }}
+              />
+
               {isSubmitted ? (
                 <motion.div
-                  className="flex items-center gap-3 p-4 rounded-lg"
+                  className="relative flex items-center gap-3 p-4 rounded-lg"
                   style={{
                     backgroundColor: 'var(--state-success-tint)',
                     border: '1px solid var(--state-success)'
@@ -329,61 +335,72 @@ export function Hero() {
                   </span>
                 </motion.div>
               ) : (
-                <form onSubmit={handleWaitlistSubmit} className="space-y-3">
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <div className="relative flex-1">
-                      <Mail
-                        size={18}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
-                        style={{ color: 'var(--text-tertiary)' }}
-                      />
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        disabled={isSubmitting}
-                        className="w-full pl-11 pr-4 py-3.5 rounded-lg font-body text-base transition-all duration-200 outline-none focus:ring-2 focus:ring-[var(--accent-brand)] focus:border-[var(--accent-brand)]"
-                        style={{
-                          backgroundColor: 'var(--surface-elevated)',
-                          color: 'var(--text-primary)',
-                          border: '1px solid var(--border-subtle)',
-                        }}
-                      />
-                    </div>
-                    <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-3.5 font-body font-semibold rounded-lg text-center whitespace-nowrap disabled:opacity-70"
-                      style={{
-                        backgroundColor: 'var(--accent-brand)',
-                        color: 'var(--text-on-brand)'
-                      }}
-                      initial="rest"
-                      whileHover={isSubmitting ? {} : "hover"}
-                      whileTap={isSubmitting ? {} : "tap"}
-                      animate="rest"
-                      variants={prefersReducedMotion ? {} : primaryButtonVariants}
-                      transition={{ duration: 0.16, ease: easeOutStrong }}
+                <form onSubmit={handleWaitlistSubmit} className="relative space-y-3">
+                  {/* Form container with stronger visual treatment */}
+                  <div
+                    className="p-1 rounded-xl"
+                    style={{
+                      background: 'linear-gradient(135deg, var(--accent-brand) 0%, var(--surface-elevated) 50%, var(--accent-brand) 100%)',
+                    }}
+                  >
+                    <div
+                      className="flex flex-col sm:flex-row gap-2 p-2 rounded-lg"
+                      style={{ backgroundColor: 'var(--surface-elevated)' }}
                     >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 size={16} className="animate-spin" />
-                          Joining...
-                        </>
-                      ) : (
-                        <>
-                          Join Waitlist
-                          <motion.span
-                            className="inline-flex"
-                            variants={prefersReducedMotion ? {} : arrowVariants}
-                            transition={{ duration: 0.16, ease: easeOutStrong }}
-                          >
-                            <ArrowRight size={16} />
-                          </motion.span>
-                        </>
-                      )}
-                    </motion.button>
+                      <div className="relative flex-1">
+                        <Mail
+                          size={18}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+                          style={{ color: 'var(--accent-brand)' }}
+                        />
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter your email for early access"
+                          disabled={isSubmitting}
+                          className="w-full pl-11 pr-4 py-3.5 rounded-lg font-body text-base transition-all duration-200 outline-none focus:ring-2 focus:ring-[var(--accent-brand)]"
+                          style={{
+                            backgroundColor: 'var(--surface-base)',
+                            color: 'var(--text-primary)',
+                            border: '2px solid var(--border-subtle)',
+                          }}
+                        />
+                      </div>
+                      <motion.button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3.5 font-body font-semibold rounded-lg text-center whitespace-nowrap disabled:opacity-70"
+                        style={{
+                          backgroundColor: 'var(--accent-brand)',
+                          color: 'var(--text-on-brand)'
+                        }}
+                        initial="rest"
+                        whileHover={isSubmitting ? {} : "hover"}
+                        whileTap={isSubmitting ? {} : "tap"}
+                        animate="rest"
+                        variants={prefersReducedMotion ? {} : primaryButtonVariants}
+                        transition={{ duration: 0.16, ease: easeOutStrong }}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 size={16} className="animate-spin" />
+                            Joining...
+                          </>
+                        ) : (
+                          <>
+                            Join Waitlist
+                            <motion.span
+                              className="inline-flex"
+                              variants={prefersReducedMotion ? {} : arrowVariants}
+                              transition={{ duration: 0.16, ease: easeOutStrong }}
+                            >
+                              <ArrowRight size={16} />
+                            </motion.span>
+                          </>
+                        )}
+                      </motion.button>
+                    </div>
                   </div>
                   {error && (
                     <motion.p
@@ -395,8 +412,8 @@ export function Hero() {
                       {error}
                     </motion.p>
                   )}
-                  <p className="text-xs font-body" style={{ color: 'var(--text-tertiary)' }}>
-                    No spam, ever. Unsubscribe anytime.
+                  <p className="text-xs font-body text-center" style={{ color: 'var(--text-tertiary)' }}>
+                    🚀 Early access · No spam · Unsubscribe anytime
                   </p>
                 </form>
               )}
