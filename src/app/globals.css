@@ -24,13 +24,13 @@
   --text-muted: var(--dc-state-scheduled);
   --accent-blue: var(--color-accent);        /* Signal Blue */
   --accent-blue-hover: var(--color-accent-hover);
-  --accent-cyan: var(--dc-l150);             /* Electric L150 */
+  --accent-cyan: #5AC8FA;                    /* Air Blue - bright cyan for dark mode */
   --accent-green: var(--color-live-green);
   --accent-load: var(--color-accent);        /* Signal Blue */
   --accent-signal: var(--state-success);  /* Success green - semantic */
   --accent-stripe: var(--state-warning);  /* Warning amber - semantic */
   --glow-blue: var(--color-glow-accent);     /* Signal Blue glow */
-  --glow-cyan: rgba(142, 155, 255, 0.10);    /* Electric L150 glow */
+  --glow-cyan: rgba(90, 200, 250, 0.15);     /* Air Blue glow */
 
   /* Navbar specific */
   --navbar-bg: rgba(30, 37, 51, 0.95);
@@ -90,13 +90,13 @@
   --text-muted: var(--dc-state-scheduled);
   --accent-blue: var(--color-accent);
   --accent-blue-hover: var(--color-accent-hover);
-  --accent-cyan: var(--dc-l150);
+  --accent-cyan: #5AC8FA;
   --accent-green: var(--color-live-green);
   --accent-load: var(--color-accent);
   --accent-signal: var(--state-success);  /* Success green - semantic */
   --accent-stripe: var(--state-warning);  /* Warning amber - semantic */
   --glow-blue: var(--color-glow-accent);
-  --glow-cyan: rgba(142, 155, 255, 0.10);
+  --glow-cyan: rgba(90, 200, 250, 0.15);
 }
 
 @layer base {

@@ -63,8 +63,43 @@ Use the `background` prop to specify context:
 ### Brand Documentation
 
 - **Developer Guide:** `/docs/BRAND_USAGE.md`
+- **Apple Design Standards:** `/docs/APPLE_STANDARDS.md`
 - **Design Tokens (JSON):** `/brand/tokens.json`
 - **Brand Preview (dev):** `http://localhost:3000/brand-preview`
+
+### Animation Components
+
+Use these shared components for consistent animations:
+
+```tsx
+// Count-up numbers (stats, percentages, dollars)
+import { CountUp, CountUpPercentage, CountUpDollars } from '@/components/shared/count-up'
+<CountUpPercentage end={99.7} duration={1500} />
+<CountUpDollars end={4200} />
+
+// Scroll reveal (fade + slide up on viewport entry)
+import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/shared/scroll-reveal'
+<ScrollReveal direction="up" distance={60} duration={0.8}>
+  <Card />
+</ScrollReveal>
+
+// Staggered grid animations
+<StaggerContainer stagger={0.12}>
+  {items.map(item => (
+    <StaggerItem key={item.id}>
+      <Card />
+    </StaggerItem>
+  ))}
+</StaggerContainer>
+```
+
+### Animation Guidelines
+
+- **Duration**: 600-800ms for scroll reveals, 1200ms for count-ups
+- **Easing**: `cubic-bezier(0.16, 1, 0.3, 1)` — dramatic ease-out
+- **Stagger**: 100-150ms between sequential elements
+- **Distance**: 40-60px slide for reveals
+- **Always respect `prefers-reduced-motion`**
 
 ## Project Structure
 

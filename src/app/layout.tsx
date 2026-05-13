@@ -3,6 +3,7 @@ import { DM_Sans, Inter, JetBrains_Mono } from 'next/font/google'
 import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/lib/theme-provider'
+import { JsonLd } from '@/components/shared/json-ld'
 import './globals.css'
 
 const dmSans = DM_Sans({
@@ -38,6 +39,21 @@ export const metadata: Metadata = {
   },
   description:
     'Carrier operations built for the road. Dispatch, track, invoice, and stay compliant — all in one place. Miles Ahead.',
+  keywords: [
+    'fleet management',
+    'trucking software',
+    'dispatch software',
+    'carrier TMS',
+    'owner operator software',
+    'IFTA reporting',
+    'HOS compliance',
+    'truck dispatch',
+    'freight management',
+    'settlement software',
+  ],
+  authors: [{ name: 'DriveCommand' }],
+  creator: 'DriveCommand',
+  publisher: 'DriveCommand',
   openGraph: {
     siteName: 'DriveCommand',
     type: 'website',
@@ -45,10 +61,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
+    creator: '@drivecommand',
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // Add these when you have the verification codes
+    // google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
   },
 }
 
@@ -83,6 +112,7 @@ export default function RootLayout({
       <head>
         <meta name="color-scheme" content="light dark" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <JsonLd />
       </head>
       <body>
         <ThemeProvider>

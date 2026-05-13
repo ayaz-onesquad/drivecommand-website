@@ -5,6 +5,7 @@ import { motion, useInView, useReducedMotion } from 'motion/react'
 import { FileSpreadsheet, PhoneOff, Clock } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useParallax, useContentParallax } from '@/hooks/use-parallax'
+import { CountUp, CountUpPercentage, CountUpDollars } from '@/components/shared/count-up'
 
 // TIER 2: Highway lines pattern that moves at 0.25x scroll speed
 function ParallaxHighwayLines({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
@@ -31,7 +32,9 @@ function ParallaxHighwayLines({ y }: { y: ReturnType<typeof useParallax>['y'] })
 
 interface PainCardProps {
   icon: LucideIcon
-  stat: string
+  statValue: number
+  statType: 'percent' | 'multiplier' | 'dollars'
+  statSuffix?: string
   label: string
   cost: string
   delay: number
@@ -40,19 +43,23 @@ interface PainCardProps {
 const PAIN_CARDS: Omit<PainCardProps, 'delay'>[] = [
   {
     icon: FileSpreadsheet,
-    stat: '67%',
+    statValue: 67,
+    statType: 'percent',
     label: 'of small carriers still dispatch on spreadsheets',
     cost: 'Average 11 hours/week lost to manual data entry',
   },
   {
     icon: PhoneOff,
-    stat: '3.2x',
+    statValue: 3.2,
+    statType: 'multiplier',
+    statSuffix: 'x',
     label: 'more driver turnover when comms are disorganized',
     cost: 'Replacing a driver costs $8,000–$12,000 in recruiting and downtime',
   },
   {
     icon: Clock,
-    stat: '$4,200',
+    statValue: 4200,
+    statType: 'dollars',
     label: 'average revenue lost per truck per year from unbilled loads',
     cost: 'One missed POD can kill an entire load\'s margin',
   },
@@ -67,22 +74,62 @@ const PAIN_CARDS: Omit<PainCardProps, 'delay'>[] = [
  *
  * Numbers carry weight through Display-scale typography — no decorative color.
  */
-function PainCard({ icon: Icon, stat, label, cost, delay }: PainCardProps) {
+function PainCard({ icon: Icon, statValue, statType, statSuffix, label, cost, delay }: PainCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const prefersReducedMotion = useReducedMotion()
 
+  const renderStat = () => {
+    const className = "font-display text-4xl sm:text-5xl font-bold mb-2 tnum"
+    const style = { color: 'var(--text-primary)' }
+
+    switch (statType) {
+      case 'percent':
+        return (
+          <CountUpPercentage
+            end={statValue}
+            duration={1500}
+            delay={delay * 1000}
+            className={className}
+            style={style}
+          />
+        )
+      case 'dollars':
+        return (
+          <CountUpDollars
+            end={statValue}
+            duration={1500}
+            delay={delay * 1000}
+            className={className}
+            style={style}
+          />
+        )
+      case 'multiplier':
+        return (
+          <CountUp
+            end={statValue}
+            decimals={1}
+            suffix={statSuffix || 'x'}
+            duration={1500}
+            delay={delay * 1000}
+            className={className}
+            style={style}
+          />
+        )
+    }
+  }
+
   return (
     <motion.div
       ref={ref}
-      className="relative rounded-none p-8 border"
+      className="relative rounded-lg p-8 border"
       style={{
         backgroundColor: 'var(--surface-elevated)',
         borderColor: 'var(--border-divider)',
       }}
-      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: prefersReducedMotion ? 0 : delay }}
+      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 50, scale: prefersReducedMotion ? 1 : 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.7, delay: prefersReducedMotion ? 0 : delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Icon in top-left */}
       <div className="absolute top-6 left-6">
@@ -91,11 +138,8 @@ function PainCard({ icon: Icon, stat, label, cost, delay }: PainCardProps) {
 
       <div className="pt-8">
         {/* Stat number — Display-scale carries weight, no decorative color */}
-        <div
-          className="font-display text-4xl sm:text-5xl font-bold mb-2 tnum"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          {stat}
+        <div style={{ color: 'var(--text-primary)' }}>
+          {renderStat()}
         </div>
 
         {/* Label in primary text */}
@@ -166,9 +210,11 @@ export function ProblemBar() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {PAIN_CARDS.map((card, index) => (
             <PainCard
-              key={card.stat}
+              key={card.statValue}
               icon={card.icon}
-              stat={card.stat}
+              statValue={card.statValue}
+              statType={card.statType}
+              statSuffix={card.statSuffix}
               label={card.label}
               cost={card.cost}
               delay={index * 0.15}
