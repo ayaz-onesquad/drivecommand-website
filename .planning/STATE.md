@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 Phase: 2 of 4 (Landing Page)
 Plan: 4 of 4 in current phase
 Status: Phase 2 COMPLETE
-Last activity: 2026-05-08 — Completed quick task 9: Mount WhyDriveCommandScroll on home page with navigation links
+Last activity: 2026-05-28 — Completed quick task 10: Insert waitlist signups into LineUp Supabase
 
 Progress: [██████████] 100% (Phase 1 + 2)
 
@@ -58,6 +58,7 @@ Recent decisions affecting current work:
 - [Phase quick-6]: Typography scale added (Display 96/92 through Code 14/24) per pg 12-13
 - [Phase quick-6]: Motion easing cubic-out (0.22, 1) and 0px corner radius per pg 14, 16B
 - [Phase quick-7]: Import tokens.json directly into tailwind.config.ts for single source of truth - changing brand colors now requires editing ONE file only
+- [Phase quick-10]: Supabase admin client with service role key for lead insertion; non-blocking insert pattern ensures user success even on CRM failure
 
 ### Pending Todos
 
@@ -81,9 +82,10 @@ None yet.
 | 7 | Token-driven UX refactor: brand/tokens.json single source of truth, Tailwind import, zero hardcoded colors | 2026-05-08 | c44277b | [7-token-driven-ux-refactor-for-drivecomman](./quick/7-token-driven-ux-refactor-for-drivecomman/) |
 | 8 | GSAP scroll dependencies + WhyDriveCommandScroll 5-panel scroll-pinned section with rotation animations | 2026-05-08 | 7a43c43 | [8-add-gsap-scroll-dependencies-and-whydriv](./quick/8-add-gsap-scroll-dependencies-and-whydriv/) |
 | 9 | Mount WhyDriveCommandScroll on home page with Why us navigation links | 2026-05-08 | 0fd6d5d | [9-mount-whydrivecommandscroll-on-home-page](./quick/9-mount-whydrivecommandscroll-on-home-page/) |
+| 10 | Insert waitlist signups into LineUp Supabase with tenant ID and source tracking | 2026-05-28 | 7267f80 | [10-insert-waitlist-signups-into-lineup-supa](./quick/10-insert-waitlist-signups-into-lineup-supa/) |
 
 ## Session Continuity
 
-Last session: 2026-05-08
-Stopped at: Completed quick-9 (Mount WhyDriveCommandScroll) — 3 tasks, 4 files modified, ~2m duration
+Last session: 2026-05-28
+Stopped at: Completed quick-10 (Insert waitlist signups into LineUp Supabase) — 2 tasks, 4 files modified, ~2m duration
 Resume file: None
