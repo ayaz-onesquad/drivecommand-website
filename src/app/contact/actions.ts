@@ -1,20 +1,15 @@
 'use server'
 
 import { z } from 'zod'
-import { supabaseAdmin } from '@/lib/supabase/admin'
-
-// Validate LINEUP_TENANT_ID at module load time
-const LINEUP_TENANT_ID = process.env.LINEUP_TENANT_ID
-if (!LINEUP_TENANT_ID) {
-  throw new Error('LINEUP_TENANT_ID environment variable is required')
-}
+import { getSupabaseAdmin } from '@/lib/supabase/admin'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email address'),
   company: z.string().min(1, 'Company name is required'),
   fleetSize: z.string().min(1, 'Please select your fleet size'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  role: z.string().min(1, 'Please select your role'),
+  message: z.string().min(10, 'Please describe the problems you want to solve'),
 })
 
 export type ContactFormState = {
@@ -25,6 +20,7 @@ export type ContactFormState = {
     email?: string[]
     company?: string[]
     fleetSize?: string[]
+    role?: string[]
     message?: string[]
   }
 }
@@ -38,6 +34,7 @@ export async function submitContactForm(
     email: formData.get('email'),
     company: formData.get('company'),
     fleetSize: formData.get('fleetSize'),
+    role: formData.get('role'),
     message: formData.get('message'),
   }
 
@@ -60,24 +57,81 @@ export async function submitContactForm(
     // Log the submission (in production, send email via Resend)
     console.log('Contact form submission:', validated.data)
 
-    // Insert lead into LineUp Supabase (non-blocking)
-    try {
-      const { error } = await supabaseAdmin
-        .from('leads')
-        .insert({
-          tenant_id: LINEUP_TENANT_ID,
-          lead_name: `Waitlist - ${validated.data.email}`,
-          email: validated.data.email,
-          status: 'new',
-          source: 'website',
-          source_automation_name: 'DriveCommand Waitlist',
-        })
+    // Insert lead into LineUp Supabase (non-blocking, skipped if not configured)
+    const supabase = getSupabaseAdmin()
+    const tenantId = process.env.LINEUP_TENANT_ID
 
-      if (error) {
-        console.error('Failed to insert lead into Supabase:', error)
+    if (supabase && tenantId) {
+      try {
+        // Split name into first and last
+        const nameParts = validated.data.name.trim().split(/\s+/)
+        const firstName = nameParts[0] || ''
+        const lastName = nameParts.slice(1).join(' ') || ''
+
+        // Map form roles to LineUp contact roles (lowercase)
+        const roleMap: Record<string, string> = {
+          'owner': 'owner',
+          'dispatcher': 'coordinator',
+          'fleet-manager': 'manager',
+          'driver': 'other',
+          'other': 'other',
+        }
+        const contactRole = roleMap[validated.data.role] || 'other'
+
+        // Create Lead first
+        const { data: lead, error: leadError } = await supabase
+          .from('leads')
+          .insert({
+            tenant_id: tenantId,
+            lead_name: `${validated.data.company} - Contact Form`,
+            email: validated.data.email,
+            status: 'new',
+            source: 'website',
+            source_automation_name: 'DriveCommand Contact Form',
+          })
+          .select('id')
+          .single()
+
+        if (leadError) {
+          console.error('Failed to insert lead into Supabase:', leadError)
+        } else if (lead) {
+          // Create Contact
+          const { data: contact, error: contactError } = await supabase
+            .from('contacts')
+            .insert({
+              tenant_id: tenantId,
+              first_name: firstName,
+              last_name: lastName,
+              email: validated.data.email,
+              role: contactRole,
+              created_by: '383150cb-4b72-450a-99f7-dd829f5d2544',
+            })
+            .select('id')
+            .single()
+
+          if (contactError) {
+            console.error('Failed to insert contact into Supabase:', contactError)
+          } else if (contact) {
+            // Link contact to lead via junction table
+            const { error: linkError } = await supabase
+              .from('lead_contacts')
+              .insert({
+                tenant_id: tenantId,
+                lead_id: lead.id,
+                contact_id: contact.id,
+                is_primary: true,
+                is_decision_maker: true,
+                role_at_lead: 'Contact Form Inquiry',
+              })
+
+            if (linkError) {
+              console.error('Failed to link contact to lead:', linkError)
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Supabase lead insert error:', err)
       }
-    } catch (err) {
-      console.error('Supabase lead insert error:', err)
     }
 
     return {

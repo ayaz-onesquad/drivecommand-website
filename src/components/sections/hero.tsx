@@ -327,7 +327,7 @@ export function Hero() {
                         You&apos;re on the list!
                       </p>
                       <p className="font-body text-sm" style={{ color: 'var(--text-secondary)' }}>
-                        #{waitlist.state.position} in line · We&apos;ll be in touch soon
+                        We&apos;ll be in touch soon
                       </p>
                     </div>
                   </motion.div>

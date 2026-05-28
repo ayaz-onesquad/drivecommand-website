@@ -2,17 +2,15 @@
 
 import { motion, useReducedMotion, AnimatePresence } from 'motion/react'
 import { useEffect, useState } from 'react'
-import { CountUp } from '@/components/shared/count-up'
 
 interface WelcomeAnimationProps {
-  position: number
   onComplete: () => void
 }
 
 // Dramatic ease-out curve
 const dramaticEase = [0.16, 1, 0.3, 1] as const
 
-export function WelcomeAnimation({ position, onComplete }: WelcomeAnimationProps) {
+export function WelcomeAnimation({ onComplete }: WelcomeAnimationProps) {
   const prefersReducedMotion = useReducedMotion()
   const [stage, setStage] = useState(0)
 
@@ -183,10 +181,10 @@ export function WelcomeAnimation({ position, onComplete }: WelcomeAnimationProps
           </motion.div>
         )}
 
-        {/* Stage 4: Position reveal */}
+        {/* Stage 4: Success confirmation */}
         {stage >= 4 && (
           <motion.div
-            key="position"
+            key="success"
             className="flex flex-col items-center gap-6 text-center"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -215,31 +213,16 @@ export function WelcomeAnimation({ position, onComplete }: WelcomeAnimationProps
 
             <div>
               <p
-                className="font-body text-sm mb-2"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                You&apos;re
-              </p>
-              <div className="flex items-baseline justify-center gap-1">
-                <span
-                  className="font-display text-4xl font-bold"
-                  style={{ color: 'var(--accent-brand)' }}
-                >
-                  #
-                </span>
-                <CountUp
-                  end={position}
-                  duration={800}
-                  delay={200}
-                  className="font-display text-4xl font-bold"
-                  style={{ color: 'var(--accent-brand)' }}
-                />
-              </div>
-              <p
-                className="font-body text-lg mt-2"
+                className="font-display text-2xl font-bold mb-2"
                 style={{ color: 'var(--text-primary)' }}
               >
-                on the waitlist
+                You&apos;re on the list!
+              </p>
+              <p
+                className="font-body text-base"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                We&apos;ll be in touch soon
               </p>
             </div>
 
@@ -250,7 +233,7 @@ export function WelcomeAnimation({ position, onComplete }: WelcomeAnimationProps
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              We&apos;ll email you when it&apos;s your turn. Get ready to leave spreadsheets behind.
+              Get ready to leave spreadsheets behind.
             </motion.p>
           </motion.div>
         )}

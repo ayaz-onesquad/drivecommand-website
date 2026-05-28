@@ -14,7 +14,6 @@ export interface WaitlistState {
   step: 'idle' | 'modal' | 'submitting' | 'success'
   email: string
   isModalOpen: boolean
-  position: number | null
   error: string | null
 }
 
@@ -30,7 +29,6 @@ const initialState: WaitlistState = {
   step: 'idle',
   email: '',
   isModalOpen: false,
-  position: null,
   error: null,
 }
 
@@ -42,7 +40,6 @@ export function useWaitlist(): UseWaitlistReturn {
       step: 'modal',
       email,
       isModalOpen: true,
-      position: null,
       error: null,
     })
   }, [])
@@ -74,7 +71,6 @@ export function useWaitlist(): UseWaitlistReturn {
       setState((prev) => ({
         ...prev,
         step: 'success',
-        position: data.position,
       }))
     } catch (error) {
       setState((prev) => ({

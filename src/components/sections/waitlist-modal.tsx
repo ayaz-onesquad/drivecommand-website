@@ -137,9 +137,8 @@ export function WaitlistModal({ state, onSubmit, onClose }: WaitlistModalProps) 
                   </button>
                 </Dialog.Close>
 
-                {isSuccess && state.position ? (
+                {isSuccess ? (
                   <WelcomeAnimation
-                    position={state.position}
                     onComplete={handleAnimationComplete}
                   />
                 ) : (

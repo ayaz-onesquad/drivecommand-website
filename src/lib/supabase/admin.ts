@@ -1,19 +1,22 @@
 import 'server-only'
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 const SUPABASE_URL = process.env.SUPABASE_URL
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-if (!SUPABASE_URL) {
-  throw new Error('SUPABASE_URL environment variable is required')
-}
-
-if (!SUPABASE_SERVICE_ROLE_KEY) {
-  throw new Error('SUPABASE_SERVICE_ROLE_KEY environment variable is required')
-}
+let _supabaseAdmin: SupabaseClient | null = null
 
 /**
- * Server-only Supabase admin client with service role key.
+ * Get the server-only Supabase admin client with service role key.
+ * Returns null if env vars are not configured (allows site to run without Supabase).
  * Has full database access - never expose to client.
  */
-export const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+export function getSupabaseAdmin(): SupabaseClient | null {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    return null
+  }
+  if (!_supabaseAdmin) {
+    _supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+  }
+  return _supabaseAdmin
+}

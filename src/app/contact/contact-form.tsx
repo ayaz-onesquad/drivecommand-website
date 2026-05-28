@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useEffect } from 'react'
+import { useActionState, useEffect, useRef, useState } from 'react'
 import { submitContactForm, type ContactFormState } from './actions'
 import { Toast, useToast } from '@/components/shared/toast'
 import { cn } from '@/lib/utils'
@@ -9,11 +9,19 @@ import { Loader2 } from 'lucide-react'
 const FLEET_SIZES = [
   { value: '', label: 'Select fleet size' },
   { value: '1-5', label: '1-5 trucks' },
-  { value: '6-15', label: '6-15 trucks' },
-  { value: '16-25', label: '16-25 trucks' },
-  { value: '26-50', label: '26-50 trucks' },
+  { value: '6-20', label: '6-20 trucks' },
+  { value: '21-50', label: '21-50 trucks' },
   { value: '51-100', label: '51-100 trucks' },
   { value: '100+', label: '100+ trucks' },
+]
+
+const ROLES = [
+  { value: '', label: 'Select your role' },
+  { value: 'owner', label: 'Owner/Operator' },
+  { value: 'dispatcher', label: 'Dispatcher' },
+  { value: 'fleet-manager', label: 'Fleet Manager' },
+  { value: 'driver', label: 'Driver' },
+  { value: 'other', label: 'Other' },
 ]
 
 const initialState: ContactFormState = {
@@ -25,16 +33,24 @@ const initialState: ContactFormState = {
 export function ContactForm() {
   const [state, formAction, isPending] = useActionState(submitContactForm, initialState)
   const { toast, showToast, hideToast } = useToast()
+  const formRef = useRef<HTMLFormElement>(null)
+  const [formKey, setFormKey] = useState(0)
 
   useEffect(() => {
     if (state.message) {
       showToast(state.message, state.success ? 'success' : 'error')
+
+      // Reset form after successful submission
+      if (state.success) {
+        formRef.current?.reset()
+        setFormKey(prev => prev + 1)
+      }
     }
   }, [state, showToast])
 
   return (
     <>
-      <form action={formAction} className="space-y-6">
+      <form key={formKey} ref={formRef} action={formAction} className="space-y-6">
         {/* Name */}
         <div>
           <label htmlFor="name" className="block font-body text-sm text-theme-secondary mb-2">
@@ -123,10 +139,35 @@ export function ContactForm() {
           )}
         </div>
 
+        {/* Role */}
+        <div>
+          <label htmlFor="role" className="block font-body text-sm text-theme-secondary mb-2">
+            Your Role <span className="text-[var(--state-critical)]">*</span>
+          </label>
+          <select
+            id="role"
+            name="role"
+            required
+            className={cn(
+              'w-full px-4 py-3 rounded-input border font-body text-theme-primary focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)] transition-colors bg-theme-secondary',
+              state.errors?.role ? 'border-[var(--state-critical)]' : 'border-theme-medium'
+            )}
+          >
+            {ROLES.map((role) => (
+              <option key={role.value} value={role.value}>
+                {role.label}
+              </option>
+            ))}
+          </select>
+          {state.errors?.role && (
+            <p className="mt-1 font-body text-sm text-[var(--state-critical)]">{state.errors.role[0]}</p>
+          )}
+        </div>
+
         {/* Message */}
         <div>
           <label htmlFor="message" className="block font-body text-sm text-theme-secondary mb-2">
-            How Can We Help? <span className="text-[var(--state-critical)]">*</span>
+            What problems are you trying to solve? <span className="text-[var(--state-critical)]">*</span>
           </label>
           <textarea
             id="message"
