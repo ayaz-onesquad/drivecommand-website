@@ -124,7 +124,7 @@ export function Navbar() {
 
           {/* Desktop CTA buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <GhostButton href="https://app.drivecommand.com/sign-in" label="Sign In" />
+            <GhostButton href="https://www.drivecommand.app" label="Sign In" />
             <ThemeToggle />
             <CTAButton />
           </div>

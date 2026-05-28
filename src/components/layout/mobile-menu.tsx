@@ -105,7 +105,7 @@ export function MobileMenu() {
                     transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   >
                     <Link
-                      href="https://app.drivecommand.com/sign-in"
+                      href="https://www.drivecommand.app"
                       onClick={() => setOpen(false)}
                       className="block w-full py-3 text-center text-theme-secondary border border-theme-medium rounded-lg hover:border-sky-400/40 hover:bg-sky-400/10 transition-all duration-200 font-body"
                     >
