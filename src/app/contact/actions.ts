@@ -1,6 +1,13 @@
 'use server'
 
 import { z } from 'zod'
+import { supabaseAdmin } from '@/lib/supabase/admin'
+
+// Validate LINEUP_TENANT_ID at module load time
+const LINEUP_TENANT_ID = process.env.LINEUP_TENANT_ID
+if (!LINEUP_TENANT_ID) {
+  throw new Error('LINEUP_TENANT_ID environment variable is required')
+}
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -52,6 +59,26 @@ export async function submitContactForm(
 
     // Log the submission (in production, send email via Resend)
     console.log('Contact form submission:', validated.data)
+
+    // Insert lead into LineUp Supabase (non-blocking)
+    try {
+      const { error } = await supabaseAdmin
+        .from('leads')
+        .insert({
+          tenant_id: LINEUP_TENANT_ID,
+          lead_name: `Waitlist - ${validated.data.email}`,
+          email: validated.data.email,
+          status: 'new',
+          source: 'website',
+          source_automation_name: 'DriveCommand Waitlist',
+        })
+
+      if (error) {
+        console.error('Failed to insert lead into Supabase:', error)
+      }
+    } catch (err) {
+      console.error('Supabase lead insert error:', err)
+    }
 
     return {
       success: true,
