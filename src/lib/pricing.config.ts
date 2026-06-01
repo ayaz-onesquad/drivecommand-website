@@ -18,13 +18,13 @@ export const PRICING_TIERS: PricingTier[] = [
     id: 'basic',
     name: 'Basic',
     tagline: 'For independent operators',
-    monthlyPrice: 49,
-    annualPrice: 39,
+    monthlyPrice: 29,
+    annualPrice: 23,
     annualSavingsPct: 20,
     perUnit: 'per truck / month',
     description: 'Everything you need to dispatch, track, and invoice your fleet.',
     features: [
-      'Up to 5 trucks',
+      'Unlimited trucks',
       'Live GPS tracking',
       'Route & dispatch management',
       'Driver portal access',
@@ -39,13 +39,13 @@ export const PRICING_TIERS: PricingTier[] = [
     id: 'advanced',
     name: 'Advanced',
     tagline: 'For growing fleets',
-    monthlyPrice: 99,
-    annualPrice: 79,
+    monthlyPrice: 49,
+    annualPrice: 39,
     annualSavingsPct: 20,
     perUnit: 'per truck / month',
     description: 'Advanced analytics, compliance tools, and priority support.',
     features: [
-      'Up to 25 trucks',
+      'Unlimited trucks',
       'Everything in Basic',
       'Maintenance scheduling & alerts',
       'Document storage & compliance',
@@ -88,37 +88,27 @@ export function getPricingTier(id: PricingTier['id']): PricingTier {
   return tier
 }
 
-/** Calculator pricing rates - single source of truth */
+/** Calculator pricing rates - single source of truth (per truck only) */
 export const CALCULATOR_RATES = {
   basic: {
-    perUser: 5,
-    perTruck: 5,
-    perLoad: 0.5,
+    perTruck: 29,
   },
   advanced: {
-    perUser: 10,
-    perTruck: 7,
-    perLoad: 0.5,
+    perTruck: 49,
   },
 } as const
 
 export type CalculatorPlan = keyof typeof CALCULATOR_RATES
 
-/** Calculate monthly price based on plan and usage */
+/** Calculate monthly price based on plan and truck count */
 export function calculatePrice(
   plan: CalculatorPlan,
-  users: number,
-  trucks: number,
-  loads: number
-): { userCost: number; truckCost: number; loadCost: number; total: number } {
+  trucks: number
+): { truckCost: number; total: number } {
   const rates = CALCULATOR_RATES[plan]
-  const userCost = rates.perUser * users
   const truckCost = rates.perTruck * trucks
-  const loadCost = rates.perLoad * loads
   return {
-    userCost,
     truckCost,
-    loadCost,
-    total: userCost + truckCost + loadCost,
+    total: truckCost,
   }
 }

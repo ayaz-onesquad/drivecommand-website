@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 // Feature comparison data - pulling from pricing.config features + extras
 const COMPARISON_FEATURES = [
-  { name: 'Trucks', basic: 'Up to 5', advanced: '6-50', enterprise: 'Unlimited' },
+  { name: 'Trucks', basic: 'Unlimited', advanced: 'Unlimited', enterprise: 'Unlimited' },
   { name: 'Live GPS Tracking', basic: true, advanced: true, enterprise: true },
   { name: 'Route & Dispatch', basic: true, advanced: true, enterprise: true },
   { name: 'Driver Portal', basic: true, advanced: true, enterprise: true },

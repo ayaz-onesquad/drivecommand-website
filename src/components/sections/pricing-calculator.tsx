@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { Check } from 'lucide-react'
 import {
   PRICING_TIERS,
-  CALCULATOR_RATES,
   calculatePrice,
   type CalculatorPlan,
 } from '@/lib/pricing.config'
@@ -103,16 +102,14 @@ export function PricingCalculator() {
   const prefersReducedMotion = useReducedMotion()
 
   const [selectedPlan, setSelectedPlan] = useState<CalculatorPlan>('basic')
-  const [users, setUsers] = useState(5)
-  const [trucks, setTrucks] = useState(3)
-  const [loads, setLoads] = useState(50)
+  const [trucks, setTrucks] = useState(5)
 
   const pricing = useMemo(
-    () => calculatePrice(selectedPlan, users, trucks, loads),
-    [selectedPlan, users, trucks, loads]
+    () => calculatePrice(selectedPlan, trucks),
+    [selectedPlan, trucks]
   )
 
-  const rates = CALCULATOR_RATES[selectedPlan]
+  const perTruckRate = selectedPlan === 'basic' ? 29 : 49
 
   return (
     <section id="pricing" ref={ref} className="py-24 bg-theme-primary">
@@ -257,33 +254,15 @@ export function PricingCalculator() {
                 </div>
               </div>
 
-              {/* Sliders */}
+              {/* Truck count slider */}
               <Slider
-                id="calc-users"
-                label="Users"
-                value={users}
+                id="calc-trucks"
+                label="Number of Trucks"
+                value={trucks}
                 min={1}
                 max={100}
                 step={1}
-                onChange={setUsers}
-              />
-              <Slider
-                id="calc-trucks"
-                label="Trucks"
-                value={trucks}
-                min={1}
-                max={50}
-                step={1}
                 onChange={setTrucks}
-              />
-              <Slider
-                id="calc-loads"
-                label="Loads per month"
-                value={loads}
-                min={1}
-                max={500}
-                step={10}
-                onChange={setLoads}
               />
             </div>
 
@@ -293,39 +272,17 @@ export function PricingCalculator() {
                 Monthly Estimate
               </h4>
 
-              {/* Line items */}
+              {/* Line item */}
               <div className="space-y-4 mb-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="font-body text-sm text-theme-secondary">{users} users</span>
+                    <span className="font-body text-sm text-theme-secondary">{trucks} truck{trucks !== 1 ? 's' : ''}</span>
                     <span className="font-body text-xs text-theme-muted ml-2">
-                      × ${rates.perUser}/user
-                    </span>
-                  </div>
-                  <span className="font-body text-sm font-medium text-theme-primary">
-                    ${pricing.userCost.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="font-body text-sm text-theme-secondary">{trucks} trucks</span>
-                    <span className="font-body text-xs text-theme-muted ml-2">
-                      × ${rates.perTruck}/truck
+                      × ${perTruckRate}/truck/mo
                     </span>
                   </div>
                   <span className="font-body text-sm font-medium text-theme-primary">
                     ${pricing.truckCost.toFixed(2)}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="font-body text-sm text-theme-secondary">{loads} loads</span>
-                    <span className="font-body text-xs text-theme-muted ml-2">
-                      × ${rates.perLoad}/load
-                    </span>
-                  </div>
-                  <span className="font-body text-sm font-medium text-theme-primary">
-                    ${pricing.loadCost.toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -362,9 +319,9 @@ export function PricingCalculator() {
                 Available in early access
               </p>
 
-              {/* Large fleet note */}
+              {/* Enterprise note */}
               <p className="font-body text-xs text-theme-muted text-center mt-4">
-                Need more than 50 trucks?{' '}
+                Need enterprise features?{' '}
                 <Link href="/contact" className="text-accent-blue hover:underline">
                   Contact us for custom pricing
                 </Link>
