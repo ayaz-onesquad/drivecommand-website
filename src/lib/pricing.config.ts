@@ -8,7 +8,7 @@ export interface PricingTier {
   perUnit: string               // e.g. "per truck / month"
   description: string
   features: string[]
-  highlighted: boolean          // true = visually emphasized (Advanced)
+  highlighted: boolean          // true = visually emphasized (Growth)
   ctaLabel: string
   ctaHref: string               // Enterprise → /contact; others → sign-up
 }
@@ -16,7 +16,7 @@ export interface PricingTier {
 export const PRICING_TIERS: PricingTier[] = [
   {
     id: 'basic',
-    name: 'Basic',
+    name: 'Starter',
     tagline: 'For independent operators',
     monthlyPrice: 29,
     annualPrice: 23,
@@ -37,7 +37,7 @@ export const PRICING_TIERS: PricingTier[] = [
   },
   {
     id: 'advanced',
-    name: 'Advanced',
+    name: 'Growth',
     tagline: 'For growing fleets',
     monthlyPrice: 49,
     annualPrice: 39,
@@ -46,7 +46,7 @@ export const PRICING_TIERS: PricingTier[] = [
     description: 'Advanced analytics, compliance tools, and priority support.',
     features: [
       'Unlimited trucks',
-      'Everything in Basic',
+      'Everything in Starter',
       'Maintenance scheduling & alerts',
       'Document storage & compliance',
       'Fuel & safety analytics',
@@ -68,7 +68,7 @@ export const PRICING_TIERS: PricingTier[] = [
     description: 'Custom contracts, dedicated support, and enterprise integrations.',
     features: [
       'Unlimited trucks',
-      'Everything in Advanced',
+      'Everything in Growth',
       'Custom integrations & API access',
       'Dedicated account manager',
       'SLA-backed uptime guarantee',

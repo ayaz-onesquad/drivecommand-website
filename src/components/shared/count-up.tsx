@@ -56,7 +56,7 @@ export function CountUp({
   const ref = useRef<HTMLSpanElement>(null)
   const animationRef = useRef<number | null>(null)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const isInView = useInView(ref, { once: false, margin: '-100px', amount: 0.5 })
+  const isInView = useInView(ref, { once: true, margin: '-50px' })
   const prefersReducedMotion = useReducedMotion()
 
   // Handle animation based on view state

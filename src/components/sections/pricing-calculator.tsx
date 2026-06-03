@@ -248,7 +248,7 @@ export function PricingCalculator() {
                       whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                     >
-                      {plan.charAt(0).toUpperCase() + plan.slice(1)}
+                      {PRICING_TIERS.find(t => t.id === plan)?.name || plan}
                     </motion.button>
                   ))}
                 </div>
