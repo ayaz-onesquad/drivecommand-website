@@ -254,32 +254,30 @@ function Step2ActiveLoads() {
 
       <div className="space-y-2">
         {/* Header - hidden on mobile */}
-        <div className="hidden sm:grid grid-cols-12 gap-2 px-3 py-2 text-xs font-body text-theme-muted uppercase tracking-wide">
-          <div className="col-span-2">Load #</div>
-          <div className="col-span-2">Route</div>
-          <div className="col-span-2">Driver</div>
-          <div className="col-span-2">Status</div>
-          <div className="col-span-1">Rate</div>
-          <div className="col-span-2">ETA</div>
-          <div className="col-span-1"></div>
+        <div className="hidden sm:grid sm:grid-cols-[100px_minmax(0,1fr)_minmax(0,1fr)_90px_70px_minmax(0,1fr)_60px] gap-2 px-3 py-2 text-xs font-body text-theme-muted uppercase tracking-wide">
+          <div>Load #</div>
+          <div>Route</div>
+          <div>Driver</div>
+          <div>Status</div>
+          <div>Rate</div>
+          <div>ETA</div>
+          <div></div>
         </div>
 
         {/* Rows */}
         {loads.map((load, index) => (
           <div key={load.id}>
+            {/* Desktop row */}
             <div className={cn(
-              'grid grid-cols-3 sm:grid-cols-12 gap-2 px-3 py-3 rounded-lg bg-theme-card items-center',
+              'hidden sm:grid sm:grid-cols-[100px_minmax(0,1fr)_minmax(0,1fr)_90px_70px_minmax(0,1fr)_60px] gap-2 px-3 py-3 rounded-lg bg-theme-card items-center',
               index === 0 && row1Updated && 'ring-1'
             )}>
-              {/* Mobile: Load #, Status, Rate */}
-              {/* Desktop: Full row */}
-              <div className="col-span-1 sm:col-span-2 font-body text-sm text-theme-primary font-medium">
+              <div className="font-body text-sm text-theme-primary font-medium truncate">
                 {load.id.replace('LD-2024-', '')}
-                <span className="hidden sm:inline"> ({load.id})</span>
               </div>
-              <div className="hidden sm:block sm:col-span-2 font-body text-sm text-theme-secondary">{load.route}</div>
-              <div className="hidden sm:block sm:col-span-2 font-body text-sm text-theme-secondary">{load.driver}</div>
-              <div className="col-span-1 sm:col-span-2">
+              <div className="font-body text-sm text-theme-secondary truncate">{load.route}</div>
+              <div className="font-body text-sm text-theme-secondary truncate">{load.driver}</div>
+              <div className="overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={load.status}
@@ -287,26 +285,26 @@ function Step2ActiveLoads() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.8 }}
                   >
-                    <StatusBadge status={load.status as 'dispatched' | 'in-transit' | 'delivered'} />
+                    <StatusBadge status={load.status as 'dispatched' | 'in-transit' | 'delivered'} compact />
                   </motion.div>
                 </AnimatePresence>
               </div>
-              <div className="col-span-1 sm:col-span-1 font-body text-sm" style={{ color: 'var(--state-success)' }}>{load.rate}</div>
+              <div className="font-body text-sm font-medium whitespace-nowrap" style={{ color: 'var(--state-success)' }}>{load.rate}</div>
               <div
                 className={cn(
-                  'hidden sm:block sm:col-span-2 font-body text-sm',
+                  'font-body text-sm truncate',
                   !load.etaDelay && 'text-theme-secondary'
                 )}
                 style={load.etaDelay ? { color: 'var(--state-warning)' } : undefined}
               >
                 {load.eta}
-                {load.etaDelay && <span className="text-xs ml-1">+2hr delay</span>}
+                {load.etaDelay && <span className="text-xs ml-1">+2hr</span>}
               </div>
-              <div className="hidden sm:block sm:col-span-1">
+              <div>
                 {index === 0 && !row1Updated && (
                   <motion.button
                     onClick={handleUpdateStatus}
-                    className="text-xs px-2 py-1 rounded border border-theme-subtle text-theme-secondary hover:text-theme-primary hover:border-sky-400/60 transition-colors"
+                    className="text-xs px-2 py-1 rounded border border-theme-subtle text-theme-secondary hover:text-theme-primary hover:border-sky-400/60 transition-colors whitespace-nowrap"
                     initial="rest"
                     whileHover="hover"
                     whileTap="tap"
@@ -317,6 +315,34 @@ function Step2ActiveLoads() {
                     Update
                   </motion.button>
                 )}
+              </div>
+            </div>
+
+            {/* Mobile row - stacked card layout */}
+            <div className={cn(
+              'sm:hidden px-3 py-3 rounded-lg bg-theme-card overflow-hidden',
+              index === 0 && row1Updated && 'ring-1'
+            )}>
+              {/* Top row: Load ID, Status, Rate - using grid for true columns */}
+              <div className="grid grid-cols-[1fr_auto_auto] gap-2 items-center">
+                <span className="font-body text-sm text-theme-primary font-medium truncate">
+                  {load.id.replace('LD-2024-', '#')}
+                </span>
+                <StatusBadge status={load.status as 'dispatched' | 'in-transit' | 'delivered'} compact />
+                <span className="font-body text-sm font-medium whitespace-nowrap" style={{ color: 'var(--state-success)' }}>
+                  {load.rate}
+                </span>
+              </div>
+              {/* Bottom row: Route and Driver */}
+              <div className="grid grid-cols-2 gap-3 mt-2 text-xs">
+                <div>
+                  <div className="font-body text-theme-muted mb-0.5">Route</div>
+                  <div className="font-body text-theme-secondary">{load.route}</div>
+                </div>
+                <div>
+                  <div className="font-body text-theme-muted mb-0.5">Driver</div>
+                  <div className="font-body text-theme-secondary truncate">{load.driver}</div>
+                </div>
               </div>
             </div>
 

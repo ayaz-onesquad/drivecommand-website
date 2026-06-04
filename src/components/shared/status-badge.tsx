@@ -64,22 +64,32 @@ const STATUS_LABELS: Record<LoadStatus, string> = {
   'invoiced': 'INVOICED',
 }
 
+const STATUS_LABELS_COMPACT: Record<LoadStatus, string> = {
+  'in-transit': 'TRANSIT',
+  'delivered': 'DONE',
+  'dispatched': 'DISP',
+  'invoiced': 'INV',
+}
+
 interface StatusBadgeProps {
   status?: LoadStatus
   className?: string
+  compact?: boolean
 }
 
-export function StatusBadge({ status = 'dispatched', className }: StatusBadgeProps) {
+export function StatusBadge({ status = 'dispatched', className, compact = false }: StatusBadgeProps) {
   const prefersReducedMotion = useReducedMotion()
   const isInTransit = status === 'in-transit'
   const styles = STATUS_STYLES[status]
+  const labels = compact ? STATUS_LABELS_COMPACT : STATUS_LABELS
 
   return (
     <motion.span
       className={cn(
-        'inline-flex items-center gap-1.5 h-6 px-2 rounded-none',
-        'text-[12px] leading-[16px] font-mono font-medium uppercase tracking-wide',
+        'inline-flex items-center gap-1 h-5 px-1.5 rounded-none whitespace-nowrap',
+        'text-[10px] leading-[14px] font-mono font-medium uppercase tracking-wide',
         'border',
+        !compact && 'gap-1.5 h-6 px-2 text-[12px] leading-[16px]',
         className
       )}
       style={{
@@ -107,7 +117,7 @@ export function StatusBadge({ status = 'dispatched', className }: StatusBadgePro
           aria-hidden="true"
         />
       )}
-      {STATUS_LABELS[status]}
+      {labels[status]}
     </motion.span>
   )
 }
