@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-31)
 Phase: 2 of 4 (Landing Page)
 Plan: 4 of 4 in current phase
 Status: Phase 2 COMPLETE
-Last activity: 2026-05-28 — Completed quick task 10: Insert waitlist signups into LineUp Supabase
+Last activity: 2026-06-08 — Completed quick task 11: llms.txt route handler for AI crawlers
 
 Progress: [██████████] 100% (Phase 1 + 2)
 
@@ -83,9 +83,10 @@ None yet.
 | 8 | GSAP scroll dependencies + WhyDriveCommandScroll 5-panel scroll-pinned section with rotation animations | 2026-05-08 | 7a43c43 | [8-add-gsap-scroll-dependencies-and-whydriv](./quick/8-add-gsap-scroll-dependencies-and-whydriv/) |
 | 9 | Mount WhyDriveCommandScroll on home page with Why us navigation links | 2026-05-08 | 0fd6d5d | [9-mount-whydrivecommandscroll-on-home-page](./quick/9-mount-whydrivecommandscroll-on-home-page/) |
 | 10 | Insert waitlist signups into LineUp Supabase with tenant ID and source tracking | 2026-05-28 | 7267f80 | [10-insert-waitlist-signups-into-lineup-supa](./quick/10-insert-waitlist-signups-into-lineup-supa/) |
+| 11 | llms.txt route handler serving LLM-readable site summary | 2026-06-08 | 9cf5255 | [11-create-app-llms-txt-route-ts-next-js-rou](./quick/11-create-app-llms-txt-route-ts-next-js-rou/) |
 
 ## Session Continuity
 
-Last session: 2026-05-28
-Stopped at: Completed quick-10 (Insert waitlist signups into LineUp Supabase) — 2 tasks, 4 files modified, ~2m duration
+Last session: 2026-06-08
+Stopped at: Completed quick-11 (llms.txt route handler) — 1 task, 2 files modified, ~4m duration
 Resume file: None
