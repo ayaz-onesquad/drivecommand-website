@@ -3,28 +3,17 @@ import { Logo } from '@/components/brand/Logo'
 
 const FOOTER_LINKS = {
   Product: [
-    { href: '#features', label: 'Features' },
+    { href: '/#features', label: 'Features' },
     { href: '/pricing', label: 'Pricing' },
-    { href: '#demo', label: 'Demo' },
-    { href: '/changelog', label: 'Changelog' },
+    { href: '/demo', label: 'Demo' },
   ],
   Company: [
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' },
-    { href: '/careers', label: 'Careers' },
-    { href: '/blog', label: 'Blog' },
-  ],
-  Resources: [
-    { href: '/docs', label: 'Documentation' },
-    { href: '/support', label: 'Support' },
-    { href: '/status', label: 'System Status' },
-    { href: '/security', label: 'Security' },
   ],
   Legal: [
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Service' },
-    { href: '/cookies', label: 'Cookie Policy' },
-    { href: '/dpa', label: 'Data Processing' },
   ],
 }
 
@@ -56,8 +45,8 @@ export function Footer() {
           </p>
         </div>
 
-        {/* 4-column link grid */}
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        {/* 3-column link grid */}
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
           {Object.entries(FOOTER_LINKS).map(([category, links]) => (
             <div key={category}>
               <h3
