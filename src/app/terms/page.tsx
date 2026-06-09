@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | DriveCommand',
+  title: 'Terms of Service',
   description: 'Read the terms and conditions for using DriveCommand fleet management services.',
   alternates: {
     canonical: '/terms',
@@ -16,7 +16,7 @@ export default function TermsPage() {
           Terms of Service
         </h1>
         <p className="text-dc-text-secondary mb-12">
-          Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          Last updated: June 1, 2026
         </p>
 
         <div className="prose prose-invert prose-lg max-w-none space-y-8">

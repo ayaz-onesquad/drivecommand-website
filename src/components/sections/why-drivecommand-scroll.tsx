@@ -273,7 +273,7 @@ export function FlowArt({ children, className }: FlowArtProps) {
         {/* CTA section */}
         <div className="mt-8 md:mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <a
-            href="https://app.drivecommand.com/sign-up"
+            href="https://app.drivecommand.co/sign-up"
             className="inline-flex items-center gap-2 rounded-lg bg-[#0066CC] px-6 py-3 font-body text-base font-semibold text-white transition-all duration-200 hover:bg-[#2D8FE0] hover:scale-[1.02]"
           >
             Start free trial →

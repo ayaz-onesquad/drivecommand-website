@@ -60,7 +60,7 @@ const organizationSchema: OrganizationSchema = {
   description:
     'Fleet management software for independent carriers and growing fleets. Dispatch, track, invoice, and stay compliant — all in one place.',
   url: BASE_URL,
-  logo: `${BASE_URL}/brand/wordmark-on-light.svg`,
+  logo: `${BASE_URL}/brand/logo.png`,
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',

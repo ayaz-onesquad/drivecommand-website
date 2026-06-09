@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | DriveCommand',
+  title: 'Privacy Policy',
   description: 'Learn how DriveCommand collects, uses, and protects your personal information.',
   alternates: {
     canonical: '/privacy',
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="text-dc-text-secondary mb-12">
-          Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          Last updated: June 1, 2026
         </p>
 
         <div className="prose prose-invert prose-lg max-w-none space-y-8">

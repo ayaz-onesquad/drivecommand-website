@@ -4,6 +4,7 @@ import { Navbar } from '@/components/layout/navbar'
 import { Footer } from '@/components/layout/footer'
 import { ThemeProvider } from '@/lib/theme-provider'
 import { JsonLd } from '@/components/shared/json-ld'
+import { BreadcrumbSchema } from '@/components/shared/breadcrumb-schema'
 import './globals.css'
 
 const dmSans = DM_Sans({
@@ -113,6 +114,7 @@ export default function RootLayout({
         <meta name="color-scheme" content="light dark" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <JsonLd />
+        <BreadcrumbSchema />
       </head>
       <body>
         <ThemeProvider>

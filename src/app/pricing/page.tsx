@@ -4,6 +4,46 @@ import { PRICING_TIERS } from '@/lib/pricing.config'
 import { PricingCalculator } from '@/components/sections/pricing-calculator'
 import { cn } from '@/lib/utils'
 
+// FAQ Schema for rich results
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does DriveCommand cost?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'DriveCommand pricing starts at $29/truck/month for Starter, $49/truck/month for Growth (most popular), and custom pricing for Enterprise fleets. All plans include unlimited trucks with no per-seat fees.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is there a contract or commitment?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No long-term contracts required. You can cancel anytime. We offer monthly and annual billing options with approximately 17% savings on annual plans.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What features are included in each plan?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'All plans include unlimited trucks, live GPS tracking, dispatch management, driver portal, invoicing, and basic reports. Growth plans add maintenance scheduling, document storage, fuel analytics, safety analytics, and driver payroll. Enterprise adds API access, custom integrations, dedicated account manager, SLA guarantee, and 24/7 support.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I try DriveCommand before committing?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes! Request early access to get started. We offer interactive demos and personalized onboarding to help you evaluate if DriveCommand is right for your fleet.',
+      },
+    },
+  ],
+}
+
 export const metadata: Metadata = {
   title: 'Pricing',
   description: 'Simple, transparent pricing for fleets of every size. Start free, upgrade as you grow.',
@@ -53,6 +93,11 @@ function FeatureCell({ value }: { value: boolean | string }) {
 export default function PricingPage() {
   return (
     <main className="min-h-screen">
+      {/* FAQ Schema for rich results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero section */}
       <section className="pt-32 pb-16 px-4 bg-theme-primary">
         <div className="mx-auto max-w-4xl text-center">

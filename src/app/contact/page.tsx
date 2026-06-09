@@ -2,6 +2,45 @@ import type { Metadata } from 'next'
 import { ContactForm } from './contact-form'
 import { Mail, Phone, MapPin } from 'lucide-react'
 
+// LocalBusiness schema for rich results
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://drivecommand.co/#organization',
+  name: 'DriveCommand',
+  description: 'Fleet management software for trucking carriers. Dispatch, track, invoice, and stay compliant — all in one place.',
+  url: 'https://drivecommand.co',
+  logo: 'https://drivecommand.co/brand/logo.png',
+  image: 'https://drivecommand.co/brand/logo.png',
+  telephone: '+1-219-487-0146',
+  email: 'team@drivecommand.io',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Munster',
+    addressRegion: 'IN',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 41.5645,
+    longitude: -87.5125,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '09:00',
+    closes: '17:00',
+  },
+  sameAs: [
+    'https://twitter.com/drivecommand',
+  ],
+  priceRange: '$$',
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+}
+
 export const metadata: Metadata = {
   title: 'Contact Sales',
   description: 'Talk to our team about custom integrations, onboarding support, and finding the right plan for your fleet.',
@@ -39,6 +78,11 @@ const CONTACT_INFO = [
 export default function ContactPage() {
   return (
     <main className="min-h-screen">
+      {/* LocalBusiness Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       {/* Hero section */}
       <section className="pt-32 pb-16 px-4 bg-theme-primary">
         <div className="mx-auto max-w-4xl text-center">

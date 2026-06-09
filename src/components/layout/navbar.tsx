@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { NavbarScrollWrapper } from './navbar-scroll-client'
@@ -86,25 +86,6 @@ function CTAButton() {
   )
 }
 
-// Variant B: Ghost button with border + background fill on hover
-function GhostButton({ href, label }: { href: string; label: string }) {
-  const prefersReducedMotion = useReducedMotion()
-
-  return (
-    <motion.div
-      whileHover={prefersReducedMotion ? {} : { y: -1 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-    >
-      <Link
-        href={href}
-        className="text-sm font-body text-theme-secondary hover:text-theme-primary px-4 py-2 rounded-lg border border-transparent hover:border-sky-400/40 hover:bg-sky-400/10 transition-all duration-200"
-      >
-        {label}
-      </Link>
-    </motion.div>
-  )
-}
-
 export function Navbar() {
   return (
     <NavbarScrollWrapper>
@@ -124,7 +105,14 @@ export function Navbar() {
 
           {/* Desktop CTA buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <GhostButton href="https://www.drivecommand.app" label="Sign In" />
+            <a
+              href="https://www.drivecommand.app"
+              className="text-sm font-body text-theme-secondary hover:text-theme-primary px-4 py-2 rounded-lg border border-transparent hover:border-sky-400/40 hover:bg-sky-400/10 transition-all duration-200"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Sign In
+            </a>
             <ThemeToggle />
             <CTAButton />
           </div>

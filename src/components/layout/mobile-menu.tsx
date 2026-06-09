@@ -104,13 +104,15 @@ export function MobileMenu() {
                     variants={prefersReducedMotion ? {} : ghostButtonVariants}
                     transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   >
-                    <Link
+                    <a
                       href="https://www.drivecommand.app"
                       onClick={() => setOpen(false)}
                       className="block w-full py-3 text-center text-theme-secondary border border-theme-medium rounded-lg hover:border-sky-400/40 hover:bg-sky-400/10 transition-all duration-200 font-body"
+                      rel="noopener noreferrer"
+                      target="_blank"
                     >
                       Sign In
-                    </Link>
+                    </a>
                   </motion.div>
 
                   {/* Variant A: Primary button with arrow */}
