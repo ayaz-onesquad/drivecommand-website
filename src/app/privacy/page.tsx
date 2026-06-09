@@ -3,6 +3,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Privacy Policy | DriveCommand',
   description: 'Learn how DriveCommand collects, uses, and protects your personal information.',
+  alternates: {
+    canonical: '/privacy',
+  },
 }
 
 export default function PrivacyPage() {
@@ -82,7 +85,7 @@ export default function PrivacyPage() {
             <p className="text-dc-text-secondary leading-relaxed">
               You have the right to access, correct, or delete your personal information. You may
               also opt out of promotional communications at any time. To exercise these rights,
-              please contact us at privacy@drivecommand.com.
+              please contact us at team@drivecommand.io.
             </p>
           </section>
 
@@ -115,10 +118,10 @@ export default function PrivacyPage() {
             <p className="text-dc-text-secondary leading-relaxed">
               If you have any questions about this Privacy Policy, please contact us at{' '}
               <a
-                href="mailto:privacy@drivecommand.com"
+                href="mailto:team@drivecommand.io"
                 className="text-dc-accent hover:underline"
               >
-                privacy@drivecommand.com
+                team@drivecommand.io
               </a>
               .
             </p>

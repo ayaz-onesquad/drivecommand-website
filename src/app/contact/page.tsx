@@ -5,6 +5,9 @@ import { Mail, Phone, MapPin } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Contact Sales',
   description: 'Talk to our team about custom integrations, onboarding support, and finding the right plan for your fleet.',
+  alternates: {
+    canonical: '/contact',
+  },
   openGraph: {
     title: 'Contact DriveCommand Sales',
     description: 'Talk to our team about fleet management solutions for any size.',

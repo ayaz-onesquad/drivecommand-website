@@ -7,6 +7,9 @@ import { cn } from '@/lib/utils'
 export const metadata: Metadata = {
   title: 'Pricing',
   description: 'Simple, transparent pricing for fleets of every size. Start free, upgrade as you grow.',
+  alternates: {
+    canonical: '/pricing',
+  },
   openGraph: {
     title: 'DriveCommand Pricing',
     description: 'Simple, transparent pricing for fleets of every size.',

@@ -141,7 +141,7 @@ export async function submitContactForm(
   } catch {
     return {
       success: false,
-      message: 'Something went wrong. Please try again or email us directly at sales@drivecommand.co',
+      message: 'Something went wrong. Please try again or email us directly at team@drivecommand.io',
     }
   }
 }

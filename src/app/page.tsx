@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: 'Fleet Management for Carriers',
   description:
     'DriveCommand gives independent operators and growing fleets one place to dispatch, track, invoice, and stay compliant.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'DriveCommand — Fleet Management for Carriers',
     description:

@@ -5,6 +5,9 @@ import { Truck, Users, Target, Shield } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'About',
   description: 'DriveCommand is built for the people who keep supply chains moving — independent truckers and fleet operators who deserve better tools.',
+  alternates: {
+    canonical: '/about',
+  },
   openGraph: {
     title: 'About DriveCommand',
     description: 'Built for the people who keep supply chains moving.',

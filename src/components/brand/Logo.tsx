@@ -143,7 +143,7 @@ export function Logo({
   const GlyphMark = (
     <Image
       src={glyphSrc}
-      alt=""
+      alt="DriveCommand logo"
       width={glyphSize}
       height={glyphSize}
       className="flex-shrink-0"

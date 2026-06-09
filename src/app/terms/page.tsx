@@ -3,6 +3,9 @@ import { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Terms of Service | DriveCommand',
   description: 'Read the terms and conditions for using DriveCommand fleet management services.',
+  alternates: {
+    canonical: '/terms',
+  },
 }
 
 export default function TermsPage() {
@@ -164,10 +167,10 @@ export default function TermsPage() {
             <p className="text-dc-text-secondary leading-relaxed">
               For questions about these Terms, contact us at{' '}
               <a
-                href="mailto:legal@drivecommand.com"
+                href="mailto:team@drivecommand.io"
                 className="text-dc-accent hover:underline"
               >
-                legal@drivecommand.com
+                team@drivecommand.io
               </a>
               .
             </p>
