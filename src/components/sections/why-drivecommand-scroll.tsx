@@ -234,7 +234,7 @@ export function FlowArt({ children, className }: FlowArtProps) {
         {/* Value props */}
         <div className="mt-8 md:mt-10 grid gap-6 md:gap-8 md:grid-cols-3">
           <div className="space-y-2">
-            <p className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none">20+</p>
+            <p className="font-mono text-[clamp(2rem,5vw,3.5rem)] font-bold leading-none">10+</p>
             <p className="font-body text-sm leading-relaxed opacity-90">
               Years of combined logistics experience on our founding team.
             </p>

@@ -56,13 +56,6 @@ const TEAM = [
   },
 ]
 
-const STATS = [
-  { value: '2,500+', label: 'Fleets Served' },
-  { value: '45,000+', label: 'Trucks Managed' },
-  { value: '99.9%', label: 'Uptime' },
-  { value: '4.8', label: 'Customer Rating' },
-]
-
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
@@ -93,22 +86,6 @@ export default function AboutPage() {
               DriveCommand exists to level the playing field. We build software that helps smaller
               operations compete, grow, and thrive in an industry that often overlooks them.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-16 px-4 bg-theme-primary">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {STATS.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-display text-4xl font-bold text-accent-blue mb-2">
-                  {stat.value}
-                </div>
-                <div className="font-body text-sm text-theme-secondary">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
