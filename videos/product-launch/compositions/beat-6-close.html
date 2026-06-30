@@ -1,0 +1,219 @@
+<template id="beat-6-close-template">
+  <div data-composition-id="beat-6-close" data-width="1920" data-height="1080">
+    <!-- Brand glow -->
+    <div class="brand-glow"></div>
+
+    <!-- Logo container -->
+    <div class="logo-container">
+      <!-- Glyph with stroke animation -->
+      <svg class="glyph-draw" viewBox="0 0 500 500">
+        <g class="glyph-strokes">
+          <path class="stroke-1" d="M 252.861 234.066 L 226.697 219.631 L 209.697 209.631 L 187.697 197.631 L 179.697 192.631 L 178.697 285.631 L 183.697 287.631 L 207.697 300.631 L 258.409 326.536 L 258.951 416.518 L 181.698 377.631 L 156.698 363.631 L 132.698 349.631 L 105.698 334.631 L 101.698 331.631 L 101.698 151.631 L 124.698 138.631 L 139.698 129.631 L 168.698 112.631 L 177.698 107.631 L 181.698 108.631 L 200.698 118.631 L 223.698 131.631 L 252.564 147.557 L 253.219 234.263 L 252.861 234.066 Z"/>
+          <path class="stroke-2" d="M 255.697 235.631 L 253.219 234.263 L 252.564 147.557 L 252.698 147.631 L 257.243 149.904 L 259.662 151.094 L 260.765 236.629 L 255.697 235.631 Z"/>
+          <path class="stroke-3" d="M 260.697 323.631 L 260.697 243.469 L 334.732 210.887 L 335.667 383.128 L 261.695 415.408 L 260.697 323.631 Z"/>
+          <path class="stroke-4" d="M 259.646 144.791 L 259.646 64.629 L 333.681 32.047 L 334.616 204.288 L 260.644 236.568 L 259.646 144.791 Z"/>
+        </g>
+      </svg>
+
+      <!-- Filled glyph (fades in after stroke) -->
+      <img src="../assets/glyph-on-dark.svg" alt="DriveCommand" class="glyph-fill">
+    </div>
+
+    <!-- Text stack -->
+    <div class="text-stack">
+      <h1 class="wordmark">DriveCommand</h1>
+      <p class="tagline">Miles Ahead.</p>
+    </div>
+
+    <!-- CTA Button -->
+    <button class="cta-button">
+      <span>Join Waitlist</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+
+    <style>
+      [data-composition-id="beat-6-close"] {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #1D1D1F;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        overflow: hidden;
+        font-family: 'DM Sans', sans-serif;
+      }
+
+      .brand-glow {
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        left: 50%;
+        top: 45%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(0, 102, 204, 0.2) 0%, rgba(0, 102, 204, 0.05) 50%, transparent 70%);
+        filter: blur(80px);
+        opacity: 0;
+        z-index: 1;
+      }
+
+      .logo-container {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        z-index: 10;
+      }
+
+      .glyph-draw {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .glyph-strokes path {
+        fill: none;
+        stroke: #BFC4E0;
+        stroke-width: 3;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+      }
+
+      .stroke-3, .stroke-4 {
+        stroke: #E6E7EB;
+      }
+
+      .glyph-fill {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+      }
+
+      .text-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        z-index: 10;
+      }
+
+      .wordmark {
+        font-size: 72px;
+        font-weight: 700;
+        color: #F5F5F7;
+        letter-spacing: -0.02em;
+        opacity: 0;
+      }
+
+      .tagline {
+        font-size: 32px;
+        font-weight: 500;
+        color: #0066CC;
+        opacity: 0;
+      }
+
+      .cta-button {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 32px;
+        background: #0066CC;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 10;
+        opacity: 0;
+        transform: scale(0.95);
+        box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
+      }
+
+      .cta-button span {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #F5F5F7;
+      }
+
+      .cta-button svg {
+        width: 20px;
+        height: 20px;
+        color: #F5F5F7;
+      }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // Brand glow fades in
+      tl.to(".brand-glow", {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out"
+      }, 0);
+
+      // Glyph strokes draw
+      tl.to(".stroke-1", { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 0.3);
+      tl.to(".stroke-2", { strokeDashoffset: 0, duration: 0.3, ease: "power2.inOut" }, 0.5);
+      tl.to(".stroke-3", { strokeDashoffset: 0, duration: 0.4, ease: "power2.inOut" }, 0.6);
+      tl.to(".stroke-4", { strokeDashoffset: 0, duration: 0.4, ease: "power2.inOut" }, 0.8);
+
+      // Filled glyph fades in, strokes fade out
+      tl.to(".glyph-fill", { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.5);
+      tl.to(".glyph-strokes", { opacity: 0, duration: 0.3, ease: "power2.out" }, 1.5);
+
+      // Wordmark fades up
+      tl.fromTo(".wordmark",
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+        2.0
+      );
+
+      // Tagline fades up
+      tl.fromTo(".tagline",
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+        2.8
+      );
+
+      // CTA button appears
+      tl.to(".cta-button", {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        ease: "back.out(1.5)"
+      }, 3.5);
+
+      // Camera dolly out (settling)
+      tl.fromTo("[data-composition-id='beat-6-close']",
+        { scale: 1.05 },
+        { scale: 1, duration: 3, ease: "power1.out" },
+        0
+      );
+
+      // Glow breathing
+      tl.to(".brand-glow", {
+        opacity: 0.8,
+        scale: 1.1,
+        duration: 1.5,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: 2
+      }, 4);
+
+      // Final fade out
+      tl.to("[data-composition-id='beat-6-close']", {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.in"
+      }, 6.2);
+
+      window.__timelines["beat-6-close"] = tl;
+    </script>
+  </div>
+</template>

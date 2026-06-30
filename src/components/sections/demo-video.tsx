@@ -258,7 +258,7 @@ export function DemoVideo() {
             className="inline-flex px-8 py-4 font-body font-medium rounded-none transition-colors shadow-lg bg-dc-accent hover:bg-dc-accent-hover text-dc-text-on-accent"
             style={{ boxShadow: '0 10px 15px -3px var(--color-glow-accent)' }}
           >
-            Get Early Access
+            Join Waitlist
           </Link>
         </motion.div>
       </div>

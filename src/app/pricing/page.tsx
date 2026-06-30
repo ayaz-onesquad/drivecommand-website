@@ -38,7 +38,7 @@ const faqSchema = {
       name: 'Can I try DriveCommand before committing?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes! Request early access to get started. We offer interactive demos and personalized onboarding to help you evaluate if DriveCommand is right for your fleet.',
+        text: 'Yes! Join our waitlist to get started. We offer interactive demos and personalized onboarding to help you evaluate if DriveCommand is right for your fleet.',
       },
     },
   ],
@@ -106,7 +106,7 @@ export default function PricingPage() {
           </h1>
           <p className="font-body text-lg text-theme-secondary max-w-2xl mx-auto">
             Choose the plan that fits your fleet. No hidden fees, no long-term contracts.
-            Request early access and scale as you grow.
+            Join the waitlist and scale as you grow.
           </p>
         </div>
       </section>
@@ -175,11 +175,11 @@ export default function PricingPage() {
                   )}
                   style={!tier.highlighted && tier.id !== 'enterprise' ? { backgroundColor: 'var(--bg-card-hover)' } : undefined}
                 >
-                  {tier.id === 'enterprise' ? tier.ctaLabel : 'Get Early Access'}
+                  {tier.id === 'enterprise' ? tier.ctaLabel : 'Join Waitlist'}
                 </a>
                 {tier.id !== 'enterprise' && (
                   <p className="font-body text-xs text-theme-muted text-center mt-3">
-                    Available in early access
+                    Available via waitlist
                   </p>
                 )}
               </div>

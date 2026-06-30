@@ -121,7 +121,7 @@ export function FinalCTA() {
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: shouldAnimate ? 0.15 : 0 }}
             >
-              Join the carriers replacing 5 tools with one. Early access is open — no contract, no credit card.
+              Join the carriers replacing 5 tools with one. Waitlist is open — no contract, no credit card.
             </motion.p>
           </motion.div>
 
@@ -146,7 +146,7 @@ export function FinalCTA() {
                   variants={prefersReducedMotion ? {} : primaryButtonVariants}
                   transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 >
-                  Get Early Access
+                  Join Waitlist
                   <motion.span
                     className="inline-flex"
                     variants={prefersReducedMotion ? {} : arrowVariants}

@@ -357,7 +357,7 @@ export function Hero() {
                               setEmail(e.target.value)
                               if (emailError) setEmailError('')
                             }}
-                            placeholder="Enter your email for early access"
+                            placeholder="Enter your email to join waitlist"
                             disabled={isValidating}
                             className="w-full pl-11 pr-4 py-3.5 rounded-lg font-body text-base transition-all duration-200 outline-none focus:ring-2 focus:ring-[var(--accent-brand)]"
                             style={{
@@ -389,7 +389,7 @@ export function Hero() {
                             </>
                           ) : (
                             <>
-                              Get Early Access
+                              Join Waitlist
                               <motion.span
                                 className="inline-flex"
                                 variants={prefersReducedMotion ? {} : arrowVariants}
@@ -413,7 +413,7 @@ export function Hero() {
                       </motion.p>
                     )}
                     <p className="text-xs font-body text-center" style={{ color: 'var(--text-tertiary)' }}>
-                      Early access · No spam · Unsubscribe anytime
+                      Join waitlist · No spam · Unsubscribe anytime
                     </p>
                   </form>
                 )}

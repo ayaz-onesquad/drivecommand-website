@@ -170,7 +170,7 @@ export default function AboutPage() {
               href="/contact"
               className="inline-flex px-8 py-3 font-body font-medium rounded-lg transition-colors bg-dc-accent hover:opacity-90 text-dc-text-on-accent"
             >
-              Get Early Access
+              Join Waitlist
             </Link>
             <Link
               href="/contact"

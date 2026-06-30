@@ -57,7 +57,7 @@ All plans include unlimited trucks. No per-seat fees. Annual billing saves ~17%.
 - [Home](${BASE_URL}/): Product overview, feature highlights, interactive demo, and pricing calculator
 - [Pricing](${BASE_URL}/pricing): Detailed plan comparison, feature matrix, and cost calculator
 - [Demo](${BASE_URL}/demo): Interactive product walkthrough
-- [Contact](${BASE_URL}/contact): Request early access or talk to sales
+- [Contact](${BASE_URL}/contact): Join the waitlist or talk to sales
 - [About](${BASE_URL}/about): Company mission and team information
 
 ## Technical Details

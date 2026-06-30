@@ -204,11 +204,11 @@ export function PricingCalculator() {
                     : 'text-white bg-theme-secondary hover:bg-theme-card'
                 )}
               >
-                {tier.id === 'enterprise' ? tier.ctaLabel : 'Get Early Access'}
+                {tier.id === 'enterprise' ? tier.ctaLabel : 'Join Waitlist'}
               </Link>
               {tier.id !== 'enterprise' && (
                 <p className="font-body text-xs text-theme-muted text-center mt-2">
-                  Available in early access
+                  Available via waitlist
                 </p>
               )}
             </motion.div>
@@ -313,10 +313,10 @@ export function PricingCalculator() {
                 href="/contact"
                 className="block w-full text-center py-3 font-body font-medium rounded-none transition-colors bg-dc-accent text-dc-text-on-accent hover:opacity-90"
               >
-                Get Early Access at This Price
+                Join Waitlist at This Price
               </Link>
               <p className="font-body text-xs text-theme-muted text-center mt-2">
-                Available in early access
+                Available via waitlist
               </p>
 
               {/* Enterprise note */}

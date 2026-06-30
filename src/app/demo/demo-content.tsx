@@ -160,7 +160,7 @@ export function DemoPageContent() {
             Ready to Run Your Fleet Smarter?
           </h2>
           <p className="font-body text-lg text-theme-secondary max-w-2xl mx-auto mb-8">
-            Request early access today. No credit card required.
+            Join the waitlist today. No credit card required.
             Get up and running in under 5 minutes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

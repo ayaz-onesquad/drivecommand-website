@@ -72,7 +72,7 @@ function CTAButton() {
           variants={prefersReducedMotion ? {} : primaryButtonVariants}
           transition={{ type: 'spring', stiffness: 400, damping: 25 }}
         >
-          Get Early Access
+          Join Waitlist
           <motion.span
             variants={prefersReducedMotion ? {} : arrowVariants}
             transition={{ type: 'spring', stiffness: 400, damping: 25 }}

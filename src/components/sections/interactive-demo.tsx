@@ -1035,7 +1035,7 @@ export function InteractiveDemo() {
                 variants={prefersReducedMotion ? {} : primaryButtonVariants}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
-                Get Early Access
+                Join Waitlist
                 <motion.span
                   className="inline-flex"
                   variants={prefersReducedMotion ? {} : arrowVariants}
