@@ -1,5 +1,5 @@
 /**
- * Wordmark — Typographic "DriveCommand" brand component.
+ * Wordmark: Typographic "DriveCommand" brand component.
  * UX reference: UX_GUIDELINES.md §4 Typography, Apple WWDC25 left-aligned patterns
  *
  * Replaces logo image in most contexts. Logo images reserved for:

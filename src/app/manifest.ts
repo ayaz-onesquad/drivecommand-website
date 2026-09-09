@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'DriveCommand',
     short_name: 'DriveCommand',
-    description: 'Fleet management software for trucking carriers. Dispatch, track, invoice, and stay compliant — all in one place.',
+    description: 'Fleet management software for trucking carriers. Dispatch, track, invoice, and stay compliant, all in one place.',
     start_url: '/',
     display: 'standalone',
     background_color: '#141619',

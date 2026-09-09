@@ -44,7 +44,7 @@ function ParallaxDotGrid({ y }: { y: ReturnType<typeof useParallax>['y'] }) {
   )
 }
 
-interface Feature {
+export interface Feature {
   icon: LucideIcon
   title: string
   description: string
@@ -59,7 +59,7 @@ interface Feature {
   }
 }
 
-const FEATURES: Feature[] = [
+export const FEATURES: Feature[] = [
   {
     icon: Truck,
     title: 'Dispatch & Loads',
@@ -127,7 +127,7 @@ const FEATURES: Feature[] = [
     icon: FileText,
     title: 'Invoicing',
     description:
-      'Generate invoices the moment a POD is uploaded. One click, done. Chase receivables with automated reminders — not phone calls.',
+      'Generate invoices the moment a POD is uploaded. One click, done. Chase receivables with automated reminders, not phone calls.',
     color: 'text-[var(--state-info)]',
     bgColor: 'bg-[var(--state-info-tint)]',
     hoverBorderColor: 'var(--state-info)',
@@ -169,7 +169,7 @@ const FEATURES: Feature[] = [
     icon: Sparkles,
     title: 'AI Tools',
     description:
-      'DriveCommand flags late loads, suggests optimal driver assignments, and drafts rate confirmations — so your dispatcher spends less time on admin.',
+      'DriveCommand flags late loads, suggests optimal driver assignments, and drafts rate confirmations, so your dispatcher spends less time on admin.',
     color: 'text-dc-accent',
     bgColor: 'bg-dc-accent/10',
     hoverBorderColor: 'rgba(0, 102, 204, 0.6)',
@@ -189,7 +189,7 @@ const FEATURES: Feature[] = [
 ]
 
 // Feature Detail Modal Component
-function FeatureModal({
+export function FeatureModal({
   feature,
   open,
   onOpenChange

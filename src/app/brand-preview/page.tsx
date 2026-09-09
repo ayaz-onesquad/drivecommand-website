@@ -22,7 +22,7 @@ export default function BrandPreviewPage() {
             DriveCommand Brand Preview
           </h1>
           <p className="text-dc2-text-secondary font-body">
-            Brand Guide v1.0 — April 2026
+            Brand Guide v1.0 · April 2026
           </p>
         </header>
 
@@ -266,7 +266,7 @@ export default function BrandPreviewPage() {
         {/* Footer */}
         <footer className="border-t border-dc2-border pt-8 text-center">
           <p className="text-dc2-text-muted text-sm font-body">
-            DriveCommand Brand Guide v1.0 — Development Preview
+            DriveCommand Brand Guide v1.0 · Development Preview
           </p>
         </footer>
       </div>
@@ -385,7 +385,7 @@ function TypographySample({
           {name}
         </span>
         <span className="font-mono text-xs text-dc2-text-muted">
-          {size} / {lineHeight} — {font}
+          {size} / {lineHeight} · {font}
         </span>
       </div>
       <p className={className}>{sample}</p>

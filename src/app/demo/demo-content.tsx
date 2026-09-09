@@ -139,7 +139,7 @@ export function DemoPageContent() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
             >
-              Step through a real dispatch day — from load assignment to invoice — in under 5 minutes.
+              Step through a real dispatch day, from load assignment to invoice, in under 5 minutes.
             </motion.p>
           </div>
         </div>

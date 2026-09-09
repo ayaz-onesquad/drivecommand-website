@@ -12,7 +12,7 @@
 export type PageSlug = 'pricing' | 'about' | 'contact' | 'home';
 
 export const PAGE_CONTENT: Record<PageSlug, string> = {
-  home: `# DriveCommand — Fleet Management for Carriers
+  home: `# DriveCommand: Fleet Management for Carriers
 
 > Miles Ahead.
 
@@ -31,7 +31,7 @@ DriveCommand gives independent operators and growing fleets one place to dispatc
 Real-time visibility into every truck in your fleet. Know where your assets are, always.
 
 ### Route & Dispatch
-Assign loads, optimize routes, and keep drivers informed — all from one dashboard.
+Assign loads, optimize routes, and keep drivers informed, all from one dashboard.
 
 ### Invoicing & Billing
 Generate professional invoices automatically. Get paid faster with integrated payment tracking.
@@ -47,7 +47,7 @@ Store and organize CDL records, insurance docs, and inspection reports in one se
 
 ## Why DriveCommand?
 
-- **Built for Trucking**: Not generic SaaS — every feature designed for fleet operations
+- **Built for Trucking**: Not generic SaaS. Every feature designed for fleet operations
 - **Scales with You**: From 1 truck to 100+, same powerful tools
 - **No Long-Term Contracts**: Month-to-month flexibility
 - **Real Support**: Help from people who understand trucking
@@ -63,21 +63,21 @@ Simple, transparent pricing for fleets of every size. No hidden fees, no long-te
 
 ## Plans
 
-### Basic — $29/truck/month
+### Basic: $29/truck/month
 Best for owner-operators and small fleets getting started.
 
 **Includes:**
-- Unlimited trucks
 - Live GPS tracking
 - Route & dispatch
 - Driver portal
 - Invoicing
 - Basic reports
 - Email support
+- No cap on fleet size (billed per truck)
 
 *Save 17% with annual billing ($24/mo)*
 
-### Advanced — $49/truck/month
+### Advanced: $49/truck/month
 Best for growing fleets that need deeper insights and automation.
 
 **Everything in Basic, plus:**
@@ -90,7 +90,7 @@ Best for growing fleets that need deeper insights and automation.
 
 *Save 18% with annual billing ($40/mo)*
 
-### Enterprise — Custom Pricing
+### Enterprise: Custom Pricing
 For large fleets requiring custom solutions and dedicated support.
 
 **Everything in Advanced, plus:**
@@ -106,19 +106,19 @@ For large fleets requiring custom solutions and dedicated support.
 
 | Feature | Basic | Advanced | Enterprise |
 |---------|-------|----------|------------|
-| Trucks | Unlimited | Unlimited | Unlimited |
+| Fleet size | No cap (per truck) | No cap (per truck) | No cap (per truck) |
 | Live GPS Tracking | ✓ | ✓ | ✓ |
 | Route & Dispatch | ✓ | ✓ | ✓ |
 | Driver Portal | ✓ | ✓ | ✓ |
 | Invoicing | ✓ | ✓ | ✓ |
 | Basic Reports | ✓ | ✓ | ✓ |
-| Maintenance Scheduling | — | ✓ | ✓ |
-| Document Storage | — | ✓ | ✓ |
-| Fuel Analytics | — | ✓ | ✓ |
-| Safety Analytics | — | ✓ | ✓ |
-| Driver Payroll | — | ✓ | ✓ |
-| Custom Integrations | — | — | ✓ |
-| API Access | — | — | ✓ |
+| Maintenance Scheduling | No | ✓ | ✓ |
+| Document Storage | No | ✓ | ✓ |
+| Fuel Analytics | No | ✓ | ✓ |
+| Safety Analytics | No | ✓ | ✓ |
+| Driver Payroll | No | ✓ | ✓ |
+| Custom Integrations | No | No | ✓ |
+| API Access | No | No | ✓ |
 
 ## Questions?
 
@@ -135,7 +135,7 @@ DriveCommand was founded by trucking operators frustrated with clunky, overprice
 
 ## Mission
 
-We believe every carrier — from owner-operators to growing fleets — deserves powerful, professional tools without the complexity or inflated price tags.
+We believe every carrier, from owner-operators to growing fleets, deserves powerful, professional tools without the complexity or inflated price tags.
 
 DriveCommand exists to level the playing field. We build software that helps smaller operations compete, grow, and thrive in an industry that often overlooks them.
 
@@ -162,13 +162,13 @@ Your business runs 24/7. DriveCommand is built for uptime and performance you ca
 
 ## Leadership Team
 
-### Ayaz Mohammed — Co-Founder
+### Ayaz Mohammed, Co-Founder
 Former logistics carrier owner who built and ran a 20-truck fleet. Software engineer who experienced firsthand the gaps in fleet management tools and set out to fix them.
 
-### Sammy Issa — Co-Founder
+### Sammy Issa, Co-Founder
 Owner-operator turned software engineer. Brings real-world experience from behind the wheel and under the hood to every feature we build.
 
-### Nadeem Awawda — Co-Founder
+### Nadeem Awawda, Co-Founder
 Former dispatcher and software engineer. Knows the daily chaos of coordinating loads and drivers, and builds tools that actually solve those problems.
 
 ## Get Started
@@ -188,7 +188,7 @@ Have questions about DriveCommand? Ready to get started? We'll get back to you w
 
 ## Why DriveCommand?
 
-- Scales with you — 1 truck or 100+
+- Scales with you, 1 truck or 100+
 - All features included, no upsells
 - Real support from trucking experts
 - No long-term contracts required

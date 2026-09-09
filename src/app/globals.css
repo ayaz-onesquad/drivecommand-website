@@ -690,3 +690,182 @@
     animation: none;
   }
 }
+
+/* ============================================
+   SCROLL-CRAFT HOME PAGE
+   Planes, tool windows, rail, close. Tokens only.
+   ============================================ */
+
+/* Grain so a flat ground reads as a lit room (4% on dark, 2.5% on light) */
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+[data-theme="dark"] .hero-grain,
+:root.dark .hero-grain {
+  opacity: 0.08;
+  mix-blend-mode: screen;
+}
+
+/* Deep panel shadow (brand-tinted, offset and blurred) */
+:root {
+  --shadow-panel: var(--shadow-elevated), 0 40px 80px -30px rgba(0, 38, 84, 0.35);
+}
+
+/* Hero foreground chips (front plane) */
+.hero-chip {
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-card, var(--border-subtle));
+  box-shadow: var(--shadow-hover);
+  pointer-events: none;
+}
+.hero-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+.hero-chip__title {
+  display: block;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.hero-chip__meta {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  margin-top: 0.15rem;
+  color: var(--text-tertiary);
+}
+
+/* Collapse act: the scattered tool windows */
+.tool-window {
+  position: absolute;
+  z-index: 20;
+  left: var(--pos-left);
+  top: var(--pos-top);
+  width: clamp(11rem, 22vw, 17rem);
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-card, var(--border-subtle));
+  box-shadow: var(--shadow-elevated);
+  will-change: transform, opacity;
+}
+.tool-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  background-color: var(--surface-dashboard-header);
+  border-bottom: 1px solid var(--border-divider);
+}
+.tool-window__body {
+  padding: 0.55rem 0.6rem 0.65rem;
+}
+.tool-window__line {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  line-height: 1.55;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 767px) {
+  /* Phones: the windows peek in from the stage edges so the copy stays clear */
+  .tool-window {
+    width: clamp(9rem, 44vw, 12rem);
+    left: var(--m-left, var(--pos-left));
+    top: var(--m-top, var(--pos-top));
+  }
+  .tool-window__line { font-size: 0.625rem; }
+}
+
+/* Features rail (pan) */
+.features-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0 1rem;
+  will-change: transform;
+}
+.features-rail__lead,
+.features-rail__card,
+.features-rail__close {
+  flex-shrink: 0;
+}
+.features-rail__card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border-radius: 1rem;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-card, var(--border-subtle));
+  box-shadow: var(--shadow-card);
+}
+@media (min-width: 768px) {
+  .features-rail {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 1.5rem;
+    width: max-content;
+    padding: 0 max(2rem, calc((100vw - 80rem) / 2 + 2rem));
+  }
+  .features-rail__lead {
+    width: clamp(22rem, 34vw, 30rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 2rem;
+  }
+  .features-rail__card {
+    width: clamp(20rem, 27vw, 24rem);
+    min-height: 26rem;
+  }
+  .features-rail__close {
+    width: clamp(20rem, 30vw, 26rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 768px) {
+  /* Without the pan, the rail relays as a grid so nothing past the fold is unreachable */
+  .features-rail {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: auto;
+    padding: 0 2rem;
+  }
+  .features-rail__lead,
+  .features-rail__close { grid-column: span 3; }
+  .features-rail__card { width: auto; min-height: 0; }
+}
+
+/* Close: an ink ground in both themes, the accent stepped for contrast on dark */
+.close {
+  --close-ink: var(--dc-bone);
+  --close-ink-soft: var(--dc-n300);
+  --close-accent: var(--dc-b300);
+  --close-line: rgba(245, 245, 247, 0.16);
+  --close-glow: rgba(90, 200, 250, 0.18);
+  background-color: var(--dc-n900);
+  color: var(--close-ink);
+}

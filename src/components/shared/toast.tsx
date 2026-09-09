@@ -1,5 +1,5 @@
 /**
- * Toast — Notification component with semantic state colors.
+ * Toast: Notification component with semantic state colors.
  * UX reference: UX_GUIDELINES.md §6 Components, §11 Motion
  *
  * Per brand guide:

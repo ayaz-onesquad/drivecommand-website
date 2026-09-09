@@ -41,7 +41,7 @@ export function Footer() {
             className="mt-2 text-sm font-body max-w-xs"
             style={{ color: 'var(--text-secondary)' }}
           >
-            Fleet management built for carriers. Dispatch, track, and invoice — all in one place.
+            Fleet management built for carriers. Dispatch, track, and invoice, all in one place.
           </p>
         </div>
 

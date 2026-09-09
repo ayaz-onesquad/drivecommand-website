@@ -112,7 +112,7 @@ export default async function Image() {
             fontFamily: 'system-ui, sans-serif',
           }}
         >
-          No hidden fees • No long-term contracts • Unlimited trucks
+          No hidden fees • No long-term contracts • Billed per truck
         </div>
       </div>
     ),

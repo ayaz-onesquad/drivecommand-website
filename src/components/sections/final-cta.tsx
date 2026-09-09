@@ -1,176 +1,157 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
 import { ArrowRight } from 'lucide-react'
-import { useIsDesktop } from '@/hooks/use-is-desktop'
-import { useContentParallax, useParallax } from '@/hooks/use-parallax'
+import { gsap, useGSAP, MOTION_OK, FINE_POINTER } from '@/lib/gsap'
 
-// Variant A: Primary filled button with lift + glow + arrow animation
-const primaryButtonVariants = {
-  rest: { y: 0, boxShadow: '0 10px 15px -3px rgba(0, 102, 204, 0.25)' },
-  hover: { y: -2, boxShadow: '0 8px 25px rgba(0, 102, 204, 0.35)' },
-  tap: { y: 0, boxShadow: '0 4px 12px rgba(0, 102, 204, 0.2)' },
-}
+/**
+ * CLOSE (draw + pointer)
+ * A road drawn to its vanishing point by the reader's own scroll, and the
+ * tagline landing on it. The final screen resolves and holds: nothing here
+ * fades out. The CTA is magnetic so the page ends by responding to the
+ * reader rather than by running out.
+ */
 
-const arrowVariants = {
-  rest: { opacity: 0, x: -4 },
-  hover: { opacity: 1, x: 0 },
-}
+const WORDS = ['Miles', 'Ahead.']
 
 export function FinalCTA() {
-  const ref = useRef<HTMLElement>(null)
-  const prefersReducedMotion = useReducedMotion()
-  const isDesktop = useIsDesktop()
-  const shouldAnimate = !prefersReducedMotion
+  const sectionRef = useRef<HTMLElement>(null)
+  const ctaRef = useRef<HTMLDivElement>(null)
 
-  // TIER 2: Route lines drift upward at 0.2x scroll speed
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  })
+  useGSAP(
+    () => {
+      const section = sectionRef.current
+      if (!section) return
+      const mm = gsap.matchMedia()
 
-  const routeY = useTransform(scrollYProgress, [0, 1], ['0%', '20%'])
-  const shouldParallax = isDesktop && shouldAnimate
+      mm.add(MOTION_OK, () => {
+        const lines = gsap.utils.toArray<SVGPathElement>('[data-road]', section)
+        lines.forEach((p) => {
+          const len = p.getTotalLength()
+          gsap.set(p, { strokeDasharray: len, strokeDashoffset: len })
+        })
+        const tl = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: { trigger: section, start: 'top 85%', end: 'top 15%', scrub: 0.6 },
+        })
+        tl.to(lines, { strokeDashoffset: 0, duration: 1, stagger: 0.06 }, 0)
+        tl.fromTo('[data-word]', { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.12, ease: 'power3.out' }, 0.35)
+        tl.fromTo('[data-close-copy]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, 0.7)
+        tl.fromTo('[data-close-cta]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, 0.8)
+      })
 
-  // TIER 3: Content micro-parallax (0.5x speed)
-  const { y: contentY, shouldAnimate: shouldAnimateContent } = useContentParallax()
+      mm.add(`${MOTION_OK} and ${FINE_POINTER}`, () => {
+        const wrap = ctaRef.current
+        if (!wrap) return
+        const x = gsap.quickTo(wrap, 'x', { duration: 0.6, ease: 'power3.out' })
+        const y = gsap.quickTo(wrap, 'y', { duration: 0.6, ease: 'power3.out' })
+        const onMove = (e: PointerEvent) => {
+          const r = wrap.getBoundingClientRect()
+          const dx = e.clientX - (r.left + r.width / 2)
+          const dy = e.clientY - (r.top + r.height / 2)
+          const reach = 140
+          if (Math.abs(dx) < reach && Math.abs(dy) < reach) {
+            x(dx * 0.28)
+            y(dy * 0.28)
+          } else {
+            x(0)
+            y(0)
+          }
+        }
+        const onLeave = () => {
+          x(0)
+          y(0)
+        }
+        section.addEventListener('pointermove', onMove, { passive: true })
+        section.addEventListener('pointerleave', onLeave)
+        return () => {
+          section.removeEventListener('pointermove', onMove)
+          section.removeEventListener('pointerleave', onLeave)
+        }
+      })
+
+      return () => mm.revert()
+    },
+    { scope: sectionRef }
+  )
 
   return (
-    <>
-      {/* Road divider above section */}
-      <hr className="divider-road" />
-
-      <section
-        ref={ref}
-        className="relative z-[1] py-32 overflow-hidden texture-asphalt"
+    <section
+      ref={sectionRef}
+      className="close relative overflow-hidden min-h-[100svh] flex items-center"
+      aria-label="Join the waitlist"
+    >
+      {/* Road to the vanishing point, drawn by scroll */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        fill="none"
+        aria-hidden="true"
       >
-        {/* TIER 2: Highway interchange background SVG - same as hero (0.2x speed) */}
-        <motion.div
-          className="absolute inset-0 will-change-transform"
-          style={{ y: shouldParallax ? routeY : undefined }}
+        <g stroke="var(--close-line)" strokeWidth="1.5" strokeLinecap="round">
+          <path data-road d="M-120 900 L720 300" />
+          <path data-road d="M1560 900 L720 300" />
+          <path data-road d="M260 900 L720 300" />
+          <path data-road d="M1180 900 L720 300" />
+          <path data-road d="M560 900 L720 300" />
+          <path data-road d="M880 900 L720 300" />
+        </g>
+        <g stroke="var(--close-accent)" strokeWidth="2" strokeDasharray="14 22" strokeLinecap="round" opacity="0.7">
+          <path data-road d="M720 900 L720 300" />
+        </g>
+        <g stroke="var(--close-line)" strokeWidth="1" opacity="0.55">
+          <path data-road d="M0 300 L1440 300" />
+        </g>
+      </svg>
+
+      {/* Horizon glow behind the copy */}
+      <div
+        className="absolute left-1/2 top-[33%] -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[900px] h-[40vh] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at center, var(--close-glow) 0%, transparent 65%)' }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 hero-grain pointer-events-none" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 w-full py-24 text-center">
+        <h2
+          className="font-display font-bold tracking-[-0.04em] leading-[0.92] text-[clamp(3.4rem,13vw,11rem)]"
+          style={{ color: 'var(--close-ink)' }}
         >
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 1440 900"
-            preserveAspectRatio="xMidYMid slice"
-          >
-            {/* Highway interchange pattern - top-down stylized view */}
-            {/* Dark mode: white lines, Light mode: dark lines */}
-            <g className="stroke-white/[0.04] dark:stroke-white/[0.04]" style={{ stroke: 'var(--border-divider)' }} strokeWidth="4" fill="none" opacity="0.15">
-              {/* Main horizontal road */}
-              <line x1="0" y1="450" x2="1440" y2="450" />
-              {/* Main vertical road */}
-              <line x1="720" y1="0" x2="720" y2="900" />
-              {/* Curved interchange ramps */}
-              <path d="M720,450 Q900,450 900,270" />
-              <path d="M720,450 Q540,450 540,630" />
-              <path d="M720,450 Q720,270 900,270" />
-              <path d="M720,450 Q720,630 540,630" />
-            </g>
-            {/* Center dashed lines */}
-            <g className="stroke-white/[0.06] dark:stroke-white/[0.06]" style={{ stroke: 'var(--accent-blue)' }} strokeWidth="2" strokeDasharray="12 8" fill="none" opacity="0.2">
-              <line x1="0" y1="450" x2="1440" y2="450" />
-              <line x1="720" y1="0" x2="720" y2="900" />
-            </g>
-          </svg>
+          {WORDS.map((w, i) => (
+            <span key={w} className="inline-block overflow-hidden align-bottom pb-[0.1em] -mb-[0.1em] mr-[0.22em] last:mr-0">
+              <span data-word className="inline-block motion-reduce:!translate-y-0" style={i === 1 ? { color: 'var(--close-accent)' } : undefined}>
+                {w}
+              </span>
+            </span>
+          ))}
+        </h2>
 
-          {/* Subtle center glow */}
-          {shouldParallax && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px]">
-              <div
-                className="absolute inset-0 rounded-full blur-[100px] animate-glow-pulse"
-                style={{ backgroundColor: 'var(--color-glow-accent)' }}
-              />
-            </div>
-          )}
-        </motion.div>
+        <p
+          data-close-copy
+          className="mt-8 font-body text-lg sm:text-xl max-w-[40ch] mx-auto motion-reduce:!opacity-100 motion-reduce:!translate-y-0"
+          style={{ color: 'var(--close-ink-soft)', textWrap: 'pretty' }}
+        >
+          Join the carriers replacing five tools with one. The waitlist is open. No contract, no credit card.
+        </p>
 
-        {/* Mobile static background */}
-        {!isDesktop && (
-          <div className="absolute inset-0">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64">
-              <div className="absolute inset-0 rounded-full blur-3xl" style={{ backgroundColor: 'var(--color-glow-accent)' }} />
-            </div>
+        <div data-close-cta className="mt-10 motion-reduce:!opacity-100 motion-reduce:!translate-y-0">
+          <div ref={ctaRef} className="inline-block will-change-transform">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-10 py-4 font-body font-semibold text-lg rounded-lg transition-[transform,background-color] duration-150 active:scale-[0.97] hover:bg-dc-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--dc-b300)]"
+              style={{ backgroundColor: 'var(--dc-b500)', color: 'var(--dc-bone)', boxShadow: 'var(--glow-brand-lg)' }}
+            >
+              Join Waitlist
+              <ArrowRight size={18} />
+            </Link>
           </div>
-        )}
-
-        <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-          {/* TIER 3: Content with micro-parallax (0.5x speed) */}
-          <motion.div
-            className="will-change-transform"
-            style={shouldAnimateContent ? { y: contentY } : undefined}
-          >
-            <motion.h2
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"
-              style={{ color: 'var(--text-primary)' }}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.5 }}
-            >
-              Your Fleet. Fully In Command.
-            </motion.h2>
-
-            <motion.p
-              className="font-body text-lg sm:text-xl mb-10 max-w-xl mx-auto"
-              style={{ color: 'var(--text-secondary)' }}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.5, delay: shouldAnimate ? 0.15 : 0 }}
-            >
-              Join the carriers replacing 5 tools with one. Waitlist is open — no contract, no credit card.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5, delay: shouldAnimate ? 0.3 : 0 }}
-          >
-            {/* Variant A: Primary CTA with lift + glow + arrow */}
-            <motion.div
-              initial="rest"
-              whileHover="hover"
-              whileTap="tap"
-              animate="rest"
-              className="w-full sm:w-auto"
-            >
-              <Link href="/contact" className="block">
-                <motion.span
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 font-body font-medium text-lg rounded-lg bg-dc-accent text-dc-text-on-accent"
-                  variants={prefersReducedMotion ? {} : primaryButtonVariants}
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                >
-                  Join Waitlist
-                  <motion.span
-                    className="inline-flex"
-                    variants={prefersReducedMotion ? {} : arrowVariants}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  >
-                    <ArrowRight size={18} />
-                  </motion.span>
-                </motion.span>
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          <motion.p
-            className="mt-4 font-body text-sm"
-            style={{ color: 'var(--color-text-muted)' }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5, delay: shouldAnimate ? 0.35 : 0 }}
-          >
-            Reviewed within 1 business day · Cancel anytime · DOT-compliant from day one
-          </motion.p>
+          <p className="mt-5 font-body text-sm" style={{ color: 'var(--close-ink-soft)' }}>
+            Reviewed within one business day. Cancel any month.
+          </p>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

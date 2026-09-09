@@ -1,16 +1,11 @@
 import type { Metadata } from 'next'
-import {
-  Hero,
-  ProblemBar,
-  FeaturesGrid,
-  DemoVideo,
-  InteractiveDemo,
-  PricingCalculator,
-  SocialProof,
-  FinalCTA,
-} from '@/components/sections'
-import WhyDriveCommandScroll from '@/components/sections/why-drivecommand-scroll'
-import { ParallaxWorld } from '@/components/shared/parallax-world'
+import { Hero, InteractiveDemo, PricingCalculator, FinalCTA } from '@/components/sections'
+import { CollapseAct } from '@/components/sections/collapse-act'
+import { FeaturesRail } from '@/components/sections/features-rail'
+import { RoadChapters } from '@/components/sections/road-chapters'
+import { ProofStack } from '@/components/sections/proof-stack'
+import { RevealPanel } from '@/components/scroll/reveal-panel'
+import { ScrollProvider } from '@/components/scroll/scroll-provider'
 
 export const metadata: Metadata = {
   title: 'Fleet Management for Carriers',
@@ -20,28 +15,38 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'DriveCommand — Fleet Management for Carriers',
+    title: 'DriveCommand | Fleet Management for Carriers',
     description:
-      'Dispatch, track, invoice, and stay compliant — all in one place.',
+      'Dispatch, track, invoice, and stay compliant, all in one place.',
     type: 'website',
   },
 }
 
+/**
+ * Home page score (one device family per beat, none repeated back to back):
+ *
+ *   Recognition   Hero          parallax planes + pointer depth
+ *   Tension/Turn  Collapse      pin + scrubbed choreography   (the peak)
+ *   Substance     Features      pan (horizontal rail)
+ *   Who we are    Chapters      full-screen stacked panels, dealt in on scroll
+ *   Proof         Demo          reveal (clip-path wipe) into a working surface
+ *   Range         Pricing       flow + in
+ *   Voices        Proof stack   stack (sticky deck)
+ *   Commitment    Close         draw + magnet, resolves and holds
+ */
 export default function HomePage() {
   return (
     <>
-      {/* Global parallax background layer (z-index: 0) */}
-      <ParallaxWorld />
-
-      {/* All sections sit above the parallax world (z-index: 1+) */}
+      <ScrollProvider />
       <Hero />
-      <ProblemBar />
-      <FeaturesGrid />
-      <WhyDriveCommandScroll />
-      <DemoVideo />
-      <InteractiveDemo />
+      <CollapseAct />
+      <FeaturesRail />
+      <RoadChapters />
+      <RevealPanel direction="up">
+        <InteractiveDemo />
+      </RevealPanel>
       <PricingCalculator />
-      <SocialProof />
+      <ProofStack />
       <FinalCTA />
     </>
   )

@@ -30,16 +30,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   // NOTE: Brand guide uses drivecommand.co, audit found drivecommand.com
-  // Defaulting to .co per authoritative brand guide — FLAG for human review
+  // Defaulting to .co per authoritative brand guide. FLAG for human review
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? 'https://drivecommand.co'
   ),
   title: {
-    default: 'DriveCommand — Miles Ahead.',
+    default: 'DriveCommand | Miles Ahead.',
     template: '%s | DriveCommand',
   },
   description:
-    'Carrier operations built for the road. Dispatch, track, invoice, and stay compliant — all in one place. Miles Ahead.',
+    'Carrier operations built for the road. Dispatch, track, invoice, and stay compliant, all in one place. Miles Ahead.',
   keywords: [
     'fleet management',
     'trucking software',

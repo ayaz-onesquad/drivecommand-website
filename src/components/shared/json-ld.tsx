@@ -58,7 +58,7 @@ const organizationSchema: OrganizationSchema = {
   '@type': 'Organization',
   name: 'DriveCommand',
   description:
-    'Fleet management software for independent carriers and growing fleets. Dispatch, track, invoice, and stay compliant — all in one place.',
+    'Fleet management software for independent carriers and growing fleets. Dispatch, track, invoice, and stay compliant, all in one place.',
   url: BASE_URL,
   logo: `${BASE_URL}/brand/logo.png`,
   contactPoint: {

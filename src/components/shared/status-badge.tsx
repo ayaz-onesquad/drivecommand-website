@@ -1,5 +1,5 @@
 /**
- * StatusBadge — Load status indicator with semantic state colors.
+ * StatusBadge: Load status indicator with semantic state colors.
  * UX reference: UX_GUIDELINES.md §6 Components (Status pills)
  *
  * Per brand guide:
@@ -101,7 +101,7 @@ export function StatusBadge({ status = 'dispatched', className, compact = false 
       animate={{ scale: 1, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
     >
-      {/* Status dot — required per UX guidelines (never color alone) */}
+      {/* Status dot, required per UX guidelines (never color alone) */}
       {isInTransit && !prefersReducedMotion ? (
         <motion.span
           className="h-1.5 w-1.5 rounded-full"

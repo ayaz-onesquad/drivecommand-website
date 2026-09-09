@@ -8,7 +8,7 @@ const localBusinessSchema = {
   '@type': 'LocalBusiness',
   '@id': 'https://drivecommand.co/#organization',
   name: 'DriveCommand',
-  description: 'Fleet management software for trucking carriers. Dispatch, track, invoice, and stay compliant — all in one place.',
+  description: 'Fleet management software for trucking carriers. Dispatch, track, invoice, and stay compliant, all in one place.',
   url: 'https://drivecommand.co',
   logo: 'https://drivecommand.co/brand/logo.png',
   image: 'https://drivecommand.co/brand/logo.png',
@@ -133,7 +133,7 @@ export default function ContactPage() {
                   Why DriveCommand?
                 </h3>
                 <ul className="space-y-2 font-body text-sm text-theme-secondary">
-                  <li>• Scales with you — 1 truck or 100+</li>
+                  <li>• Scales with you, 1 truck or 100+</li>
                   <li>• All features included, no upsells</li>
                   <li>• Real support from trucking experts</li>
                   <li>• No long-term contracts required</li>

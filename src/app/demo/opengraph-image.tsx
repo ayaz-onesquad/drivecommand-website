@@ -64,7 +64,7 @@ export default async function Image() {
             fontFamily: 'system-ui, sans-serif',
           }}
         >
-          Interactive product walkthrough — no signup required.
+          Interactive product walkthrough. No signup required.
         </div>
 
         {/* Feature highlights */}

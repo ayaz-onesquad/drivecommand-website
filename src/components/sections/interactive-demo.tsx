@@ -66,31 +66,31 @@ const DEMO_STEPS = [
   {
     id: 1,
     title: 'Book a Load',
-    description: 'Enter load details in seconds. Rate, route, pickup time, and broker contact — all in one form.',
+    description: 'Enter load details in seconds. Rate, route, pickup time, and broker contact, all in one form.',
     icon: Package,
   },
   {
     id: 2,
     title: 'Active Loads',
-    description: "Every load your fleet is running — live status, driver, route, and ETA at a glance.",
+    description: "Every load your fleet is running: live status, driver, route, and ETA at a glance.",
     icon: LayoutGrid,
   },
   {
     id: 3,
     title: 'Driver Comms',
-    description: 'No more personal cell numbers. Message any driver directly from dispatch — with a full message history.',
+    description: 'No more personal cell numbers. Message any driver directly from dispatch, with a full message history.',
     icon: MessageSquare,
   },
   {
     id: 4,
     title: 'Driver Docs',
-    description: 'Drivers upload BOL and POD photos from their phone. You get them instantly — no email, no scanning, no chasing.',
+    description: 'Drivers upload BOL and POD photos from their phone. You get them instantly. No email, no scanning, no chasing.',
     icon: FileText,
   },
   {
     id: 5,
     title: 'Financials',
-    description: 'Revenue, outstanding invoices, and driver pay — all current, all in one view. Know your numbers before your accountant does.',
+    description: 'Revenue, outstanding invoices, and driver pay, all current, all in one view. Know your numbers before your accountant does.',
     icon: DollarSign,
   },
 ]
@@ -356,7 +356,7 @@ function Step2ActiveLoads() {
                   className="ml-3 mt-1 px-3 py-2 rounded-r text-sm font-body"
                   style={{ backgroundColor: 'var(--state-warning-tint)', borderLeftWidth: '2px', borderLeftColor: 'var(--state-warning)', color: 'var(--state-warning)' }}
                 >
-                  Mike Torres checked in at Indianapolis, IN — 340 mi remaining
+                  Mike Torres checked in at Indianapolis, IN. 340 mi remaining
                 </motion.div>
               )}
             </AnimatePresence>
@@ -397,7 +397,7 @@ function Step3DriverComms() {
 
   const handleSend = () => {
     if (messageSent) return
-    setMessages(prev => [...prev, { from: 'dispatch', time: 'now', text: 'ETA update needed — any delays?' }])
+    setMessages(prev => [...prev, { from: 'dispatch', time: 'now', text: 'ETA update needed. Any delays?' }])
     setMessageSent(true)
     setTimeout(() => {
       setMessages(prev => [...prev, { from: 'driver', time: 'now', text: 'All good, on schedule.' }])
@@ -490,7 +490,7 @@ function Step3DriverComms() {
               'flex-1 rounded-lg px-3 py-2 font-body text-sm bg-theme-card',
               messageSent ? 'text-theme-muted' : 'text-theme-primary'
             )}>
-              {messageSent ? '' : 'ETA update needed — any delays?'}
+              {messageSent ? '' : 'ETA update needed. Any delays?'}
             </div>
             <motion.button
               onClick={handleSend}
@@ -549,7 +549,7 @@ function Step4DriverDocs() {
             className="absolute top-4 left-4 right-4 rounded-lg px-4 py-2 text-sm font-body"
             style={{ backgroundColor: 'var(--state-success-tint)', borderWidth: '1px', borderColor: 'var(--state-success)', color: 'var(--state-success)' }}
           >
-            POD received for LD-2024-0891 — invoice can now be generated
+            POD received for LD-2024-0891. Invoice can now be generated
           </motion.div>
         )}
       </AnimatePresence>
@@ -877,7 +877,7 @@ export function InteractiveDemo() {
               See How Your Day Changes
             </h2>
             <p className="font-body text-lg text-theme-secondary max-w-2xl mx-auto">
-              Five workflows you do every day — now faster, cleaner, and all in one place.
+              Five workflows you do every day, now faster, cleaner, and all in one place.
             </p>
           </motion.div>
         </motion.div>
@@ -1020,7 +1020,7 @@ export function InteractiveDemo() {
           transition={{ duration: 0.5, delay: 0.6 }}
         >
           <p className="font-body text-lg text-theme-secondary mb-6">
-            Run your operation like this —
+            Run your operation like this.
           </p>
           <motion.div
             initial="rest"

@@ -3,7 +3,7 @@ import { DemoPageContent } from './demo-content'
 
 export const metadata: Metadata = {
   title: 'Demo',
-  description: 'See DriveCommand in action. Step through a real dispatch day — from load assignment to invoice — in under 5 minutes.',
+  description: 'See DriveCommand in action. Step through a real dispatch day, from load assignment to invoice, in under 5 minutes.',
   alternates: {
     canonical: '/demo',
   },

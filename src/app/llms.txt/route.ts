@@ -15,7 +15,7 @@ export async function GET() {
 
 > Fleet management software for trucking companies. Miles Ahead.
 
-DriveCommand is an all-in-one fleet management platform built specifically for independent owner-operators, small carriers, and growing trucking fleets. It consolidates dispatch, GPS tracking, driver payroll, invoicing, and DOT compliance into a single system—eliminating spreadsheets, phone tag, and disconnected tools.
+DriveCommand is an all-in-one fleet management platform built specifically for independent owner-operators, small carriers, and growing trucking fleets. It consolidates dispatch, GPS tracking, driver payroll, invoicing, and DOT compliance into a single system, eliminating spreadsheets, phone tag, and disconnected tools.
 
 ## Target Audience
 
@@ -46,9 +46,9 @@ Smart driver matching based on location and deadhead. Late load predictions with
 
 ## Pricing
 
-- **Starter**: $29/truck/month — GPS tracking, dispatch, driver portal, invoicing, basic reports
-- **Growth** (Most Popular): $49/truck/month — Everything in Starter plus maintenance scheduling, document storage, fuel analytics, safety analytics, driver payroll
-- **Enterprise**: Custom pricing — API access, custom integrations, dedicated account manager, SLA guarantee, SSO, 24/7 support
+- **Starter**: $29/truck/month: GPS tracking, dispatch, driver portal, invoicing, basic reports
+- **Growth** (Most Popular): $49/truck/month: Everything in Starter plus maintenance scheduling, document storage, fuel analytics, safety analytics, driver payroll
+- **Enterprise**: Custom pricing: API access, custom integrations, dedicated account manager, SLA guarantee, SSO, 24/7 support
 
 All plans include unlimited trucks. No per-seat fees. Annual billing saves ~17%.
 
