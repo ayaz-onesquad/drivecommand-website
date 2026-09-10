@@ -2,13 +2,14 @@
 
 import { useRef } from 'react'
 import { CheckCircle } from 'lucide-react'
-import { gsap, useGSAP, MOTION_OK } from '@/lib/gsap'
+import { gsap, useGSAP, once, MOTION_OK, DESKTOP, MOBILE } from '@/lib/gsap'
 
 /**
- * PROOF STACK (stack device)
- * Each quote sticks near the top of the viewport; the one before it recedes
- * (scales down, dims) as the next slides over. Reads as a deck being dealt.
- * Under reduced motion they simply stack in flow.
+ * PROOF STACK
+ * Desktop: each quote sticks near the top of the viewport; the one before
+ * it recedes as the next slides over, like a deck being dealt.
+ * Phone: no sticking. The cards simply arrive one after another, each
+ * settling on its own once it enters view.
  */
 
 const TESTIMONIALS = [
@@ -49,7 +50,8 @@ export function ProofStack() {
       const section = sectionRef.current
       if (!section) return
       const mm = gsap.matchMedia()
-      mm.add(MOTION_OK, () => {
+
+      mm.add(`${MOTION_OK} and ${DESKTOP}`, () => {
         const slots = gsap.utils.toArray<HTMLElement>('[data-slot]', section)
         slots.forEach((slot, i) => {
           const next = slots[i + 1]
@@ -60,35 +62,28 @@ export function ProofStack() {
             y: -16,
             opacity: 0.45,
             ease: 'none',
-            scrollTrigger: {
-              trigger: next,
-              start: 'top 85%',
-              end: 'top 22%',
-              scrub: true,
-            },
+            scrollTrigger: { trigger: next, start: 'top 85%', end: 'top 22%', scrub: true },
           })
         })
       })
+
+      mm.add(`${MOTION_OK} and ${MOBILE}`, () => {
+        gsap.utils.toArray<HTMLElement>('[data-card]', section).forEach((card) => {
+          gsap.fromTo(card, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', scrollTrigger: once(card, 'top 85%') })
+        })
+      })
+
       return () => mm.revert()
     },
     { scope: sectionRef }
   )
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-24 lg:py-32"
-      style={{ backgroundColor: 'var(--surface-sunken)' }}
-      aria-label="Carriers on DriveCommand"
-    >
+    <section ref={sectionRef} className="relative py-24 lg:py-32" style={{ backgroundColor: 'var(--surface-sunken)' }} aria-label="Carriers on DriveCommand">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-[minmax(0,38%)_minmax(0,62%)] lg:gap-16">
-          {/* Heading holds on the left while the deck deals on the right */}
           <div className="lg:sticky lg:top-28 lg:self-start mb-12 lg:mb-0">
-            <h2
-              className="font-display font-bold tracking-[-0.03em] leading-[0.98] text-[clamp(2.2rem,4.4vw,3.8rem)]"
-              style={{ color: 'var(--text-primary)', textWrap: 'balance' }}
-            >
+            <h2 className="font-display font-bold tracking-[-0.03em] leading-[0.98] text-[clamp(2.2rem,4.4vw,3.8rem)]" style={{ color: 'var(--text-primary)', textWrap: 'balance' }}>
               Carriers running on DriveCommand.
             </h2>
             <p className="mt-5 font-body text-base sm:text-lg max-w-[36ch]" style={{ color: 'var(--text-secondary)', textWrap: 'pretty' }}>
@@ -96,12 +91,12 @@ export function ProofStack() {
             </p>
           </div>
 
-          <div>
+          <div className="space-y-6 md:space-y-0">
             {TESTIMONIALS.map((t, i) => (
-              <div key={t.name} data-slot className="sticky top-24 lg:top-28" style={{ marginBottom: i === TESTIMONIALS.length - 1 ? 0 : '18vh' }}>
+              <div key={t.name} data-slot className="md:sticky md:top-28" style={{ marginBottom: i === TESTIMONIALS.length - 1 ? 0 : undefined }}>
                 <figure
                   data-card
-                  className="relative rounded-2xl p-7 sm:p-9 will-change-transform"
+                  className="relative rounded-2xl p-7 sm:p-9 will-change-transform md:mb-[18vh]"
                   style={{
                     backgroundColor: 'var(--surface-elevated)',
                     border: '1px solid var(--border-card, var(--border-subtle))',
@@ -115,10 +110,7 @@ export function ProofStack() {
                   </blockquote>
                   <figcaption className="mt-7 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <span
-                        className="w-11 h-11 rounded-full inline-flex items-center justify-center font-display font-bold text-sm"
-                        style={{ backgroundColor: t.tone, color: 'var(--text-on-brand)' }}
-                      >
+                      <span className="w-11 h-11 rounded-full inline-flex items-center justify-center font-display font-bold text-sm" style={{ backgroundColor: t.tone, color: 'var(--text-on-brand)' }}>
                         {t.initials}
                       </span>
                       <div>

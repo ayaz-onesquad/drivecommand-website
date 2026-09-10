@@ -24,4 +24,13 @@ export const DESKTOP = '(min-width: 768px)'
 export const MOBILE = '(max-width: 767px)'
 export const FINE_POINTER = '(hover: hover) and (pointer: fine)'
 
+/**
+ * A play-once trigger. The beat plays to completion when it enters the
+ * viewport and never rewinds, so a reader who stops scrolling always sees a
+ * finished frame, never a half-risen headline.
+ */
+export function once(trigger: Element | string, start = 'top 78%') {
+  return { trigger, start, toggleActions: 'play none none none', once: true } as const
+}
+
 export { gsap, ScrollTrigger, useGSAP }

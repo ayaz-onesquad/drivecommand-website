@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { gsap, useGSAP, MOTION_OK, DESKTOP } from '@/lib/gsap'
+import { gsap, useGSAP, once, MOTION_OK } from '@/lib/gsap'
 
 /**
  * ORIGIN ROAD (draw device)
@@ -90,34 +90,14 @@ export function OriginRoad() {
             scrollTrigger: { trigger: road, start: 'top 60%', end: 'bottom 60%', scrub: 0.4, invalidateOnRefresh: true },
           }
         )
-        // Beats settle in as the line reaches them
+        // Beats settle in on their own as the line reaches them
         gsap.utils.toArray<HTMLElement>('[data-beat]', section).forEach((beat) => {
-          const side = beat.dataset.side === 'right' ? 36 : -36
-          gsap.fromTo(
-            beat,
-            { opacity: 0, x: side, y: 20 },
-            {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              ease: 'power2.out',
-              scrollTrigger: { trigger: beat, start: 'top 85%', end: 'top 58%', scrub: true },
-            }
-          )
+          const side = window.innerWidth >= 768 ? (beat.dataset.side === 'right' ? 36 : -36) : 0
           const dot = beat.querySelector('[data-dot]')
-          if (dot) {
-            gsap.fromTo(
-              dot,
-              { scale: 0.4, opacity: 0 },
-              { scale: 1, opacity: 1, ease: 'back.out(2)', scrollTrigger: { trigger: beat, start: 'top 62%', end: 'top 50%', scrub: true } }
-            )
-          }
+          const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, scrollTrigger: once(beat, 'top 80%') })
+          if (dot) tl.fromTo(dot, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)' }, 0)
+          tl.fromTo(beat, { opacity: 0, x: side, y: 20 }, { opacity: 1, x: 0, y: 0, duration: 0.8 }, 0.05)
         })
-      })
-
-      // Phones: beats come from the same side; the x offset is smaller
-      mm.add(`${MOTION_OK} and not ${DESKTOP}`, () => {
-        gsap.set('[data-beat]', { x: 0 })
       })
 
       return () => mm.revert()

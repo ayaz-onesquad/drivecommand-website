@@ -755,8 +755,6 @@
 .tool-window {
   position: absolute;
   z-index: 20;
-  left: var(--pos-left);
-  top: var(--pos-top);
   width: clamp(11rem, 22vw, 17rem);
   border-radius: 0.6rem;
   overflow: hidden;
@@ -788,12 +786,7 @@
   text-overflow: ellipsis;
 }
 @media (max-width: 767px) {
-  /* Phones: the windows peek in from the stage edges so the copy stays clear */
-  .tool-window {
-    width: clamp(9rem, 44vw, 12rem);
-    left: var(--m-left, var(--pos-left));
-    top: var(--m-top, var(--pos-top));
-  }
+  .tool-window { width: clamp(9rem, 44vw, 12rem); }
   .tool-window__line { font-size: 0.625rem; }
 }
 

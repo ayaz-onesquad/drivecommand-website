@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useRef } from 'react'
 import { ArrowRight } from 'lucide-react'
-import { gsap, useGSAP, MOTION_OK, FINE_POINTER } from '@/lib/gsap'
+import { gsap, useGSAP, once, MOTION_OK, FINE_POINTER } from '@/lib/gsap'
 
 /**
  * CLOSE (draw + pointer)
@@ -31,14 +31,18 @@ export function FinalCTA() {
           const len = p.getTotalLength()
           gsap.set(p, { strokeDasharray: len, strokeDashoffset: len })
         })
-        const tl = gsap.timeline({
-          defaults: { ease: 'none' },
-          scrollTrigger: { trigger: section, start: 'top 85%', end: 'top 15%', scrub: 0.6 },
+        // The road draws with the scroll (lines, not text, so a mid state is fine)
+        gsap.to(lines, {
+          strokeDashoffset: 0,
+          stagger: 0.06,
+          ease: 'none',
+          scrollTrigger: { trigger: section, start: 'top 85%', end: 'top 10%', scrub: 0.6 },
         })
-        tl.to(lines, { strokeDashoffset: 0, duration: 1, stagger: 0.06 }, 0)
-        tl.fromTo('[data-word]', { yPercent: 110 }, { yPercent: 0, duration: 0.5, stagger: 0.12, ease: 'power3.out' }, 0.35)
-        tl.fromTo('[data-close-copy]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, 0.7)
-        tl.fromTo('[data-close-cta]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }, 0.8)
+        // The words, copy, and CTA land on their own once the section is in view
+        const land = gsap.timeline({ defaults: { ease: 'power3.out' }, scrollTrigger: once(section, 'top 60%') })
+        land.fromTo('[data-word]', { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.14 }, 0)
+        land.fromTo('[data-close-copy]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.6 }, 0.45)
+        land.fromTo('[data-close-cta]', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.6 }, 0.6)
       })
 
       mm.add(`${MOTION_OK} and ${FINE_POINTER}`, () => {

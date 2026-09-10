@@ -421,7 +421,7 @@ export function RouteMap({ className = '' }: RouteMapProps) {
           <g key={`truck-${route.id}`}>
             {/* Truck */}
             <motion.g
-              transform={`translate(${point.x}, ${point.y}) rotate(${point.angle})`}
+              transform={`translate(${point.x.toFixed(2)}, ${point.y.toFixed(2)}) rotate(${point.angle.toFixed(2)})`}
               filter="url(#truck-glow)"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: shouldAnimate ? 1 : 0, scale: 1 }}

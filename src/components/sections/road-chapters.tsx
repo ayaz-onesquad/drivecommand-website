@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useRef, type ReactNode } from 'react'
 import { ArrowRight } from 'lucide-react'
-import { gsap, ScrollTrigger, useGSAP, MOTION_OK } from '@/lib/gsap'
+import { gsap, ScrollTrigger, useGSAP, once, MOTION_OK, DESKTOP, MOBILE } from '@/lib/gsap'
 
 /**
  * ROAD CHAPTERS (full-screen stacked panels)
@@ -239,20 +239,30 @@ export function RoadChapters() {
       const section = sectionRef.current
       if (!section) return
       const mm = gsap.matchMedia()
+      const panels = () => gsap.utils.toArray<HTMLElement>('[data-chapter]', section)
 
-      mm.add(MOTION_OK, () => {
-        const panels = gsap.utils.toArray<HTMLElement>('[data-chapter]', section)
+      // Content lands on its own once a chapter is in view. Never scrubbed,
+      // so a reader who stops mid-scroll always sees finished type.
+      const landContent = (panel: HTMLElement, start: string) => {
+        const rule = panel.querySelector<HTMLElement>('[data-ch-rule]')
+        const lines = gsap.utils.toArray<HTMLElement>('[data-ch-line]', panel)
+        const body = panel.querySelector<HTMLElement>('[data-ch-body]')
+        const cards = gsap.utils.toArray<HTMLElement>('[data-ch-card]', panel)
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, scrollTrigger: once(panel, start) })
+        if (rule) tl.fromTo(rule, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 0.8 }, 0)
+        tl.fromTo(lines, { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.1 }, 0.05)
+        if (body) tl.fromTo(body, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 0.5)
+        if (cards.length) tl.fromTo(cards, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.65)
+      }
+
+      // ---------------- Desktop: the stacked deck ----------------
+      mm.add(`${MOTION_OK} and ${DESKTOP}`, () => {
+        const list = panels()
         const triggers: ScrollTrigger[] = []
-
-        panels.forEach((panel, i) => {
-          const isLast = i === panels.length - 1
+        list.forEach((panel, i) => {
+          const isLast = i === list.length - 1
           const inner = panel.querySelector<HTMLElement>('[data-ch-inner]')
-          const rule = panel.querySelector<HTMLElement>('[data-ch-rule]')
-          const lines = gsap.utils.toArray<HTMLElement>('[data-ch-line]', panel)
-          const body = panel.querySelector<HTMLElement>('[data-ch-body]')
-          const cards = gsap.utils.toArray<HTMLElement>('[data-ch-card]', panel)
 
-          // 1. Pin. The next chapter scrolls over this one (no pin spacing).
           if (!isLast) {
             triggers.push(
               ScrollTrigger.create({
@@ -267,22 +277,17 @@ export function RoadChapters() {
             )
           }
 
-          // 2. Deal-in: the chapter tilts up into place as it arrives.
+          // Deal-in: the whole chapter tilts up into place as it arrives (whole panel, never text alone)
           if (i > 0) {
             gsap.fromTo(
               panel,
-              { rotationX: 14, transformPerspective: 1400, transformOrigin: 'top center', y: 40 },
-              {
-                rotationX: 0,
-                y: 0,
-                ease: 'none',
-                scrollTrigger: { trigger: panel, start: 'top bottom', end: 'top top', scrub: true, invalidateOnRefresh: true },
-              }
+              { rotationX: 12, transformPerspective: 1400, transformOrigin: 'top center', y: 30 },
+              { rotationX: 0, y: 0, ease: 'none', scrollTrigger: { trigger: panel, start: 'top bottom', end: 'top top', scrub: true, invalidateOnRefresh: true } }
             )
           }
 
-          // 3. Recede: as the next chapter covers this one, its content sinks back.
-          const next = panels[i + 1]
+          // Recede: as the next chapter covers this one, its content sinks back
+          const next = list[i + 1]
           if (next && inner) {
             gsap.to(inner, {
               scale: 0.92,
@@ -293,24 +298,14 @@ export function RoadChapters() {
             })
           }
 
-          // 4. Content choreography, scrubbed across the chapter's arrival.
-          const entry = gsap.timeline({
-            defaults: { ease: 'power3.out' },
-            scrollTrigger: {
-              trigger: panel,
-              start: i === 0 ? 'top 75%' : 'top 70%',
-              end: i === 0 ? 'top 15%' : 'top top',
-              scrub: 0.4,
-              invalidateOnRefresh: true,
-            },
-          })
-          if (rule) entry.fromTo(rule, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 0.5 }, 0)
-          entry.fromTo(lines, { yPercent: 110 }, { yPercent: 0, duration: 0.6, stagger: 0.1 }, 0.1)
-          if (body) entry.fromTo(body, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45 }, 0.45)
-          if (cards.length) entry.fromTo(cards, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08 }, 0.6)
+          landContent(panel, 'top 55%')
         })
-
         return () => triggers.forEach((t) => t.kill())
+      })
+
+      // ---------------- Phone: chapters in flow ----------------
+      mm.add(`${MOTION_OK} and ${MOBILE}`, () => {
+        panels().forEach((panel) => landContent(panel, 'top 75%'))
       })
 
       return () => mm.revert()
@@ -324,11 +319,11 @@ export function RoadChapters() {
         <article
           key={ch.number}
           data-chapter
-          className="relative min-h-[100svh] flex items-center overflow-hidden will-change-transform"
+          className="relative md:min-h-[100svh] flex items-center overflow-hidden will-change-transform"
           style={{ backgroundColor: ch.ground, color: ch.ink }}
         >
           <div className="absolute inset-0 hero-grain pointer-events-none" aria-hidden="true" />
-          <div data-ch-inner className="relative w-full mx-auto max-w-7xl px-6 md:px-12 py-20 md:py-24 will-change-transform">
+          <div data-ch-inner className="relative w-full mx-auto max-w-7xl px-6 md:px-12 py-16 md:py-24 will-change-transform">
             <div className="space-y-6 md:space-y-8">
               {/* Eyebrow with number, the rule draws in */}
               <div>

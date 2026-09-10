@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, type ReactNode } from 'react'
-import { gsap, useGSAP, MOTION_OK } from '@/lib/gsap'
+import { gsap, useGSAP, once, MOTION_OK } from '@/lib/gsap'
 
 type Direction = 'up' | 'down' | 'left' | 'right' | 'iris'
 
@@ -22,22 +22,23 @@ const END: Record<Direction, string> = {
 
 /**
  * REVEAL (wipe device)
- * A clip-path wipe scrubbed by the element's own entry. A wipe reads as a
- * change of state, so use it where something becomes something else.
- * Under reduced motion the content is simply present.
+ * A clip-path wipe that plays once, to completion, the moment the element
+ * enters the viewport. It is not tied to scroll position, so nobody is ever
+ * left looking at a half-clipped heading. Under reduced motion the content
+ * is simply present.
  */
 export function RevealPanel({
   children,
   direction = 'up',
   className = '',
-  start = 'top 88%',
-  end = 'top 30%',
+  start = 'top 80%',
+  duration = 1.1,
 }: {
   children: ReactNode
   direction?: Direction
   className?: string
   start?: string
-  end?: string
+  duration?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -50,16 +51,12 @@ export function RevealPanel({
         gsap.fromTo(
           el,
           { clipPath: START[direction] },
-          {
-            clipPath: END[direction],
-            ease: 'none',
-            scrollTrigger: { trigger: el, start, end, scrub: true },
-          }
+          { clipPath: END[direction], duration, ease: 'power3.inOut', scrollTrigger: once(el, start), clearProps: 'clipPath' }
         )
       })
       return () => mm.revert()
     },
-    { scope: ref, dependencies: [direction, start, end] }
+    { scope: ref, dependencies: [direction, start, duration] }
   )
 
   return (

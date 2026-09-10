@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { gsap, useGSAP, MOTION_OK } from '@/lib/gsap'
+import { gsap, useGSAP, once, MOTION_OK } from '@/lib/gsap'
 
 /**
  * VALUES LEDGER (reveal device)
@@ -50,13 +50,10 @@ export function ValuesLedger() {
           const numeral = row.querySelector('[data-numeral]')
           const copy = row.querySelector('[data-copy]')
           const rule = row.querySelector('[data-rule]')
-          const tl = gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: { trigger: row, start: 'top 88%', end: 'top 45%', scrub: true },
-          })
-          if (rule) tl.fromTo(rule, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 0.5 }, 0)
-          if (numeral) tl.fromTo(numeral, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 0.45 }, 0.05)
-          if (copy) tl.fromTo(copy, { clipPath: 'inset(0 100% 0 0)', x: -12 }, { clipPath: 'inset(0 0% 0 0)', x: 0, duration: 0.6 }, 0.25)
+          const tl = gsap.timeline({ defaults: { ease: 'power3.out' }, scrollTrigger: once(row, 'top 82%') })
+          if (rule) tl.fromTo(rule, { scaleX: 0, transformOrigin: 'left center' }, { scaleX: 1, duration: 0.7 }, 0)
+          if (numeral) tl.fromTo(numeral, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 0.6, clearProps: 'clipPath' }, 0.05)
+          if (copy) tl.fromTo(copy, { clipPath: 'inset(0 100% 0 0)', x: -12 }, { clipPath: 'inset(0 0% 0 0)', x: 0, duration: 0.8, clearProps: 'clipPath' }, 0.2)
         })
       })
       return () => mm.revert()
